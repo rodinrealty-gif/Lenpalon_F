@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ленпалон Фемили — забота о вашем желудке каждый день</title>
 <meta name="description" content="«Ленпалон Фемили» — забота о вашем желудке каждый день: функциональное питание и готовая схема на 15 дней. Курс 9 700 ₽. Оставьте заявку.">
-<meta name="theme-color" content="#FFFFFF">
+<meta name="theme-color" content="#FCFBF8">
 
 <!-- Open Graph. [НЕ ЗАДАНО: адрес сайта и картинка 1200×630 для og:url / og:image] -->
 <meta property="og:type" content="website">
@@ -16,32 +16,35 @@
 <!-- <meta property="og:url" content="https://[НЕ ЗАДАНО]/"> -->
 <!-- <meta property="og:image" content="https://[НЕ ЗАДАНО]/og.jpg"> -->
 
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%2316696E'/%3E%3Cpath d='M9 23c0-8.5 5.5-14 14-14 0 8.5-5.5 14-14 14Zm0 0 7-7' fill='none' stroke='%23fff' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231D3F8F'/%3E%3Cpath d='M9 23c0-8.5 5.5-14 14-14 0 8.5-5.5 14-14 14Zm0 0 7-7' fill='none' stroke='%23D9B865' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&amp;family=Onest:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
 
 <style>
 /* =========================================================
    ТОКЕНЫ: сетка, шрифт и формы — из макета; палитра — по упаковке
-   (мятно-бирюзовая, вместо синей из макета)
+   (жемчужный, золото и королевский синий — с коробки)
    Правило формы из макета: контейнеры и фото — 14px,
    кнопки, чипы и поля — «пилюля». Один акцент (синий).
    ========================================================= */
 :root{
   color-scheme:light;
   /* цвета макета */
-  --bg:#FFFFFF;
-  --surface:#F2F8F7;
-  --ink:#0F2B2E;
-  --muted:#4A6366;
-  --line:#D2E4E0;
-  --tint:#E0F0EC;
-  --accent:#16696E;
-  --accent-hover:#0F5357;           /* фолбэк для color-mix(accent, #000 14%) */
-  --ink-hover:#164A4E;              /* фолбэк для color-mix(ink, accent 30%) */
+  --bg:#FCFBF8;
+  --surface:#F6F3EC;
+  --ink:#141B2E;
+  --muted:#535A6B;
+  --line:#E3D8BF;
+  --tint:#EFE9DC;
+  --accent:#1D3F8F;
+  --accent-hover:#162F6B;           /* фолбэк для color-mix(accent, #000 14%) */
+  --ink-hover:#1E2A52;              /* фолбэк для color-mix(ink, accent 30%) */
   --on-accent:#FFFFFF;
+  --gold:#B8913F;                   /* золото упаковки — только линии и декор (2.8:1) */
+  --gold-ink:#7E6020;               /* золото для текста и иконок, AA 5.7:1 */
+  --gold-grad:linear-gradient(90deg,#9C7A2E,#D9B865 50%,#9C7A2E);
   /* служебные (в макете нет, нужны по ТЗ) */
   --danger:#B42318;                 /* ошибки форм, контраст 6.5:1 */
   --todo-bg:#FFF1B8;                /* плашка [НЕ ЗАДАНО]/[ДОБАВИТЬ] */
@@ -52,6 +55,7 @@
   --cap1:#6DBE5A;--cap2:#5DB7E8;--cap3:#D9B572;--cap4:#9B86D6;
   /* шрифт */
   --font:'Onest',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --font-brand:'Cormorant Garamond',Georgia,serif;  /* только логотип, как на коробке */
   --fs-h1:42px;                     /* мобайл из макета; десктоп ниже */
   --fs-h1-desk:clamp(44px,4.9vw,70px);
   --fs-h2:clamp(34px,3.6vw,48px);
@@ -156,7 +160,7 @@ h1,h2,h3,p,ul,ol{margin:0}
 .input:focus-visible{border-color:var(--accent)}
 .input:disabled{opacity:.6;cursor:not-allowed}
 .input[aria-invalid="true"]{border-color:var(--danger);box-shadow:inset 0 0 0 1px var(--danger)}
-select.input{appearance:none;-webkit-appearance:none;padding-right:52px;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M208 96l-80 80-80-80' fill='none' stroke='%230F2B2E' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 22px center;background-size:16px}
+select.input{appearance:none;-webkit-appearance:none;padding-right:52px;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'%3E%3Cpath d='M208 96l-80 80-80-80' fill='none' stroke='%23141B2E' stroke-width='20' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 22px center;background-size:16px}
 .err{display:flex;gap:6px;align-items:flex-start;font-size:14px;line-height:1.4;color:var(--danger);padding-left:24px}
 .err:empty{display:none}
 .err::before{content:"!";flex:none;display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:currentColor;color:var(--bg);font-size:12px;font-weight:700;line-height:1;margin-top:1px}
@@ -188,10 +192,11 @@ select.input{appearance:none;-webkit-appearance:none;padding-right:52px;cursor:p
 /* =========================================================
    SECTION: Верхняя плашка + шапка
    ========================================================= */
-.topbar{background:linear-gradient(90deg,var(--tint),#E6F2F8);font-size:14px;text-align:center;padding:12px 16px;line-height:1.4}
+.topbar{background:var(--tint);border-bottom:1px solid var(--gold);font-size:14px;text-align:center;padding:12px 16px;line-height:1.4}
 .site-header{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--line)}
+.site-header::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:1px;background:var(--gold-grad);opacity:.7}
 .nav{height:var(--header-h);display:flex;align-items:center;justify-content:space-between;gap:12px}
-.brand{font-size:18px;font-weight:700;letter-spacing:-0.03em;white-space:nowrap;display:inline-flex;align-items:center;min-height:44px}
+.brand{font-family:var(--font-brand);font-size:21px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold-ink);white-space:nowrap;display:inline-flex;align-items:center;min-height:44px}
 .header-actions{display:flex;align-items:center;gap:4px}
 .phone-link{padding:0 10px}
 .phone-text{display:none}
@@ -224,7 +229,7 @@ select.input{appearance:none;-webkit-appearance:none;padding-right:52px;cursor:p
 .hero-slot{aspect-ratio:4/3}
 .facts{list-style:none;padding:0;display:grid;grid-template-columns:1fr;gap:14px}
 .facts li{display:flex;gap:12px;align-items:flex-start;font-size:15px;line-height:1.45}
-.facts .dot{width:28px;height:28px;border-radius:50%;background:var(--tint);color:var(--accent);display:flex;align-items:center;justify-content:center;flex:none}
+.facts .dot{width:28px;height:28px;border-radius:50%;background:var(--tint);color:var(--gold-ink);display:flex;align-items:center;justify-content:center;flex:none}
 .note-doctor{display:flex;gap:10px;align-items:flex-start}
 .note-doctor .i{color:var(--accent);width:18px;height:18px;margin-top:1px}
 
@@ -253,7 +258,7 @@ select.input{appearance:none;-webkit-appearance:none;padding-right:52px;cursor:p
 .card--wide{display:grid;grid-template-columns:1fr}
 .card--wide .card-body{padding:28px;display:flex;flex-direction:column;justify-content:space-between;gap:16px}
 .card--wide .slot{aspect-ratio:4/3}
-.card--accent{background:var(--accent);color:var(--on-accent);border-color:var(--accent);padding:28px;justify-content:space-between;gap:28px;min-height:240px}
+.card--accent{background:var(--accent);color:var(--on-accent);border-color:var(--gold);padding:28px;justify-content:space-between;gap:28px;min-height:240px}
 .card--accent .card-text{color:var(--on-accent)}
 .card--accent:focus-visible{outline-color:var(--ink)}
 .card--tint{background:var(--tint);border-color:var(--tint);padding:28px;justify-content:space-between;gap:28px;min-height:240px}
@@ -269,7 +274,7 @@ select.input{appearance:none;-webkit-appearance:none;padding-right:52px;cursor:p
 .benefit{display:flex;gap:20px;padding:28px 0;border-bottom:1px solid var(--line)}
 .benefit:first-child{padding-top:0}
 .benefit:last-child{border-bottom:0;padding-bottom:0}
-.icon-circle{width:52px;height:52px;border-radius:50%;background:var(--tint);display:flex;align-items:center;justify-content:center;flex:none}
+.icon-circle{width:52px;height:52px;border-radius:50%;background:var(--tint);color:var(--gold-ink);box-shadow:inset 0 0 0 1px var(--line);display:flex;align-items:center;justify-content:center;flex:none}
 .benefit-body{display:flex;flex-direction:column;gap:8px}
 .h3{font-size:21px;font-weight:600;letter-spacing:-0.02em;line-height:1.25}
 .benefit p{font-size:16px;line-height:1.55;color:var(--muted);max-width:52ch}
@@ -354,7 +359,7 @@ select.input{appearance:none;-webkit-appearance:none;padding-right:52px;cursor:p
 /* =========================================================
    SECTION: Финальный призыв (блок «Подбор» из макета)
    ========================================================= */
-.cta{background:var(--accent);color:var(--on-accent);border-radius:var(--r);padding:32px 20px;display:grid;grid-template-columns:1fr;gap:32px;align-items:center}
+.cta{position:relative;overflow:hidden;box-shadow:inset 0 0 0 1px var(--gold);background:var(--accent);color:var(--on-accent);border-radius:var(--r);padding:32px 20px;display:grid;grid-template-columns:1fr;gap:32px;align-items:center}
 .cta-head{display:flex;flex-direction:column;gap:16px}
 .cta-head p{font-size:17px;line-height:1.55}
 .cta-head a{text-decoration:underline;font-weight:600;white-space:nowrap}
@@ -394,14 +399,14 @@ select.input{appearance:none;-webkit-appearance:none;padding-right:52px;cursor:p
 /* =========================================================
    SECTION: Подвал
    ========================================================= */
-.footer{border-top:1px solid var(--line)}
+.footer{border-top:1px solid var(--gold);background:var(--surface)}
 .footer-inner{padding-top:56px;padding-bottom:40px}
 .footer-grid{display:grid;grid-template-columns:1fr;gap:40px}
 .footer-brand{display:flex;flex-direction:column;gap:20px;max-width:440px}
-.footer-brand .brand{font-size:24px;min-height:0}
-.slogan{font-size:17px;color:var(--muted)}
+.footer-brand .brand{font-size:28px;min-height:0}
+.slogan{font-family:var(--font-brand);font-style:italic;font-size:22px;font-weight:600;color:var(--gold-ink)}
 .sub-row{display:flex;flex-wrap:wrap;gap:8px}
-.sub-row .input{flex:1 1 200px;min-height:var(--btn-h);padding:0 22px}
+.sub-row .input{background:var(--bg);flex:1 1 200px;min-height:var(--btn-h);padding:0 22px}
 .footer-col{display:flex;flex-direction:column;gap:4px;font-size:16px}
 .footer-title{font-size:16px;font-weight:600;margin-bottom:8px}
 .footer-col .navlink{font-size:16px;align-self:flex-start}
@@ -449,7 +454,7 @@ html.modal-open{overflow:hidden}
 @media (min-width:768px){
   :root{--gutter:var(--gutter-desk);--section-y:var(--section-y-desk);--fs-h1:var(--fs-h1-desk)}
   .nav{gap:24px}
-  .brand{font-size:24px}
+  .brand{font-size:26px}
   .phone-text{display:inline}
   .phone-link{padding:0 12px}
   .hero{padding-top:var(--hero-top)}
