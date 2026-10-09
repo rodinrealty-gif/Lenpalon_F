@@ -7,14 +7,15 @@
 <meta name="description" content="«Ленпалон Фемили» — забота о вашем желудке каждый день: функциональное питание и готовая схема на 15 дней. Курс 9 700 ₽. Оставьте заявку.">
 <meta name="theme-color" content="#FCFBF8">
 
-<!-- Open Graph. [НЕ ЗАДАНО: адрес сайта и картинка 1200×630 для og:url / og:image] -->
+<link rel="canonical" href="https://lenpalonfamily.ru/">
+<!-- Open Graph. [ДОБАВИТЬ: картинка 1200×630 для og:image] -->
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ru_RU">
 <meta property="og:title" content="Ленпалон Фемили — забота о вашем желудке каждый день">
 <meta property="og:description" content="Функциональная пищевая добавка «Ленпалон Фемили» от московского производителя ООО «Биофлора» и простая схема питания. Без жёстких диет.">
 <meta property="og:site_name" content="Ленпалон Фемили">
-<!-- <meta property="og:url" content="https://[НЕ ЗАДАНО]/"> -->
-<!-- <meta property="og:image" content="https://[НЕ ЗАДАНО]/og.jpg"> -->
+<meta property="og:url" content="https://lenpalonfamily.ru/">
+<!-- <meta property="og:image" content="https://lenpalonfamily.ru/og.jpg"> -->
 
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231D3F8F'/%3E%3Cpath d='M9 23c0-8.5 5.5-14 14-14 0 8.5-5.5 14-14 14Zm0 0 7-7' fill='none' stroke='%23D9B865' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 
@@ -166,6 +167,16 @@ select.input{appearance:none;-webkit-appearance:none;padding-right:52px;cursor:p
 .err::before{content:"!";flex:none;display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:currentColor;color:var(--bg);font-size:12px;font-weight:700;line-height:1;margin-top:1px}
 .form-error{font-size:15px;line-height:1.5;color:var(--danger);font-weight:500}
 .form-error a{text-decoration:underline;white-space:nowrap}
+.check{display:flex;gap:12px;align-items:flex-start;font-size:14px;line-height:1.45;color:var(--muted);cursor:pointer}
+.check input{width:22px;height:22px;margin:0;flex:none;accent-color:var(--accent);cursor:pointer}
+.check input:disabled{cursor:not-allowed;opacity:.6}
+.check:hover input{outline:1px solid var(--muted);outline-offset:1px}
+.check input:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.check input[aria-invalid="true"]{outline:2px solid var(--danger);outline-offset:1px}
+.check a{text-decoration:underline;color:inherit}
+.check a:hover{color:var(--ink)}
+.cta .check,.cta .check a:hover{color:var(--on-accent)}
+.cta .check input:focus-visible{outline-color:var(--on-accent)}
 .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .form-success{display:flex;flex-direction:column;gap:12px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:28px}
 .form-success:focus{outline:none}
@@ -528,7 +539,7 @@ html.modal-open{overflow:hidden}
 <a class="skip-link" href="#main">Перейти к содержанию</a>
 
 <!-- SECTION: Верхняя плашка (из макета) -->
-<div class="topbar">Бесплатная доставка от <span class="todo">[НЕ ЗАДАНО: сумма]</span> ₽</div>
+<div class="topbar">Бесплатная доставка по всей России — от одной упаковки</div>
 
 <!-- SECTION: Шапка -->
 <header class="site-header" id="top">
@@ -584,19 +595,19 @@ html.modal-open{overflow:hidden}
               <p class="err" id="hero-contact-err"></p>
             </div>
           </div>
+          <div class="field"><label class="check"><input type="checkbox" id="hero-consent" name="consent" data-validate="consent" aria-describedby="hero-consent-err" required><span>Даю <a href="consent.html" target="_blank" rel="noopener">согласие на обработку персональных данных</a> и принимаю <a href="privacy.html" target="_blank" rel="noopener">политику конфиденциальности</a></span></label><p class="err" id="hero-consent-err"></p></div>
           <div class="hp" aria-hidden="true"><label>Сайт <input name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
           <div class="form-actions">
             <button type="submit" class="btn btn-primary" data-label="Оставить заявку"><span class="btn-label">Оставить заявку</span><svg class="i" aria-hidden="true"><use href="#i-right"/></svg></button>
             <a href="#catalog" class="btn btn-ghost">Смотреть каталог</a>
           </div>
           <p class="form-error" role="alert" hidden>Не получилось отправить заявку. Попробуйте ещё раз или позвоните: <a href="tel:+79269555935">+7 (926) 955-59-35</a></p>
-          <p class="fineprint">Нажимая кнопку, вы соглашаетесь на обработку персональных данных по <a href="#" data-todo>политике конфиденциальности</a> <span class="todo">[НЕ ЗАДАНО: политика конфиденциальности]</span>.</p>
           <p class="fineprint note-doctor"><svg class="i" aria-hidden="true"><use href="#i-info"/></svg><span>Мы помогаем с рационом и не ставим диагнозов. Информация на сайте не заменяет консультацию врача: при тревожных симптомах обратитесь к специалисту.</span></p>
         </div>
         <div class="form-success" role="status" tabindex="-1" hidden>
           <span class="form-success__icon"><svg class="i i-26" aria-hidden="true"><use href="#i-check"/></svg></span>
           <p class="form-success__title">Спасибо, <span data-name></span>! Заявка у нас.</p>
-          <p>Свяжемся с вами <span class="todo">[НЕ ЗАДАНО: срок ответа, например «в течение рабочего дня»]</span> и расспросим, что беспокоит. Если удобнее — позвоните: <a href="tel:+79269555935">+7 (926) 955-59-35</a>.</p>
+          <p>Первым ответит наш онлайн AI‑консультант, при необходимости подключится специалист. Если удобнее — позвоните: <a href="tel:+79269555935">+7 (926) 955-59-35</a>.</p>
           <button type="button" class="linkbtn" data-reset>Отправить ещё одну заявку</button>
         </div>
       </form>
@@ -622,7 +633,7 @@ html.modal-open{overflow:hidden}
       <li><span class="mark mark--2" aria-hidden="true">Л</span><span>Протокол испытаний №&nbsp;015025&#8209;ГКА2&#8209;2026 аккредитованной лаборатории</span></li>
       <li><span class="mark mark--3" aria-hidden="true">М</span><span>Собственное производство в Москве</span></li>
       <li><span class="mark mark--4" aria-hidden="true">Т</span><span>Выпускается по ТУ<br>10.89.19-001-60965086-2026</span></li>
-      <li><span class="mark mark--5" aria-hidden="true">О</span><span class="todo">[ДОБАВИТЬ: отзывы, партнёры, цифры]</span></li>
+      <li><span class="mark mark--5" aria-hidden="true">О</span><span class="todo">[ДОБАВИТЬ: комментарии нутрициолога и гастроэнтеролога]</span></li>
     </ul>
     <a class="textlink lift" href="https://pub.fsa.gov.ru/rds/declaration" target="_blank" rel="noopener">Проверить декларацию в реестре Росаккредитации<svg class="i arrow" aria-hidden="true"><use href="#i-upright"/></svg><span class="visually-hidden"> (откроется в новой вкладке)</span></a>
   </div>
@@ -745,7 +756,7 @@ html.modal-open{overflow:hidden}
       </dl>
     </div>
   </div>
-  <p class="fineprint catalog-note">Оплата и доставка: <span class="todo">[НЕ ЗАДАНО: способ оплаты и доставки]</span>. После заказа перезвоним и всё подтвердим.</p>
+  <p class="fineprint catalog-note">Доставка по всей России бесплатная: курьером, СДЭК, Почтой России или в пункт выдачи. Оплата картой онлайн или переводом по реквизитам.</p>
 </section>
 
 <!-- SECTION: Схема приёма (по фото упаковки; в макете не было) -->
@@ -800,7 +811,7 @@ html.modal-open{overflow:hidden}
       </li>
       <li class="step">
         <span class="step-num" aria-hidden="true">2</span>
-        <div class="step-body"><h3 class="h3">Обсудим ваш рацион</h3><p>Позвоним или напишем в Telegram и расспросим: что и когда вы едите, в какие моменты появляется дискомфорт.</p></div>
+        <div class="step-body"><h3 class="h3">Обсудим ваш рацион</h3><p>Онлайн AI‑консультант ответит сразу и расспросит, что и когда вы едите и в какие моменты появляется дискомфорт. При необходимости подключится специалист.</p></div>
       </li>
       <li class="step">
         <span class="step-num" aria-hidden="true">3</span>
@@ -808,7 +819,7 @@ html.modal-open{overflow:hidden}
       </li>
       <li class="step">
         <span class="step-num" aria-hidden="true">4</span>
-        <div class="step-body"><h3 class="h3">Доставим и останемся на связи</h3><p>Доставка: <span class="todo">[НЕ ЗАДАНО: способ и сроки]</span>. Если что-то не подойдёт — поменяем схему вместе.</p></div>
+        <div class="step-body"><h3 class="h3">Доставим бесплатно и останемся на связи</h3><p>Бесплатно по всей России: курьером, СДЭК, Почтой России или в пункт выдачи. Срок назовём при оформлении заказа.</p></div>
       </li>
     </ol>
   </div>
@@ -833,16 +844,16 @@ html.modal-open{overflow:hidden}
           <input class="input" id="final-contact" name="contact" type="text" inputmode="text" autocomplete="tel" placeholder="+7 (___) ___-__-__ или @ник" data-validate="contact" data-phone-mask aria-describedby="final-contact-err" required>
           <p class="err" id="final-contact-err"></p>
         </div>
-        <div class="hp" aria-hidden="true"><label>Сайт <input name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
+        <div class="field"><label class="check"><input type="checkbox" id="final-consent" name="consent" data-validate="consent" aria-describedby="final-consent-err" required><span>Даю <a href="consent.html" target="_blank" rel="noopener">согласие на обработку персональных данных</a> и принимаю <a href="privacy.html" target="_blank" rel="noopener">политику конфиденциальности</a></span></label><p class="err" id="final-consent-err"></p></div>
+          <div class="hp" aria-hidden="true"><label>Сайт <input name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
         <button type="submit" class="btn btn-ink" data-label="Оставить заявку"><span class="btn-label">Оставить заявку</span></button>
         <p class="form-error" role="alert" hidden>Не получилось отправить заявку. Попробуйте ещё раз или позвоните: <a href="tel:+79269555935">+7 (926) 955-59-35</a></p>
-        <p class="fineprint">Нажимая кнопку, вы соглашаетесь на обработку персональных данных по <a href="#" data-todo>политике конфиденциальности</a> <span class="todo">[НЕ ЗАДАНО: политика конфиденциальности]</span>.</p>
         <p class="fineprint note-doctor"><svg class="i" aria-hidden="true"><use href="#i-info"/></svg><span>Информация на сайте не заменяет консультацию врача. При тревожных симптомах обратитесь к специалисту.</span></p>
       </div>
       <div class="form-success" role="status" tabindex="-1" hidden>
         <span class="form-success__icon"><svg class="i i-26" aria-hidden="true"><use href="#i-check"/></svg></span>
         <p class="form-success__title">Спасибо, <span data-name></span>! Заявка у нас.</p>
-        <p>Свяжемся с вами <span class="todo">[НЕ ЗАДАНО: срок ответа]</span>. Если удобнее — позвоните: <a href="tel:+79269555935">+7 (926) 955-59-35</a>.</p>
+        <p>Первым ответит наш онлайн AI‑консультант, при необходимости подключится специалист. Если удобнее — позвоните: <a href="tel:+79269555935">+7 (926) 955-59-35</a>.</p>
         <button type="button" class="linkbtn" data-reset>Отправить ещё одну заявку</button>
       </div>
     </form>
@@ -883,11 +894,11 @@ html.modal-open{overflow:hidden}
       </details>
       <details class="qa">
         <summary class="qbtn"><span>Как оплатить, получить и хранить продукт?</span><svg class="i" aria-hidden="true"><use href="#i-caret"/></svg></summary>
-        <div class="qa-panel"><p>Храните продукт при температуре от +4 до +12 °C, срок годности — 5 лет.</p><p>Оплата и доставка: <span class="todo">[НЕ ЗАДАНО: способы оплаты, регионы, сроки и стоимость доставки]</span>. Пока всё можно уточнить по телефону <a href="tel:+79269555935">+7 (926) 955-59-35</a>.</p></div>
+        <div class="qa-panel"><p>Оплата — картой онлайн или переводом по реквизитам.</p><p>Доставляем бесплатно по всей России, даже одну упаковку: курьером, СДЭК, Почтой России или в пункт выдачи. Срок рассчитывается при оформлении заказа, продукт приходит в коробке.</p><p>Скоро здесь появятся адреса магазинов, где можно купить «Ленпалон Фемили». <span class="todo">[ДОБАВИТЬ: адреса розничных точек]</span> Наличие лучше уточнить по телефону <a href="tel:+79269555935">+7 (926) 955-59-35</a>.</p><p>Храните продукт при температуре от +4 до +12 °C, срок годности — 5 лет.</p></div>
       </details>
       <details class="qa">
         <summary class="qbtn"><span>Как проверить, что продукт настоящий? Можно ли вернуть?</span><svg class="i" aria-hidden="true"><use href="#i-caret"/></svg></summary>
-        <div class="qa-panel"><p>«Ленпалон Фемили» выпускает ООО «Биофлора» (Москва) по ТУ&nbsp;10.89.19&#8209;001&#8209;60965086&#8209;2026. На продукцию зарегистрирована декларация о соответствии ЕАЭС <span class="nowrap">N&nbsp;RU&nbsp;Д&#8209;RU.РА06.В.27370/26</span> от 07.08.2026, она действует до 06.08.2031. Номер можно проверить в <a href="https://pub.fsa.gov.ru/rds/declaration" target="_blank" rel="noopener">реестре Росаккредитации</a>.</p><p>Условия возврата: <span class="todo">[НЕ ЗАДАНО]</span>.</p></div>
+        <div class="qa-panel"><p>«Ленпалон Фемили» выпускает ООО «Биофлора» (Москва) по ТУ&nbsp;10.89.19&#8209;001&#8209;60965086&#8209;2026. На продукцию зарегистрирована декларация о соответствии ЕАЭС <span class="nowrap">N&nbsp;RU&nbsp;Д&#8209;RU.РА06.В.27370/26</span> от 07.08.2026, она действует до 06.08.2031. Номер можно проверить в <a href="https://pub.fsa.gov.ru/rds/declaration" target="_blank" rel="noopener">реестре Росаккредитации</a>.</p><p>Продукт надлежащего качества возврату и обмену не подлежит. Если посылка пришла повреждённой или с браком — напишите или позвоните нам, решим вопрос по закону. Подробнее — в <a href="offer.html">оферте</a>.</p></div>
       </details>
     </div>
   </div>
@@ -910,6 +921,7 @@ html.modal-open{overflow:hidden}
               <button type="submit" class="btn btn-ink" data-label="Подписаться"><span class="btn-label">Подписаться</span></button>
             </div>
             <p class="err" id="sub-email-err"></p>
+            <div class="field"><label class="check"><input type="checkbox" id="sub-consent" name="consent" data-validate="consent" aria-describedby="sub-consent-err" required><span>Согласен получать письма и даю <a href="consent.html" target="_blank" rel="noopener">согласие на обработку персональных данных</a></span></label><p class="err" id="sub-consent-err"></p></div>
             <div class="hp" aria-hidden="true"><label>Сайт <input name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
             <p class="form-error" role="alert" hidden>Не получилось подписаться. Попробуйте ещё раз.</p>
           </div>
@@ -929,7 +941,7 @@ html.modal-open{overflow:hidden}
       <div class="footer-col">
         <h2 class="footer-title">Контакты</h2>
         <a class="footer-phone" href="tel:+79269555935">+7 (926) 955-59-35</a>
-        <p class="muted">Соцсети: <span class="todo">[НЕ ЗАДАНО: Telegram-канал, VK]</span></p>
+        <p class="muted">Telegram: <a class="navlink" style="display:inline;font-size:16px;color:var(--ink)" href="https://t.me/lenpalon-family" target="_blank" rel="noopener">t.me/lenpalon-family</a></p>
         <p class="muted">E-mail: <a class="navlink" style="display:inline;font-size:16px;color:var(--ink)" href="mailto:BioFloraLenpalon@ya.ru">BioFloraLenpalon@ya.ru</a></p>
         <p class="muted">119311, Москва, ул.&nbsp;Строителей, д.&nbsp;6, корп.&nbsp;5</p>
       </div>
@@ -937,13 +949,16 @@ html.modal-open{overflow:hidden}
     <div class="footer-bottom">
       <div class="legal">
         <span>© <span data-year>2026</span> ООО «Биофлора». ИНН 7736377369, ОГРН 1267700197511</span>
-        <a href="#" data-todo>Политика конфиденциальности</a>
-        <a href="#" data-todo>Оферта</a>
+        <a href="privacy.html">Политика конфиденциальности</a>
+        <a href="consent.html">Согласие на обработку данных</a>
+        <a href="offer.html">Оферта</a>
       </div>
       <p class="disclaimer">Информация на сайте носит ознакомительный характер и не заменяет консультацию врача. Если дискомфорт сильный, нарастает или появился впервые — обратитесь к специалисту. «Ленпалон Фемили» — функциональная пищевая добавка, не является лекарственным средством.</p>
     </div>
   </div>
 </footer>
+
+<!-- [ДОБАВИТЬ: код виджета онлайн AI-консультанта — вставить сюда] -->
 
 <!-- Кнопка «Наверх» -->
 <button type="button" class="to-top" aria-label="Наверх"><svg class="i i-22" aria-hidden="true"><use href="#i-up"/></svg></button>
@@ -957,7 +972,7 @@ html.modal-open{overflow:hidden}
     </div>
     <form class="lead-form" id="order-form" data-source="catalog" novalidate>
       <div class="form-body">
-        <p class="muted">Оставьте контакты — перезвоним, подтвердим заказ и расскажем про оплату и доставку: <span class="todo">[НЕ ЗАДАНО: способ оплаты и доставки]</span>.</p>
+        <p class="muted">Оставьте контакты — подтвердим заказ и пришлём ссылку на оплату картой или реквизиты для перевода. Доставка по России бесплатная, срок назовём при оформлении.</p>
         <div class="field">
           <label class="label" for="order-product">Продукт</label>
           <select class="input" id="order-product" name="product" data-validate="product" aria-describedby="order-product-err" required>
@@ -976,10 +991,10 @@ html.modal-open{overflow:hidden}
           <input class="input" id="order-contact" name="contact" type="text" inputmode="text" autocomplete="tel" placeholder="+7 (___) ___-__-__ или @ник" data-validate="contact" data-phone-mask aria-describedby="order-contact-err" required>
           <p class="err" id="order-contact-err"></p>
         </div>
-        <div class="hp" aria-hidden="true"><label>Сайт <input name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
+        <div class="field"><label class="check"><input type="checkbox" id="order-consent" name="consent" data-validate="consent" aria-describedby="order-consent-err" required><span>Даю <a href="consent.html" target="_blank" rel="noopener">согласие на обработку персональных данных</a> и принимаю <a href="privacy.html" target="_blank" rel="noopener">политику конфиденциальности</a> и <a href="offer.html" target="_blank" rel="noopener">условия оферты</a></span></label><p class="err" id="order-consent-err"></p></div>
+          <div class="hp" aria-hidden="true"><label>Сайт <input name="website" type="text" tabindex="-1" autocomplete="off"></label></div>
         <button type="submit" class="btn btn-primary btn-block" data-label="Отправить заказ"><span class="btn-label">Отправить заказ</span></button>
         <p class="form-error" role="alert" hidden>Не получилось отправить заказ. Попробуйте ещё раз или позвоните: <a href="tel:+79269555935">+7 (926) 955-59-35</a></p>
-        <p class="fineprint">Нажимая кнопку, вы соглашаетесь на обработку персональных данных по <a href="#" data-todo>политике конфиденциальности</a> <span class="todo">[НЕ ЗАДАНО: политика конфиденциальности]</span>.</p>
       </div>
       <div class="form-success" role="status" tabindex="-1" hidden>
         <span class="form-success__icon"><svg class="i i-26" aria-hidden="true"><use href="#i-check"/></svg></span>
@@ -1183,7 +1198,9 @@ function submitSubscribe(data) {
   /* ---------- Общая логика форм ---------- */
   function fieldError(input) { return document.getElementById(input.id + '-err'); }
   function check(input) {
-    var msg = VALIDATORS[input.dataset.validate](input.value);
+    var msg = input.type === 'checkbox'
+      ? (input.checked ? '' : 'Нужно ваше согласие, иначе мы не сможем ответить')
+      : VALIDATORS[input.dataset.validate](input.value);
     fieldError(input).textContent = msg;
     if (msg) input.setAttribute('aria-invalid', 'true'); else input.removeAttribute('aria-invalid');
     return !msg;
@@ -1214,7 +1231,7 @@ function submitSubscribe(data) {
     var success = form.querySelector('.form-success');
 
     inputs.forEach(function (i) {
-      i.addEventListener('blur', function () { if (form.dataset.tried || i.value.trim()) check(i); });
+      i.addEventListener('blur', function () { if (i.type !== 'checkbox' && (form.dataset.tried || i.value.trim())) check(i); });
       i.addEventListener('input', function () { if (i.hasAttribute('aria-invalid')) check(i); });
       i.addEventListener('change', function () { if (form.dataset.tried) check(i); });
     });
