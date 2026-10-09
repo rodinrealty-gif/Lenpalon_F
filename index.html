@@ -3,15 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Функциональное питание для пищеварения — подбор рациона</title>
+<title>Ленпалон Фемили — функциональное питание для пищеварения</title>
 <meta name="description" content="Подберём функциональные продукты и простую схему питания, если после еды беспокоят вздутие, тяжесть или изжога. Без жёстких диет. Оставьте заявку.">
 <meta name="theme-color" content="#FFFFFF">
 
 <!-- Open Graph. [НЕ ЗАДАНО: адрес сайта и картинка 1200×630 для og:url / og:image] -->
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ru_RU">
-<meta property="og:title" content="Еда, после которой легко — подбор функционального питания">
-<meta property="og:description" content="Функциональные продукты и простая схема питания для комфортного пищеварения. Без жёстких диет и подсчёта калорий.">
+<meta property="og:title" content="Ленпалон Фемили — еда, после которой легко">
+<meta property="og:description" content="Функциональная пищевая добавка «Ленпалон Фемили» от московского производителя ООО «Биофлора» и простая схема питания. Без жёстких диет.">
+<meta property="og:site_name" content="Ленпалон Фемили">
 <!-- <meta property="og:url" content="https://[НЕ ЗАДАНО]/"> -->
 <!-- <meta property="og:image" content="https://[НЕ ЗАДАНО]/og.jpg"> -->
 
@@ -80,6 +81,7 @@ a{color:inherit;text-decoration:none}
 button,input,select,textarea{font-family:inherit;font-size:inherit}
 h1,h2,h3,p,ul,ol{margin:0}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.nowrap{white-space:nowrap}
 .visually-hidden{position:absolute !important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 .skip-link{position:absolute;left:16px;top:-100px;z-index:100;background:var(--ink);color:var(--bg);padding:12px 20px;border-radius:var(--pill);font-weight:600}
 .skip-link:focus{top:12px}
@@ -226,10 +228,11 @@ select.input{appearance:none;-webkit-appearance:none;padding-right:52px;cursor:p
 /* =========================================================
    SECTION: Доверие (полоса логотипов из макета)
    ========================================================= */
-.trust-inner{padding-top:32px;padding-bottom:32px;display:flex;flex-wrap:wrap;align-items:center;gap:20px 56px}
+.trust-inner{padding-top:32px;padding-bottom:32px;display:flex;flex-direction:column;align-items:flex-start;gap:20px}
 .trust-label{font-size:15px;font-weight:400;color:var(--muted)}
-.trust-list{flex:1 1 640px;list-style:none;padding:0;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 32px}
-.trust-list li{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;color:var(--muted)}
+.trust-list{width:100%;list-style:none;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px 32px}
+.trust-list li{display:flex;align-items:center;gap:10px;font-weight:600;font-size:15px;line-height:1.35;color:var(--muted)}
+.trust-list li>span:last-child{min-width:0;overflow-wrap:anywhere}
 .mark{width:28px;height:28px;background:var(--muted);color:var(--bg);display:flex;align-items:center;justify-content:center;font-size:14px;flex:none}
 .mark--1{border-radius:50%}.mark--2{border-radius:8px}.mark--3{border-radius:50% 50% 50% 4px}.mark--4{border-radius:4px 50% 4px 50%}
 .mark--5{border-radius:50%;background:transparent;border:2px solid var(--muted);color:var(--muted);font-size:13px}
@@ -292,7 +295,7 @@ select.input{appearance:none;-webkit-appearance:none;padding-right:52px;cursor:p
 .buy{display:flex;flex-wrap:wrap;align-items:center;gap:16px 20px}
 .price{font-size:22px;font-weight:600}
 .price small{font-size:.75em;font-weight:500;color:var(--muted)}
-.product-side{display:flex;flex-direction:column;gap:32px}
+.product-side{display:flex;flex-direction:column;gap:24px}
 .product-mini{display:flex;gap:16px;align-items:center}
 .product-mini .slot{width:112px;height:112px;flex:none;padding:10px;font-size:11px}
 .product-mini .txt{display:flex;flex-direction:column;gap:8px;min-width:0;align-items:flex-start}
@@ -300,6 +303,13 @@ select.input{appearance:none;-webkit-appearance:none;padding-right:52px;cursor:p
 .product-mini .product-benefit{font-size:15px}
 .product-mini .price{font-size:17px}
 .catalog-note{margin-top:32px}
+.product-side .h3{margin-bottom:-8px}
+.specs{margin:0;display:flex;flex-direction:column}
+.specs>div{display:grid;grid-template-columns:1fr;gap:4px;padding:16px 0;border-bottom:1px solid var(--line)}
+.specs>div:last-child{border-bottom:0}
+.specs dt{font-size:14px;color:var(--muted)}
+.specs dd{margin:0;font-size:16px;font-weight:500;line-height:1.45;overflow-wrap:anywhere}
+@media (min-width:480px) and (max-width:767px),(min-width:1100px){.specs>div{grid-template-columns:150px 1fr;gap:16px}}
 
 /* =========================================================
    SECTION: Как это работает (нет в макете — собран из его элементов)
@@ -463,8 +473,8 @@ html.modal-open{overflow:hidden}
   <symbol id="i-bag" viewBox="0 0 256 256"><path d="M216,64H176a48,48,0,0,0-96,0H40A16,16,0,0,0,24,80V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V80A16,16,0,0,0,216,64ZM128,32a32,32,0,0,1,32,32H96A32,32,0,0,1,128,32Zm88,168H40V80H80V96a8,8,0,0,0,16,0V80h64V96a8,8,0,0,0,16,0V80h40Z"/></symbol>
   <symbol id="i-leaf" viewBox="0 0 256 256"><path d="M223.45,40.07a8,8,0,0,0-7.52-7.52C139.8,28.08,78.82,51,52.82,94a87.09,87.09,0,0,0-12.76,49c.57,15.92,5.21,32,13.79,47.85l-19.51,19.5a8,8,0,0,0,11.32,11.32l19.5-19.51C81,210.73,97.09,215.37,113,215.94q1.67.06,3.33.06A86.93,86.93,0,0,0,162,203.18C205,177.18,227.93,116.21,223.45,40.07ZM153.75,189.5c-22.75,13.78-49.68,14-76.71.77l88.63-88.62a8,8,0,0,0-11.32-11.32L65.73,179c-13.19-27-13-54,.77-76.71,22.09-36.47,74.6-56.44,141.31-54.06C210.2,114.89,190.22,167.41,153.75,189.5Z"/></symbol>
   <symbol id="i-flask" viewBox="0 0 256 256"><path d="M221.69,199.77,160,96.92V40h8a8,8,0,0,0,0-16H88a8,8,0,0,0,0,16h8V96.92L34.31,199.77A16,16,0,0,0,48,224H208a16,16,0,0,0,13.72-24.23ZM110.86,103.25A7.93,7.93,0,0,0,112,99.14V40h32V99.14a7.93,7.93,0,0,0,1.14,4.11L183.36,167c-12,2.37-29.07,1.37-51.75-10.11-15.91-8.05-31.05-12.32-45.22-12.81ZM48,208l28.54-47.58c14.25-1.74,30.31,1.85,47.82,10.72,19,9.61,35,12.88,48,12.88a69.89,69.89,0,0,0,19.55-2.7L208,208Z"/></symbol>
-  <symbol id="i-truck" viewBox="0 0 256 256"><path d="M255.42,117l-14-35A15.93,15.93,0,0,0,226.58,72H192V64a8,8,0,0,0-8-8H32A16,16,0,0,0,16,72V184a16,16,0,0,0,16,16H49a32,32,0,0,0,62,0h50a32,32,0,0,0,62,0h17a16,16,0,0,0,16-16V120A7.94,7.94,0,0,0,255.42,117ZM192,88h34.58l9.6,24H192ZM32,72H176v64H32ZM80,208a16,16,0,1,1,16-16A16,16,0,0,1,80,208Zm81-24H111a32,32,0,0,0-62,0H32V152H176v12.31A32.11,32.11,0,0,0,161,184Zm31,24a16,16,0,1,1,16-16A16,16,0,0,1,192,208Zm48-24H223a32.06,32.06,0,0,0-31-24V128h48Z"/></symbol>
   <symbol id="i-shieldplus" viewBox="0 0 256 256"><path d="M88,128a8,8,0,0,1,8-8h24V96a8,8,0,0,1,16,0v24h24a8,8,0,0,1,0,16H136v24a8,8,0,0,1-16,0V136H96A8,8,0,0,1,88,128ZM224,56v56c0,52.72-25.52,84.67-46.93,102.19-23.06,18.86-46,25.27-47,25.53a8,8,0,0,1-4.2,0c-1-.26-23.91-6.67-47-25.53C57.52,196.67,32,164.72,32,112V56A16,16,0,0,1,48,40H208A16,16,0,0,1,224,56Zm-16,0L48,56l0,56c0,37.3,13.82,67.51,41.07,89.81A128.25,128.25,0,0,0,128,223.62a129.3,129.3,0,0,0,39.41-22.2C194.34,179.16,208,149.07,208,112Z"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 256 256"><path d="M208,40H48A16,16,0,0,0,32,56v56c0,52.72,25.52,84.67,46.93,102.19,23.06,18.86,46,25.26,47,25.53a8,8,0,0,0,4.2,0c1-.27,23.91-6.67,47-25.53C198.48,196.67,224,164.72,224,112V56A16,16,0,0,0,208,40Zm0,72c0,37.07-13.66,67.16-40.6,89.42A129.3,129.3,0,0,1,128,223.62a128.25,128.25,0,0,1-38.92-21.81C61.82,179.51,48,149.3,48,112l0-56,160,0ZM82.34,141.66a8,8,0,0,1,11.32-11.32L112,148.69l50.34-50.35a8,8,0,0,1,11.32,11.32l-56,56a8,8,0,0,1-11.32,0Z"/></symbol>
   <symbol id="i-phone" viewBox="0 0 256 256"><path fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" d="M164.39,145.34a8,8,0,0,1,7.59-.69l47.16,21.13a8,8,0,0,1,4.8,8.3A48.33,48.33,0,0,1,176,216,136,136,0,0,1,40,80,48.33,48.33,0,0,1,81.92,32.06a8,8,0,0,1,8.3,4.8l21.13,47.2a8,8,0,0,1-.66,7.53L89.32,117a7.93,7.93,0,0,0-.54,7.81c8.27,16.93,25.77,34.22,42.75,42.41a7.92,7.92,0,0,0,7.83-.59Z"/></symbol>
   <symbol id="i-menu" viewBox="0 0 256 256"><path fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" d="M40 72h176M40 128h176M40 184h176"/></symbol>
   <symbol id="i-close" viewBox="0 0 256 256"><path fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" d="M200 56 56 200M56 56l144 144"/></symbol>
@@ -485,7 +495,7 @@ html.modal-open{overflow:hidden}
 <!-- SECTION: Шапка -->
 <header class="site-header" id="top">
   <div class="wrap nav">
-    <a class="brand" href="#top" aria-label="На главную"><span class="todo">[НЕ ЗАДАНО: бренд]</span></a>
+    <a class="brand" href="#top" aria-label="Ленпалон Фемили — на главную">Ленпалон Фемили</a>
 
     <nav class="main-nav" id="main-nav" aria-label="Основная навигация">
       <ul class="nav-list">
@@ -555,7 +565,7 @@ html.modal-open{overflow:hidden}
     </div>
 
     <div class="hero-visual rise d3">
-      <div class="slot hero-slot" role="img" aria-label="Место для главного фото: светлая кухня утром, тарелка с лёгким завтраком и стакан воды"><span>Фото: светлая кухня утром, на столе тарелка с лёгким завтраком и стакан воды. 4:5, 1600×2000</span></div>
+      <div class="slot hero-slot" role="img" aria-label="Место для главного фото: флакон Ленпалон Фемили на светлой кухне утром"><span>Фото: стеклянный флакон «Ленпалон Фемили» 23 мл на светлой кухне, утренний свет, рядом тарелка с завтраком. 4:5, 1600×2000</span></div>
       <ul class="facts">
         <li><span class="dot"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span>Подбор после короткого разговора о вашем рационе</li>
         <li><span class="dot"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span>Без жёстких запретов и подсчёта калорий</li>
@@ -568,14 +578,15 @@ html.modal-open{overflow:hidden}
 <!-- SECTION: Доверие (на месте полосы логотипов из макета) -->
 <section class="rule-top" style="border-bottom:1px solid var(--line)" aria-labelledby="trust-title">
   <div class="wrap trust-inner">
-    <h2 class="trust-label" id="trust-title">Документы и партнёры</h2>
+    <h2 class="trust-label" id="trust-title">Документы</h2>
     <ul class="trust-list">
-      <li><span class="mark mark--1" aria-hidden="true">П</span><span class="todo">[ДОБАВИТЬ: логотипы партнёров]</span></li>
-      <li><span class="mark mark--2" aria-hidden="true">Д</span><span class="todo">[ДОБАВИТЬ: декларации и сертификаты]</span></li>
-      <li><span class="mark mark--3" aria-hidden="true">Ц</span><span class="todo">[ДОБАВИТЬ: цифры — клиентов, заказов]</span></li>
-      <li><span class="mark mark--4" aria-hidden="true">О</span><span class="todo">[ДОБАВИТЬ: отзывы и рейтинг на площадках]</span></li>
-      <li><span class="mark mark--5" aria-hidden="true">Э</span><span class="todo">[ДОБАВИТЬ: эксперт — нутрициолог, технолог]</span></li>
+      <li><span class="mark mark--1" aria-hidden="true">Д</span><span>Декларация ЕАЭС N&nbsp;RU Д&#8209;RU.РА06.В.27370/26, действует до 06.08.2031</span></li>
+      <li><span class="mark mark--2" aria-hidden="true">Л</span><span>Протокол испытаний №&nbsp;015025&#8209;ГКА2&#8209;2026 аккредитованной лаборатории</span></li>
+      <li><span class="mark mark--3" aria-hidden="true">М</span><span>Собственное производство в Москве</span></li>
+      <li><span class="mark mark--4" aria-hidden="true">Т</span><span>Выпускается по ТУ<br>10.89.19-001-60965086-2026</span></li>
+      <li><span class="mark mark--5" aria-hidden="true">О</span><span class="todo">[ДОБАВИТЬ: отзывы, партнёры, цифры]</span></li>
     </ul>
+    <a class="textlink lift" href="https://pub.fsa.gov.ru/rds/declaration" target="_blank" rel="noopener">Проверить декларацию в реестре Росаккредитации<svg class="i arrow" aria-hidden="true"><use href="#i-upright"/></svg><span class="visually-hidden"> (откроется в новой вкладке)</span></a>
   </div>
 </section>
 
@@ -624,11 +635,11 @@ html.modal-open{overflow:hidden}
     <ul class="benefits reveal">
       <li class="benefit">
         <span class="icon-circle"><svg class="i i-26" aria-hidden="true"><use href="#i-leaf"/></svg></span>
-        <div class="benefit-body"><h3 class="h3">Встраивается в обычный день</h3><p>Продукты добавляются к привычным приёмам пищи — завтраку, перекусу или ужину. Меню перекраивать не нужно.</p></div>
+        <div class="benefit-body"><h3 class="h3">Встраивается в обычный день</h3><p>Меню перекраивать не нужно: подскажем, как добавить продукт в привычный распорядок.</p></div>
       </li>
       <li class="benefit">
         <span class="icon-circle"><svg class="i i-26" aria-hidden="true"><use href="#i-flask"/></svg></span>
-        <div class="benefit-body"><h3 class="h3">Состав на виду</h3><p>Полный состав каждого продукта — в карточке каталога, ещё до покупки. Без «секретных формул».</p></div>
+        <div class="benefit-body"><h3 class="h3">Проверено в лаборатории</h3><p>Образец «Ленпалон Фемили» прошёл испытания в аккредитованной лаборатории: токсичные элементы, микробиология, пестициды и радионуклиды — в пределах норм ТР ТС.</p></div>
       </li>
       <li class="benefit">
         <span class="icon-circle"><svg class="i i-26" aria-hidden="true"><use href="#i-chat"/></svg></span>
@@ -643,8 +654,8 @@ html.modal-open{overflow:hidden}
         <div class="benefit-body"><h3 class="h3">Честно про границы</h3><p>Мы помогаем с рационом, а не ставим диагнозы. Если по вашему рассказу лучше сначала сходить к врачу — так и скажем.</p></div>
       </li>
       <li class="benefit">
-        <span class="icon-circle"><svg class="i i-26" aria-hidden="true"><use href="#i-truck"/></svg></span>
-        <div class="benefit-body"><h3 class="h3">Доставка</h3><p><span class="todo">[НЕ ЗАДАНО: регионы, сроки и стоимость доставки]</span>. Где ваш заказ, подскажем по телефону.</p></div>
+        <span class="icon-circle"><svg class="i i-26" aria-hidden="true"><use href="#i-shield"/></svg></span>
+        <div class="benefit-body"><h3 class="h3">Производитель, а не перекупщик</h3><p>«Ленпалон Фемили» выпускает ООО «Биофлора» на собственной площадке в Москве по своим техническим условиям.</p></div>
       </li>
     </ul>
   </div>
@@ -653,10 +664,10 @@ html.modal-open{overflow:hidden}
 <!-- SECTION: Первый шаг (широкое фото с панелью из макета, бывш. «Линейка для спорта») -->
 <section class="wrap section" aria-labelledby="start-title">
   <div class="promo reveal">
-    <div class="slot" role="img" aria-label="Место для широкого фото: утренний стол с завтраком у окна"><span>Фото: утренний стол — каша с ягодами, йогурт, чайник, мягкий свет у окна. 21:9, 2400×1030</span></div>
+    <div class="slot" role="img" aria-label="Место для широкого фото: утренний стол у окна"><span>Фото: утренний стол у окна — завтрак, чайник и флакон «Ленпалон Фемили». 21:9, 2400×1030</span></div>
     <div class="promo-panel">
-      <h2 id="start-title">Начните с завтрака</h2>
-      <p>Не нужно менять всё меню сразу. Один функциональный продукт утром — понятный первый шаг. Подскажем, какой выбрать.</p>
+      <h2 id="start-title">Начните с одного шага</h2>
+      <p>Не нужно менять всё меню сразу. Начните с одного продукта и простой схемы — подскажем, как встроить её в ваш день.</p>
       <a href="#lead" class="btn btn-ink btn-sm">Подобрать рацион</a>
     </div>
   </div>
@@ -670,37 +681,28 @@ html.modal-open{overflow:hidden}
   </div>
   <div class="catalog reveal">
     <article class="product-main">
-      <div class="slot" role="img" aria-label="Место для фото продукта 1"><span>Фото: продукт 1 на светлой поверхности, без текста на этикетке. 1:1</span></div>
+      <div class="slot" role="img" aria-label="Место для фото: флакон Ленпалон Фемили 23 мл"><span>Фото: стеклянный флакон «Ленпалон Фемили» 23 мл на светлой поверхности. 1:1</span></div>
       <div class="product-info">
         <div class="txt">
-          <h3 class="product-name"><span class="todo">[НЕ ЗАДАНО: название продукта 1]</span></h3>
-          <p class="product-benefit">Для лёгкого завтрака. Состав: <span class="todo">[НЕ ЗАДАНО]</span></p>
+          <h3 class="product-name">Ленпалон Фемили</h3>
+          <p class="product-benefit">Функциональная пищевая добавка. Состав и способ применения: <span class="todo">[НЕ ЗАДАНО]</span></p>
         </div>
         <div class="buy">
           <p class="price"><small>от</small> <span class="todo">[НЕ ЗАДАНО: цена]</span> ₽</p>
-          <button type="button" class="btn btn-primary btn-sm" data-buy="p1"><svg class="i" aria-hidden="true"><use href="#i-bag"/></svg>Купить</button>
+          <button type="button" class="btn btn-primary btn-sm" data-buy="lenpalon-family"><svg class="i" aria-hidden="true"><use href="#i-bag"/></svg>Купить</button>
         </div>
       </div>
     </article>
     <div class="product-side">
-      <article class="product-mini">
-        <div class="slot" role="img" aria-label="Место для фото продукта 2"><span>Фото: продукт 2. 1:1</span></div>
-        <div class="txt">
-          <h3 class="product-name"><span class="todo">[НЕ ЗАДАНО: название продукта 2]</span></h3>
-          <p class="product-benefit">Для перекуса в течение дня. Состав: <span class="todo">[НЕ ЗАДАНО]</span></p>
-          <p class="price"><small>от</small> <span class="todo">[НЕ ЗАДАНО: цена]</span> ₽</p>
-          <button type="button" class="btn btn-primary btn-sm" data-buy="p2"><svg class="i" aria-hidden="true"><use href="#i-bag"/></svg>Купить</button>
-        </div>
-      </article>
-      <article class="product-mini">
-        <div class="slot" role="img" aria-label="Место для фото продукта 3"><span>Фото: продукт 3. 1:1</span></div>
-        <div class="txt">
-          <h3 class="product-name"><span class="todo">[НЕ ЗАДАНО: название продукта 3]</span></h3>
-          <p class="product-benefit">Для спокойного вечера после ужина. Состав: <span class="todo">[НЕ ЗАДАНО]</span></p>
-          <p class="price"><small>от</small> <span class="todo">[НЕ ЗАДАНО: цена]</span> ₽</p>
-          <button type="button" class="btn btn-primary btn-sm" data-buy="p3"><svg class="i" aria-hidden="true"><use href="#i-bag"/></svg>Купить</button>
-        </div>
-      </article>
+      <h3 class="h3">Характеристики</h3>
+      <dl class="specs">
+        <div><dt>Форма выпуска</dt><dd>Жидкая и порошкообразная</dd></div>
+        <div><dt>Упаковка</dt><dd>Стеклянный флакон, 23 мл</dd></div>
+        <div><dt>Хранение</dt><dd>При температуре от +4 до +12 °C</dd></div>
+        <div><dt>Срок годности</dt><dd>5 лет</dd></div>
+        <div><dt>Производитель</dt><dd>ООО «Биофлора», Москва</dd></div>
+        <div><dt>Документы</dt><dd>ТУ&nbsp;10.89.19&#8209;001&#8209;60965086&#8209;2026, декларация ЕАЭС N&nbsp;RU Д&#8209;RU.РА06.В.27370/26</dd></div>
+      </dl>
     </div>
   </div>
   <p class="fineprint catalog-note">Оплата и доставка: <span class="todo">[НЕ ЗАДАНО: способ оплаты и доставки]</span>. После заказа перезвоним и всё подтвердим.</p>
@@ -799,12 +801,12 @@ html.modal-open{overflow:hidden}
         <div class="qa-panel"><p>Честно: заранее не скажем. Самочувствие зависит не только от еды, но и от режима, сна и стресса. Мы не обещаем результат к конкретной дате — зато поможем замечать, что меняется: советуем отмечать, как вы себя чувствуете после еды.</p></div>
       </details>
       <details class="qa">
-        <summary class="qbtn"><span>Как оплатить и сколько идёт доставка?</span><svg class="i" aria-hidden="true"><use href="#i-caret"/></svg></summary>
-        <div class="qa-panel"><p><span class="todo">[НЕ ЗАДАНО: способы оплаты, регионы, сроки и стоимость доставки]</span>. Пока всё можно уточнить по телефону <a href="tel:+79067946171">+7 (906) 794-61-71</a>.</p></div>
+        <summary class="qbtn"><span>Как оплатить, получить и хранить продукт?</span><svg class="i" aria-hidden="true"><use href="#i-caret"/></svg></summary>
+        <div class="qa-panel"><p>Храните продукт при температуре от +4 до +12 °C, срок годности — 5 лет.</p><p>Оплата и доставка: <span class="todo">[НЕ ЗАДАНО: способы оплаты, регионы, сроки и стоимость доставки]</span>. Пока всё можно уточнить по телефону <a href="tel:+79067946171">+7 (906) 794-61-71</a>.</p></div>
       </details>
       <details class="qa">
-        <summary class="qbtn"><span>Можно вернуть товар? Как проверить, что продукт настоящий?</span><svg class="i" aria-hidden="true"><use href="#i-caret"/></svg></summary>
-        <div class="qa-panel"><p>Условия возврата: <span class="todo">[НЕ ЗАДАНО]</span>. Документы на продукцию: <span class="todo">[ДОБАВИТЬ: декларации/сертификаты и ссылка на них]</span>. Состав каждого продукта указан в карточке до покупки.</p></div>
+        <summary class="qbtn"><span>Как проверить, что продукт настоящий? Можно ли вернуть?</span><svg class="i" aria-hidden="true"><use href="#i-caret"/></svg></summary>
+        <div class="qa-panel"><p>«Ленпалон Фемили» выпускает ООО «Биофлора» (Москва) по ТУ&nbsp;10.89.19&#8209;001&#8209;60965086&#8209;2026. На продукцию зарегистрирована декларация о соответствии ЕАЭС <span class="nowrap">N&nbsp;RU&nbsp;Д&#8209;RU.РА06.В.27370/26</span> от 07.08.2026, она действует до 06.08.2031. Номер можно проверить в <a href="https://pub.fsa.gov.ru/rds/declaration" target="_blank" rel="noopener">реестре Росаккредитации</a>.</p><p>Условия возврата: <span class="todo">[НЕ ЗАДАНО]</span>.</p></div>
       </details>
     </div>
   </div>
@@ -817,7 +819,7 @@ html.modal-open{overflow:hidden}
   <div class="wrap footer-inner">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a class="brand" href="#top"><span class="todo">[НЕ ЗАДАНО: бренд]</span></a>
+        <a class="brand" href="#top">Ленпалон Фемили</a>
         <p class="slogan">Еда, после которой легко</p>
         <form class="lead-form" id="sub-form" data-source="footer-subscribe" novalidate>
           <div class="form-body" style="gap:10px">
@@ -847,16 +849,17 @@ html.modal-open{overflow:hidden}
         <h2 class="footer-title">Контакты</h2>
         <a class="footer-phone" href="tel:+79067946171">+7 (906) 794-61-71</a>
         <p class="muted">Соцсети: <span class="todo">[НЕ ЗАДАНО: Telegram-канал, VK]</span></p>
-        <p class="muted">E-mail: <span class="todo">[НЕ ЗАДАНО]</span></p>
+        <p class="muted">E-mail: <a class="navlink" style="display:inline;font-size:16px;color:var(--ink)" href="mailto:BioFloraLenpalon@ya.ru">BioFloraLenpalon@ya.ru</a></p>
+        <p class="muted">119311, Москва, ул.&nbsp;Строителей, д.&nbsp;6, корп.&nbsp;5</p>
       </div>
     </div>
     <div class="footer-bottom">
       <div class="legal">
-        <span>© <span data-year>2026</span> <span class="todo">[НЕ ЗАДАНО: юрлицо, ИНН, ОГРН]</span></span>
+        <span>© <span data-year>2026</span> ООО «Биофлора». ИНН 7736377369, ОГРН 1267700197511</span>
         <a href="#" data-todo>Политика конфиденциальности</a>
         <a href="#" data-todo>Оферта</a>
       </div>
-      <p class="disclaimer">Информация на сайте носит ознакомительный характер и не заменяет консультацию врача. Если дискомфорт сильный, нарастает или появился впервые — обратитесь к специалисту. <span class="todo">[НЕ ЗАДАНО: если продукты зарегистрированы как БАД — «БАД не является лекарственным средством»]</span></p>
+      <p class="disclaimer">Информация на сайте носит ознакомительный характер и не заменяет консультацию врача. Если дискомфорт сильный, нарастает или появился впервые — обратитесь к специалисту. «Ленпалон Фемили» — функциональная пищевая добавка, не является лекарственным средством.</p>
     </div>
   </div>
 </footer>
@@ -878,9 +881,7 @@ html.modal-open{overflow:hidden}
           <label class="label" for="order-product">Продукт</label>
           <select class="input" id="order-product" name="product" data-validate="product" aria-describedby="order-product-err" required>
             <option value="">Выберите продукт</option>
-            <option value="p1">[НЕ ЗАДАНО: название продукта 1]</option>
-            <option value="p2">[НЕ ЗАДАНО: название продукта 2]</option>
-            <option value="p3">[НЕ ЗАДАНО: название продукта 3]</option>
+            <option value="lenpalon-family">Ленпалон Фемили, флакон 23 мл</option>
           </select>
           <p class="err" id="order-product-err"></p>
         </div>
