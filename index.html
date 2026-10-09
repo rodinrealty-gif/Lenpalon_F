@@ -47,6 +47,8 @@
   --todo-ink:#5C4300;
   --todo-line:#D9A800;
   --backdrop:rgba(14,26,43,.55);
+  /* цвета капсул с упаковки (только как маркировка, рядом всегда номер) */
+  --cap1:#6DBE5A;--cap2:#5DB7E8;--cap3:#D9B572;--cap4:#9B86D6;
   /* шрифт */
   --font:'Onest',system-ui,-apple-system,'Segoe UI',sans-serif;
   --fs-h1:42px;                     /* мобайл из макета; десктоп ниже */
@@ -312,6 +314,31 @@ select.input{appearance:none;-webkit-appearance:none;padding-right:52px;cursor:p
 @media (min-width:480px) and (max-width:767px),(min-width:1100px){.specs>div{grid-template-columns:150px 1fr;gap:16px}}
 
 /* =========================================================
+   SECTION: Схема приёма (нет в макете — собрана из его карточек)
+   ========================================================= */
+.scheme-lead{margin:-16px 0 40px;max-width:640px}
+.scheme{list-style:none;padding:0;display:grid;grid-template-columns:1fr;gap:16px}
+.day{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:24px;display:flex;flex-direction:column;gap:18px}
+.day--break{background:var(--tint);border-color:var(--tint)}
+.day-title{font-size:21px;font-weight:600;letter-spacing:-0.02em}
+.dose{display:flex;gap:14px;align-items:center}
+.dose-txt{display:flex;flex-direction:column;gap:2px;font-size:15px;line-height:1.4}
+.dose-txt b{font-weight:600}
+.dose-txt span{color:var(--muted)}
+.cap{position:relative;width:44px;height:22px;border-radius:var(--pill);flex:none;background:var(--c);box-shadow:inset 0 -5px 0 rgba(14,26,43,.10)}
+.cap::after{content:"";position:absolute;left:50%;top:3px;bottom:3px;width:1px;background:rgba(255,255,255,.7)}
+.cap--1{--c:var(--cap1)}.cap--2{--c:var(--cap2)}.cap--3{--c:var(--cap3)}.cap--4{--c:var(--cap4)}
+.day--break p{font-size:15px;line-height:1.5;color:var(--muted)}
+.cycle-note{margin-top:16px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 24px;padding:20px 24px;border:1px dashed var(--line);border-radius:var(--r);font-size:16px;line-height:1.5}
+.cycle-note b{font-weight:600}
+.caps-legend{list-style:none;padding:0;margin-top:40px;display:grid;grid-template-columns:1fr;gap:0}
+.caps-legend li{display:flex;gap:16px;align-items:flex-start;padding:16px 0;border-bottom:1px solid var(--line);font-size:15px;line-height:1.45}
+.caps-legend li:last-child{border-bottom:0}
+.caps-legend .cap{margin-top:2px}
+.caps-legend b{display:block;font-size:17px;font-weight:600;margin-bottom:2px}
+.scheme-foot{margin-top:24px}
+
+/* =========================================================
    SECTION: Как это работает (нет в макете — собран из его элементов)
    ========================================================= */
 .steps{list-style:none;padding:0;display:grid;grid-template-columns:1fr;gap:0;counter-reset:step}
@@ -410,6 +437,8 @@ html.modal-open{overflow:hidden}
   .product-mini{gap:20px}
 }
 @media (min-width:640px){
+  .scheme{grid-template-columns:repeat(2,1fr)}
+  .caps-legend{grid-template-columns:repeat(2,1fr);column-gap:32px}
   .header-cta{display:inline-flex}
   .form-actions{flex-direction:row;flex-wrap:wrap;align-items:center}
   .facts{grid-template-columns:repeat(3,1fr)}
@@ -450,6 +479,9 @@ html.modal-open{overflow:hidden}
   .to-top{right:24px;bottom:24px}
 }
 @media (min-width:1024px){
+  .scheme{grid-template-columns:repeat(4,1fr)}
+  .caps-legend{grid-template-columns:repeat(4,1fr)}
+  .caps-legend li{flex-direction:column;border-bottom:0;padding:0}
   .steps{grid-template-columns:repeat(4,1fr);gap:32px}
   .step{flex-direction:column;padding:0;border-bottom:0}
 }
@@ -565,7 +597,7 @@ html.modal-open{overflow:hidden}
     </div>
 
     <div class="hero-visual rise d3">
-      <div class="slot hero-slot" role="img" aria-label="Место для главного фото: флакон Ленпалон Фемили на светлой кухне утром"><span>Фото: стеклянный флакон «Ленпалон Фемили» 23 мл на светлой кухне, утренний свет, рядом тарелка с завтраком. 4:5, 1600×2000</span></div>
+      <div class="slot hero-slot" role="img" aria-label="Место для главного фото: упаковка Ленпалон Фемили на светлой кухне утром"><span>Фото: коробка «Ленпалон Фемили» и блистер с капсулами на светлой кухне, утренний свет, рядом стакан воды. 4:5, 1600×2000</span></div>
       <ul class="facts">
         <li><span class="dot"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span>Подбор после короткого разговора о вашем рационе</li>
         <li><span class="dot"><svg class="i" aria-hidden="true"><use href="#i-check"/></svg></span>Без жёстких запретов и подсчёта калорий</li>
@@ -664,10 +696,10 @@ html.modal-open{overflow:hidden}
 <!-- SECTION: Первый шаг (широкое фото с панелью из макета, бывш. «Линейка для спорта») -->
 <section class="wrap section" aria-labelledby="start-title">
   <div class="promo reveal">
-    <div class="slot" role="img" aria-label="Место для широкого фото: утренний стол у окна"><span>Фото: утренний стол у окна — завтрак, чайник и флакон «Ленпалон Фемили». 21:9, 2400×1030</span></div>
+    <div class="slot" role="img" aria-label="Место для широкого фото: утренний стол у окна"><span>Фото: утренний стол у окна — завтрак, стакан воды и блистер «Ленпалон Фемили». 21:9, 2400×1030</span></div>
     <div class="promo-panel">
       <h2 id="start-title">Начните с одного шага</h2>
-      <p>Не нужно менять всё меню сразу. Начните с одного продукта и простой схемы — подскажем, как встроить её в ваш день.</p>
+      <p>Не нужно менять всё меню сразу. Одна капсула утром и одна вечером по готовой схеме — подскажем, как встроить её в ваш день.</p>
       <a href="#lead" class="btn btn-ink btn-sm">Подобрать рацион</a>
     </div>
   </div>
@@ -677,15 +709,15 @@ html.modal-open{overflow:hidden}
 <section class="wrap section section--flush-top" id="catalog" aria-labelledby="catalog-title">
   <div class="section-head reveal">
     <h2 class="h2" id="catalog-title">Каталог</h2>
-    <a href="#lead" class="textlink lift">Не знаете, что выбрать? Подобрать рацион<svg class="i arrow" aria-hidden="true"><use href="#i-upright"/></svg></a>
+    <a href="#scheme" class="textlink lift">Как принимать<svg class="i arrow" aria-hidden="true"><use href="#i-upright"/></svg></a>
   </div>
   <div class="catalog reveal">
     <article class="product-main">
-      <div class="slot" role="img" aria-label="Место для фото: флакон Ленпалон Фемили 23 мл"><span>Фото: стеклянный флакон «Ленпалон Фемили» 23 мл на светлой поверхности. 1:1</span></div>
+      <div class="slot" role="img" aria-label="Место для фото: упаковка Ленпалон Фемили и блистер с капсулами"><span>Фото: коробка «Ленпалон Фемили», рядом блистер и четыре цветные капсулы. 1:1</span></div>
       <div class="product-info">
         <div class="txt">
           <h3 class="product-name">Ленпалон Фемили</h3>
-          <p class="product-benefit">Функциональная пищевая добавка. Состав и способ применения: <span class="todo">[НЕ ЗАДАНО]</span></p>
+          <p class="product-benefit">Курс на 15 дней: 4 состава, 3 цикла, 18 капсул. Состав капсул: <span class="todo">[НЕ ЗАДАНО]</span></p>
         </div>
         <div class="buy">
           <p class="price"><small>от</small> <span class="todo">[НЕ ЗАДАНО: цена]</span> ₽</p>
@@ -696,8 +728,10 @@ html.modal-open{overflow:hidden}
     <div class="product-side">
       <h3 class="h3">Характеристики</h3>
       <dl class="specs">
-        <div><dt>Форма выпуска</dt><dd>Жидкая и порошкообразная</dd></div>
-        <div><dt>Упаковка</dt><dd>Стеклянный флакон, 23 мл</dd></div>
+        <div><dt>Форма выпуска</dt><dd>Капсулы, 4 состава с цветовой маркировкой</dd></div>
+        <div><dt>В упаковке</dt><dd>18 капсул: 3 блистера по 6 капсул</dd></div>
+        <div><dt>Курс</dt><dd>3 цикла по 5 дней — 15 дней</dd></div>
+        <div><dt>Уточнить</dt><dd><span class="todo">[УТОЧНИТЬ: в декларации — жидкая и порошкообразная форма во флаконах 23 мл; на упаковке — капсулы в блистерах]</span></dd></div>
         <div><dt>Хранение</dt><dd>При температуре от +4 до +12 °C</dd></div>
         <div><dt>Срок годности</dt><dd>5 лет</dd></div>
         <div><dt>Производитель</dt><dd>ООО «Биофлора», Москва</dd></div>
@@ -706,6 +740,47 @@ html.modal-open{overflow:hidden}
     </div>
   </div>
   <p class="fineprint catalog-note">Оплата и доставка: <span class="todo">[НЕ ЗАДАНО: способ оплаты и доставки]</span>. После заказа перезвоним и всё подтвердим.</p>
+</section>
+
+<!-- SECTION: Схема приёма (по фото упаковки; в макете не было) -->
+<section class="wrap section section--flush-top" id="scheme" aria-labelledby="scheme-title">
+  <h2 class="h2 h2-mb reveal" id="scheme-title">Схема приёма расписана по дням</h2>
+  <p class="lead scheme-lead reveal">Не нужно ничего считать: капсулы пронумерованы и разложены по блистерам. Один блистер — один цикл на 5 дней.</p>
+  <ol class="scheme reveal">
+    <li class="day">
+      <h3 class="day-title">День 1</h3>
+      <ul class="caps" style="list-style:none;padding:0;display:flex;flex-direction:column;gap:14px">
+          <li class="dose"><span class="cap cap--1" aria-hidden="true"></span><span class="dose-txt"><b>Утро · капсула №1</b><span>за 30 мин до еды</span></span></li>
+          <li class="dose"><span class="cap cap--1" aria-hidden="true"></span><span class="dose-txt"><b>Вечер · капсула №1</b><span>за 30 мин до еды</span></span></li>
+      </ul>
+    </li>
+    <li class="day">
+      <h3 class="day-title">День 2</h3>
+      <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:14px">
+          <li class="dose"><span class="cap cap--2" aria-hidden="true"></span><span class="dose-txt"><b>Утро · капсула №2</b><span>за 30 мин до еды</span></span></li>
+          <li class="dose"><span class="cap cap--3" aria-hidden="true"></span><span class="dose-txt"><b>Вечер · капсула №3</b><span>через 30 мин после еды</span></span></li>
+      </ul>
+    </li>
+    <li class="day">
+      <h3 class="day-title">День 3</h3>
+      <ul style="list-style:none;padding:0;display:flex;flex-direction:column;gap:14px">
+          <li class="dose"><span class="cap cap--2" aria-hidden="true"></span><span class="dose-txt"><b>Утро · капсула №2</b><span>за 30 мин до еды</span></span></li>
+          <li class="dose"><span class="cap cap--4" aria-hidden="true"></span><span class="dose-txt"><b>Вечер · капсула №4</b><span>через 30 мин после еды</span></span></li>
+      </ul>
+    </li>
+    <li class="day day--break">
+      <h3 class="day-title">Дни 4–5</h3>
+      <p>Перерыв 2 дня. Затем берёте следующий блистер — цикл повторяется по той же схеме.</p>
+    </li>
+  </ol>
+  <p class="cycle-note reveal"><span><b>1 блистер</b> = 1 цикл (5 дней)</span><span><b>3 блистера</b> = 3 цикла, 15 дней</span><span><b>18 капсул</b> в упаковке</span></p>
+  <ul class="caps-legend reveal" aria-label="Цветовая маркировка капсул">
+    <li><span class="cap cap--1" aria-hidden="true"></span><span><b>№1 · Состав 1</b><span class="todo">[НЕ ЗАДАНО: состав]</span></span></li>
+    <li><span class="cap cap--2" aria-hidden="true"></span><span><b>№2 · Состав 2</b><span class="todo">[НЕ ЗАДАНО: состав]</span></span></li>
+    <li><span class="cap cap--3" aria-hidden="true"></span><span><b>№3 · Состав 3</b><span class="todo">[НЕ ЗАДАНО: состав]</span></span></li>
+    <li><span class="cap cap--4" aria-hidden="true"></span><span><b>№4 · Состав 4</b><span class="todo">[НЕ ЗАДАНО: состав]</span></span></li>
+  </ul>
+  <p class="fineprint scheme-foot">Перед приёмом посоветуйтесь с врачом — особенно при хронических заболеваниях, беременности и кормлении грудью. Схема приведена по упаковке: <span class="todo">[УТОЧНИТЬ: вечер дня 1 — до или после еды; на блистере для вечера указано «через 30 мин после еды»]</span></p>
 </section>
 
 <!-- SECTION: Как это работает (в макете не было — собрано из его элементов) -->
@@ -794,11 +869,11 @@ html.modal-open{overflow:hidden}
       </details>
       <details class="qa">
         <summary class="qbtn"><span>Придётся отказаться от любимой еды и считать калории?</span><svg class="i" aria-hidden="true"><use href="#i-caret"/></svg></summary>
-        <div class="qa-panel"><p>Нет. Не нужно взвешивать порции и вести таблицы. Даём простую схему: что и в какое время дня добавить к обычному меню. Вкус и формат продуктов: <span class="todo">[НЕ ЗАДАНО: описание вкусов и формата — готовые блюда, смеси, батончики]</span>.</p></div>
+        <div class="qa-panel"><p>Нет. Не нужно взвешивать порции и вести таблицы. Капсулы пронумерованы и разложены по дням: утром и вечером по одной, затем 2 дня перерыва. <a href="#scheme">Схема приёма</a> — на этой странице.</p></div>
       </details>
       <details class="qa">
         <summary class="qbtn"><span>Когда я почувствую разницу?</span><svg class="i" aria-hidden="true"><use href="#i-caret"/></svg></summary>
-        <div class="qa-panel"><p>Честно: заранее не скажем. Самочувствие зависит не только от еды, но и от режима, сна и стресса. Мы не обещаем результат к конкретной дате — зато поможем замечать, что меняется: советуем отмечать, как вы себя чувствуете после еды.</p></div>
+        <div class="qa-panel"><p>Честно: заранее не скажем. Самочувствие зависит не только от еды, но и от режима, сна и стресса. Курс рассчитан на 15 дней, но результат к конкретной дате мы не обещаем. Зато поможем замечать, что меняется: советуем отмечать, как вы себя чувствуете после еды.</p></div>
       </details>
       <details class="qa">
         <summary class="qbtn"><span>Как оплатить, получить и хранить продукт?</span><svg class="i" aria-hidden="true"><use href="#i-caret"/></svg></summary>
@@ -881,7 +956,7 @@ html.modal-open{overflow:hidden}
           <label class="label" for="order-product">Продукт</label>
           <select class="input" id="order-product" name="product" data-validate="product" aria-describedby="order-product-err" required>
             <option value="">Выберите продукт</option>
-            <option value="lenpalon-family">Ленпалон Фемили, флакон 23 мл</option>
+            <option value="lenpalon-family">Ленпалон Фемили — курс 15 дней, 18 капсул</option>
           </select>
           <p class="err" id="order-product-err"></p>
         </div>
