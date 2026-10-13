@@ -1,0 +1,97 @@
+---
+import NewsletterForm from './NewsletterForm.astro';
+import { site, footerNav, legalLinks } from '../data/site';
+const year = site.legal.year ?? new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="wrap inner">
+    <div class="grid stack-md">
+      <div class="brandcol">
+        <span class="brand">{site.brand}</span>
+        <NewsletterForm idPrefix="footer" />
+      </div>
+      {
+        footerNav.map((col) => (
+          <nav class="col" aria-label={col.title}>
+            <span class="title">{col.title}</span>
+            {col.links.map((l) => (
+              <a class="navlink" href={l.href}>
+                {l.label}
+              </a>
+            ))}
+          </nav>
+        ))
+      }
+    </div>
+    <div class="bottom">
+      <div class="legal">
+        <span>© {year} {site.legal.name}</span>
+        {legalLinks.map((l) => <a href={l.href}>{l.label}</a>)}
+      </div>
+      <span class="disclaimer">{site.legal.disclaimer}</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--line);
+  }
+  .inner {
+    padding-top: 72px;
+    padding-bottom: 40px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 6fr 3fr 3fr;
+    gap: 48px;
+  }
+  .brandcol {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 440px;
+  }
+  .brand {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+  .col {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 16px;
+  }
+  .col .navlink {
+    align-self: flex-start;
+  }
+  .title {
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .bottom {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 12px 32px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+  .legal {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 24px;
+  }
+  .legal a {
+    text-decoration: underline;
+  }
+  .disclaimer {
+    max-width: 560px;
+  }
+</style>

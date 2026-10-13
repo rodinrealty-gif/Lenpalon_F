@@ -1,0 +1,34 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import Icon from './Icon.astro';
+import type { IconName } from '../lib/icons';
+
+type Props = {
+  variant?: 'primary' | 'ghost' | 'ink';
+  size?: 'md' | 'sm';
+  href?: string;
+  icon?: IconName;
+  iconEnd?: IconName;
+  class?: string;
+} & Omit<HTMLAttributes<'button'>, 'class'> &
+  Omit<HTMLAttributes<'a'>, 'class' | 'type'>;
+
+const { variant = 'primary', size = 'md', href, icon, iconEnd, class: className, ...rest } = Astro.props;
+const classes = ['btn', `btn-${variant}`, size === 'sm' && 'btn-sm', className];
+---
+
+{
+  href ? (
+    <a href={href} class:list={classes} {...rest}>
+      {icon && <Icon name={icon} />}
+      <slot />
+      {iconEnd && <Icon name={iconEnd} />}
+    </a>
+  ) : (
+    <button type="button" class:list={classes} {...rest}>
+      {icon && <Icon name={icon} />}
+      <slot />
+      {iconEnd && <Icon name={iconEnd} />}
+    </button>
+  )
+}

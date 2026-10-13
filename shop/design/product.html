@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Название продукта 1: Ваш бренд</title>
+<meta name="description" content="Описание, состав и способ приёма.">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Светлая тема сайта: белый фон, голубые плашки, один синий акцент. Тёмной версии нет.
+   Правило форм: контейнеры и изображения 14px, кнопки, чипы и поля ввода круглые (pill). */
+:root{color-scheme:light;--bg:#FFFFFF;--surface:#F3F7FD;--ink:#0E1A2B;--muted:#4F5F76;--line:#D9E3F2;--tint:#E3EDFB;--accent:#1F5FD6;--on-accent:#FFFFFF;--r:14px;--ease:cubic-bezier(0.16,1,0.3,1)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Onest',system-ui,-apple-system,'Segoe UI',sans-serif;font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+button,input,select{font-family:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.skip{position:absolute;left:16px;top:-80px;background:var(--ink);color:var(--bg);padding:12px 20px;border-radius:999px;z-index:10;font-weight:600}
+.skip:focus{top:12px}
+.wrap{max-width:1360px;margin:0 auto;padding:0 40px}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+.i{display:inline-block;flex:none;width:20px;height:20px;background:currentColor;-webkit-mask:var(--m) center/contain no-repeat;mask:var(--m) center/contain no-repeat}
+.i-search{--m:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20256%20256%22%20fill%3D%22currentColor%22%3E%3Cpath%20d%3D%22M229.66%2C218.34l-50.07-50.06a88.11%2C88.11%2C0%2C1%2C0-11.31%2C11.31l50.06%2C50.07a8%2C8%2C0%2C0%2C0%2C11.32-11.32ZM40%2C112a72%2C72%2C0%2C1%2C1%2C72%2C72A72.08%2C72.08%2C0%2C0%2C1%2C40%2C112Z%22%2F%3E%3C%2Fsvg%3E")}
+.i-user{--m:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20256%20256%22%20fill%3D%22currentColor%22%3E%3Cpath%20d%3D%22M230.92%2C212c-15.23-26.33-38.7-45.21-66.09-54.16a72%2C72%2C0%2C1%2C0-73.66%2C0C63.78%2C166.78%2C40.31%2C185.66%2C25.08%2C212a8%2C8%2C0%2C1%2C0%2C13.85%2C8c18.84-32.56%2C52.14-52%2C89.07-52s70.23%2C19.44%2C89.07%2C52a8%2C8%2C0%2C1%2C0%2C13.85-8ZM72%2C96a56%2C56%2C0%2C1%2C1%2C56%2C56A56.06%2C56.06%2C0%2C0%2C1%2C72%2C96Z%22%2F%3E%3C%2Fsvg%3E")}
+.i-bag{--m:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20256%20256%22%20fill%3D%22currentColor%22%3E%3Cpath%20d%3D%22M216%2C64H176a48%2C48%2C0%2C0%2C0-96%2C0H40A16%2C16%2C0%2C0%2C0%2C24%2C80V200a16%2C16%2C0%2C0%2C0%2C16%2C16H216a16%2C16%2C0%2C0%2C0%2C16-16V80A16%2C16%2C0%2C0%2C0%2C216%2C64ZM128%2C32a32%2C32%2C0%2C0%2C1%2C32%2C32H96A32%2C32%2C0%2C0%2C1%2C128%2C32Zm88%2C168H40V80H80V96a8%2C8%2C0%2C0%2C0%2C16%2C0V80h64V96a8%2C8%2C0%2C0%2C0%2C16%2C0V80h40Z%22%2F%3E%3C%2Fsvg%3E")}
+.i-upright{--m:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20256%20256%22%20fill%3D%22currentColor%22%3E%3Cpath%20d%3D%22M200%2C64V168a8%2C8%2C0%2C0%2C1-16%2C0V83.31L69.66%2C197.66a8%2C8%2C0%2C0%2C1-11.32-11.32L172.69%2C72H88a8%2C8%2C0%2C0%2C1%2C0-16H192A8%2C8%2C0%2C0%2C1%2C200%2C64Z%22%2F%3E%3C%2Fsvg%3E")}
+.i-right{--m:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20256%20256%22%20fill%3D%22currentColor%22%3E%3Cpath%20d%3D%22M221.66%2C133.66l-72%2C72a8%2C8%2C0%2C0%2C1-11.32-11.32L196.69%2C136H40a8%2C8%2C0%2C0%2C1%2C0-16H196.69L138.34%2C61.66a8%2C8%2C0%2C0%2C1%2C11.32-11.32l72%2C72A8%2C8%2C0%2C0%2C1%2C221.66%2C133.66Z%22%2F%3E%3C%2Fsvg%3E")}
+.i-check{--m:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20256%20256%22%20fill%3D%22currentColor%22%3E%3Cpath%20d%3D%22M229.66%2C77.66l-128%2C128a8%2C8%2C0%2C0%2C1-11.32%2C0l-56-56a8%2C8%2C0%2C0%2C1%2C11.32-11.32L96%2C188.69%2C218.34%2C66.34a8%2C8%2C0%2C0%2C1%2C11.32%2C11.32Z%22%2F%3E%3C%2Fsvg%3E")}
+.i-plus{--m:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20256%20256%22%20fill%3D%22currentColor%22%3E%3Cpath%20d%3D%22M224%2C128a8%2C8%2C0%2C0%2C1-8%2C8H136v80a8%2C8%2C0%2C0%2C1-16%2C0V136H40a8%2C8%2C0%2C0%2C1%2C0-16h80V40a8%2C8%2C0%2C0%2C1%2C16%2C0v80h80A8%2C8%2C0%2C0%2C1%2C224%2C128Z%22%2F%3E%3C%2Fsvg%3E")}
+.i-minus{--m:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20256%20256%22%20fill%3D%22currentColor%22%3E%3Cpath%20d%3D%22M224%2C128a8%2C8%2C0%2C0%2C1-8%2C8H40a8%2C8%2C0%2C0%2C1%2C0-16H216A8%2C8%2C0%2C0%2C1%2C224%2C128Z%22%2F%3E%3C%2Fsvg%3E")}
+.i-shield{--m:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20256%20256%22%20fill%3D%22currentColor%22%3E%3Cpath%20d%3D%22M208%2C40H48A16%2C16%2C0%2C0%2C0%2C32%2C56v56c0%2C52.72%2C25.52%2C84.67%2C46.93%2C102.19%2C23.06%2C18.86%2C46%2C25.26%2C47%2C25.53a8%2C8%2C0%2C0%2C0%2C4.2%2C0c1-.27%2C23.91-6.67%2C47-25.53C198.48%2C196.67%2C224%2C164.72%2C224%2C112V56A16%2C16%2C0%2C0%2C0%2C208%2C40Zm0%2C72c0%2C37.07-13.66%2C67.16-40.6%2C89.42A129.3%2C129.3%2C0%2C0%2C1%2C128%2C223.62a128.25%2C128.25%2C0%2C0%2C1-38.92-21.81C61.82%2C179.51%2C48%2C149.3%2C48%2C112l0-56%2C160%2C0ZM82.34%2C141.66a8%2C8%2C0%2C0%2C1%2C11.32-11.32L112%2C148.69l50.34-50.35a8%2C8%2C0%2C0%2C1%2C11.32%2C11.32l-56%2C56a8%2C8%2C0%2C0%2C1-11.32%2C0Z%22%2F%3E%3C%2Fsvg%3E")}
+.i-flask{--m:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20256%20256%22%20fill%3D%22currentColor%22%3E%3Cpath%20d%3D%22M221.69%2C199.77%2C160%2C96.92V40h8a8%2C8%2C0%2C0%2C0%2C0-16H88a8%2C8%2C0%2C0%2C0%2C0%2C16h8V96.92L34.31%2C199.77A16%2C16%2C0%2C0%2C0%2C48%2C224H208a16%2C16%2C0%2C0%2C0%2C13.72-24.23ZM110.86%2C103.25A7.93%2C7.93%2C0%2C0%2C0%2C112%2C99.14V40h32V99.14a7.93%2C7.93%2C0%2C0%2C0%2C1.14%2C4.11L183.36%2C167c-12%2C2.37-29.07%2C1.37-51.75-10.11-15.91-8.05-31.05-12.32-45.22-12.81ZM48%2C208l28.54-47.58c14.25-1.74%2C30.31%2C1.85%2C47.82%2C10.72%2C19%2C9.61%2C35%2C12.88%2C48%2C12.88a69.89%2C69.89%2C0%2C0%2C0%2C19.55-2.7L208%2C208Z%22%2F%3E%3C%2Fsvg%3E")}
+.i-leaf{--m:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20256%20256%22%20fill%3D%22currentColor%22%3E%3Cpath%20d%3D%22M223.45%2C40.07a8%2C8%2C0%2C0%2C0-7.52-7.52C139.8%2C28.08%2C78.82%2C51%2C52.82%2C94a87.09%2C87.09%2C0%2C0%2C0-12.76%2C49c.57%2C15.92%2C5.21%2C32%2C13.79%2C47.85l-19.51%2C19.5a8%2C8%2C0%2C0%2C0%2C11.32%2C11.32l19.5-19.51C81%2C210.73%2C97.09%2C215.37%2C113%2C215.94q1.67.06%2C3.33.06A86.93%2C86.93%2C0%2C0%2C0%2C162%2C203.18C205%2C177.18%2C227.93%2C116.21%2C223.45%2C40.07ZM153.75%2C189.5c-22.75%2C13.78-49.68%2C14-76.71.77l88.63-88.62a8%2C8%2C0%2C0%2C0-11.32-11.32L65.73%2C179c-13.19-27-13-54%2C.77-76.71%2C22.09-36.47%2C74.6-56.44%2C141.31-54.06C210.2%2C114.89%2C190.22%2C167.41%2C153.75%2C189.5Z%22%2F%3E%3C%2Fsvg%3E")}
+.i-truck{--m:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20256%20256%22%20fill%3D%22currentColor%22%3E%3Cpath%20d%3D%22M255.42%2C117l-14-35A15.93%2C15.93%2C0%2C0%2C0%2C226.58%2C72H192V64a8%2C8%2C0%2C0%2C0-8-8H32A16%2C16%2C0%2C0%2C0%2C16%2C72V184a16%2C16%2C0%2C0%2C0%2C16%2C16H49a32%2C32%2C0%2C0%2C0%2C62%2C0h50a32%2C32%2C0%2C0%2C0%2C62%2C0h17a16%2C16%2C0%2C0%2C0%2C16-16V120A7.94%2C7.94%2C0%2C0%2C0%2C255.42%2C117ZM192%2C88h34.58l9.6%2C24H192ZM32%2C72H176v64H32ZM80%2C208a16%2C16%2C0%2C1%2C1%2C16-16A16%2C16%2C0%2C0%2C1%2C80%2C208Zm81-24H111a32%2C32%2C0%2C0%2C0-62%2C0H32V152H176v12.31A32.11%2C32.11%2C0%2C0%2C0%2C161%2C184Zm31%2C24a16%2C16%2C0%2C1%2C1%2C16-16A16%2C16%2C0%2C0%2C1%2C192%2C208Zm48-24H223a32.06%2C32.06%2C0%2C0%2C0-31-24V128h48Z%22%2F%3E%3C%2Fsvg%3E")}
+.i-shieldplus{--m:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20256%20256%22%20fill%3D%22currentColor%22%3E%3Cpath%20d%3D%22M88%2C128a8%2C8%2C0%2C0%2C1%2C8-8h24V96a8%2C8%2C0%2C0%2C1%2C16%2C0v24h24a8%2C8%2C0%2C0%2C1%2C0%2C16H136v24a8%2C8%2C0%2C0%2C1-16%2C0V136H96A8%2C8%2C0%2C0%2C1%2C88%2C128ZM224%2C56v56c0%2C52.72-25.52%2C84.67-46.93%2C102.19-23.06%2C18.86-46%2C25.27-47%2C25.53a8%2C8%2C0%2C0%2C1-4.2%2C0c-1-.26-23.91-6.67-47-25.53C57.52%2C196.67%2C32%2C164.72%2C32%2C112V56A16%2C16%2C0%2C0%2C1%2C48%2C40H208A16%2C16%2C0%2C0%2C1%2C224%2C56Zm-16%2C0L48%2C56l0%2C56c0%2C37.3%2C13.82%2C67.51%2C41.07%2C89.81A128.25%2C128.25%2C0%2C0%2C0%2C128%2C223.62a129.3%2C129.3%2C0%2C0%2C0%2C39.41-22.2C194.34%2C179.16%2C208%2C149.07%2C208%2C112Z%22%2F%3E%3C%2Fsvg%3E")}
+.i-male{--m:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20256%20256%22%20fill%3D%22currentColor%22%3E%3Cpath%20d%3D%22M216%2C32H168a8%2C8%2C0%2C0%2C0%2C0%2C16h28.69L154.62%2C90.07a80%2C80%2C0%2C1%2C0%2C11.31%2C11.31L208%2C59.32V88a8%2C8%2C0%2C0%2C0%2C16%2C0V40A8%2C8%2C0%2C0%2C0%2C216%2C32ZM149.24%2C197.29a64%2C64%2C0%2C1%2C1%2C0-90.53A64.1%2C64.1%2C0%2C0%2C1%2C149.24%2C197.29Z%22%2F%3E%3C%2Fsvg%3E")}
+.i-sparkle{--m:url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20256%20256%22%20fill%3D%22currentColor%22%3E%3Cpath%20d%3D%22M197.58%2C129.06%2C146%2C110l-19-51.62a15.92%2C15.92%2C0%2C0%2C0-29.88%2C0L78%2C110l-51.62%2C19a15.92%2C15.92%2C0%2C0%2C0%2C0%2C29.88L78%2C178l19%2C51.62a15.92%2C15.92%2C0%2C0%2C0%2C29.88%2C0L146%2C178l51.62-19a15.92%2C15.92%2C0%2C0%2C0%2C0-29.88ZM137%2C164.22a8%2C8%2C0%2C0%2C0-4.74%2C4.74L112%2C223.85%2C91.78%2C169A8%2C8%2C0%2C0%2C0%2C87%2C164.22L32.15%2C144%2C87%2C123.78A8%2C8%2C0%2C0%2C0%2C91.78%2C119L112%2C64.15%2C132.22%2C119a8%2C8%2C0%2C0%2C0%2C4.74%2C4.74L191.85%2C144ZM144%2C40a8%2C8%2C0%2C0%2C1%2C8-8h16V16a8%2C8%2C0%2C0%2C1%2C16%2C0V32h16a8%2C8%2C0%2C0%2C1%2C0%2C16H184V64a8%2C8%2C0%2C0%2C1-16%2C0V48H152A8%2C8%2C0%2C0%2C1%2C144%2C40ZM248%2C88a8%2C8%2C0%2C0%2C1-8%2C8h-8v8a8%2C8%2C0%2C0%2C1-16%2C0V96h-8a8%2C8%2C0%2C0%2C1%2C0-16h8V72a8%2C8%2C0%2C0%2C1%2C16%2C0v8h8A8%2C8%2C0%2C0%2C1%2C248%2C88Z%22%2F%3E%3C%2Fsvg%3E")}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 28px;border-radius:999px;font-weight:600;font-size:16px;line-height:1;border:1px solid transparent;cursor:pointer;white-space:nowrap;transition:transform .3s var(--ease),background-color .2s,color .2s,border-color .2s}
+.btn:active{transform:translateY(1px) scale(.98)}
+.btn-primary{background:var(--accent);color:var(--on-accent)}
+.btn-primary:hover{background:color-mix(in oklab,var(--accent),#000 14%);color:var(--on-accent)}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--ink)}
+.btn-ghost:hover{background:var(--ink);color:var(--bg)}
+.btn-ink{background:var(--ink);color:var(--bg)}
+.btn-ink:hover{background:color-mix(in oklab,var(--ink),var(--accent) 30%);color:var(--bg)}
+.btn-sm{min-height:44px;padding:0 20px;font-size:15px}
+.navlink{display:inline-flex;align-items:center;min-height:44px;font-weight:500;font-size:15px;border-bottom:2px solid transparent;transition:border-color .2s}
+.navlink:hover,.navlink[aria-current="page"]{border-color:var(--ink)}
+.iconbtn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-width:44px;min-height:44px;border:0;background:transparent;color:var(--ink);cursor:pointer;border-radius:999px;font-size:15px;font-weight:500;transition:background-color .2s,transform .3s var(--ease)}
+.iconbtn:hover{background:var(--tint)}
+.iconbtn:active{transform:scale(.94)}
+.chip{min-height:44px;padding:0 20px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--ink);font-weight:500;font-size:15px;cursor:pointer;transition:background-color .2s,border-color .2s,color .2s}
+.chip-lg{min-height:48px;padding:0 22px}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.opt{width:100%;display:flex;align-items:center;gap:16px;padding:18px 20px;border:1px solid var(--line);border-radius:var(--r);background:transparent;color:var(--ink);text-align:left;cursor:pointer;transition:border-color .2s,background-color .2s}
+.opt:hover{border-color:var(--ink)}
+.opt[aria-checked="true"]{border-color:var(--ink);background:var(--surface);box-shadow:0 0 0 1px var(--ink)}
+.opt .dot{width:22px;height:22px;border-radius:50%;border:1.5px solid var(--muted);display:flex;align-items:center;justify-content:center;flex:none;color:var(--on-accent)}
+.opt[aria-checked="true"] .dot{background:var(--accent);border-color:var(--accent)}
+.opt .dot .i{display:none;width:14px;height:14px}
+.opt[aria-checked="true"] .dot .i{display:inline-block}
+/* Место под фото. Чтобы поставить снимок, положите внутрь <img src="..." alt="...">. */
+.slot{width:100%;max-width:100%;min-width:0;position:relative;background:var(--tint);border-radius:var(--r);overflow:hidden;display:flex;align-items:flex-end;padding:16px;color:var(--muted);font-size:13px;line-height:1.4;outline:1px dashed var(--line);outline-offset:-1px}
+.slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.lift .arrow{transition:transform .35s var(--ease)}
+.lift:hover .arrow{transform:translate(3px,-3px)}
+.lift:hover{color:inherit}
+.qbtn{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:56px;padding:0 20px;border:0;border-radius:var(--r);background:transparent;color:var(--ink);font-size:17px;font-weight:500;text-align:left;cursor:pointer;transition:background-color .2s}
+.qbtn:hover{background:var(--tint)}
+.qbtn[aria-selected="true"]{background:var(--tint);font-weight:600}
+.tile .name{background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .35s var(--ease)}
+.tile:hover .name{background-size:100% 1px}
+.snap{display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:16px}
+.snap>*{flex:0 0 280px;scroll-snap-align:start}
+.field{min-height:52px;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:0 22px;font-size:16px}
+.field::placeholder{color:var(--muted);opacity:1}
+[hidden]{display:none !important}
+@media (prefers-reduced-motion: no-preference){
+.rise{animation:rise .9s var(--ease) both}
+.d1{animation-delay:.08s}.d2{animation-delay:.16s}.d3{animation-delay:.24s}
+@keyframes rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+}
+@media (max-width:1023px){.grid4{grid-template-columns:repeat(2,minmax(0,1fr)) !important}}
+@media (max-width:767px){
+.wrap{padding:0 16px}
+.nav{flex-wrap:wrap;height:auto !important;padding-top:12px;padding-bottom:12px}
+.nav nav{flex-wrap:wrap;gap:4px 20px !important;order:3;width:100%}
+.bento{grid-template-columns:1fr !important;grid-template-rows:none !important}
+.bento>*{grid-column:auto !important;grid-row:auto !important}
+.stack-md{grid-template-columns:1fr !important}
+.stack-md>*{grid-column:auto !important}
+.sticky-md{position:static !important}
+.stack-md>*,.bento>*{min-width:0}
+.hero-h{font-size:42px !important}
+}
+h1,h2{text-wrap:balance}
+
+</style>
+</head>
+<body>
+<a class="skip" href="#main">К содержимому</a>
+<div style="background:var(--tint);font-size:14px;text-align:center;padding:12px 16px;line-height:1.4">Бесплатная доставка от [СУММА] ₽</div>
+<header style="border-bottom:1px solid var(--line)">
+<div class="wrap nav" style="height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+<a href="index.html" style="font-size:24px;font-weight:700;letter-spacing:-0.03em;white-space:nowrap">Ваш бренд</a>
+<nav aria-label="Основная навигация" style="display:flex;gap:32px">
+<a class="navlink" href="catalog.html" aria-current="page">Каталог</a>
+<a class="navlink" href="catalog.html">Цели</a>
+<a class="navlink" href="index.html">Лаборатория</a>
+<a class="navlink" href="index.html">О бренде</a>
+</nav>
+<div style="display:flex;align-items:center;gap:4px">
+<button type="button" class="iconbtn" aria-label="Поиск"><span class="i i-search" style="width:22px;height:22px"></span></button>
+<a href="index.html" class="iconbtn" aria-label="Личный кабинет"><span class="i i-user" style="width:22px;height:22px"></span></a>
+<a href="index.html" class="iconbtn" aria-label="Корзина, 0 товаров" style="padding:0 12px"><span class="i i-bag" style="width:22px;height:22px"></span><span id="cartCount">0</span></a>
+</div>
+</div>
+</header>
+<main id="main">
+<div class="wrap" style="padding-top:32px">
+<nav aria-label="Навигационная цепочка" style="font-size:14px;color:var(--muted);display:flex;gap:8px;flex-wrap:wrap">
+<a href="index.html" style="text-decoration:underline">Главная</a><span aria-hidden="true">/</span><a href="catalog.html" style="text-decoration:underline">Каталог</a><span aria-hidden="true">/</span><span>Название продукта 1</span>
+</nav>
+</div>
+
+<!-- Товар -->
+<section class="wrap" style="padding-top:32px;padding-bottom:112px">
+<div class="stack-md" style="display:grid;grid-template-columns:7fr 5fr;gap:64px;align-items:start">
+
+<div style="display:flex;flex-direction:column;gap:16px">
+<div class="slot rise" style="aspect-ratio:4/5;min-height:480px" role="img" aria-label="Место для главного фото товара">Фото 4:5, 1600 на 2000. Банка на светлой поверхности, без текста на этикетке</div>
+<div class="stack-md" style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+<div class="slot" style="aspect-ratio:1/1" role="img" aria-label="Место для фото">Фото 1:1. Капсулы на ладони</div>
+<div class="slot" style="aspect-ratio:1/1" role="img" aria-label="Место для фото">Фото 1:1. Банка рядом со стаканом воды</div>
+</div>
+</div>
+
+<div class="sticky-md" style="position:sticky;top:24px;display:flex;flex-direction:column;gap:28px">
+<div style="display:flex;flex-direction:column;gap:14px">
+<span style="font-size:15px;color:var(--muted)">Спорт</span>
+<h1 class="rise" style="margin:0;font-size:clamp(36px,3.8vw,54px);font-weight:600;letter-spacing:-0.04em;line-height:1.02">Название продукта 1</h1>
+<p style="margin:0;font-size:17px;line-height:1.55;color:var(--muted);max-width:44ch">Короткое описание: для кого продукт и что он даёт. [ОПИСАНИЕ]</p>
+</div>
+
+<div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap">
+<span id="price" style="font-size:34px;font-weight:600;letter-spacing:-0.03em"></span>
+<span id="priceNote" style="font-size:15px;color:var(--muted)"></span>
+</div>
+
+<div role="group" aria-label="Размер упаковки" style="display:flex;flex-direction:column;gap:12px">
+<span style="font-size:15px;font-weight:600">Упаковка</span>
+<div id="sizes" style="display:flex;flex-wrap:wrap;gap:8px"></div>
+</div>
+
+<div id="modes" role="radiogroup" aria-label="Способ покупки" style="display:flex;flex-direction:column;gap:10px"></div>
+
+<div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center">
+<div style="display:flex;align-items:center;border:1px solid var(--line);border-radius:999px;height:56px;background:var(--surface)">
+<button type="button" id="dec" class="iconbtn" aria-label="Уменьшить количество" style="width:52px;height:52px"><span class="i i-minus"></span></button>
+<span id="qty" style="min-width:28px;text-align:center;font-weight:600;font-size:17px" aria-live="polite">1</span>
+<button type="button" id="inc" class="iconbtn" aria-label="Увеличить количество" style="width:52px;height:52px"><span class="i i-plus"></span></button>
+</div>
+<button type="button" id="add" data-no-quick class="btn btn-primary" style="flex:1 1 220px;min-height:56px"></button>
+</div>
+
+<ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px;font-size:16px">
+<li style="display:flex;gap:12px;align-items:center"><span class="i i-check" style="color:var(--accent)"></span>Тест каждой партии в независимой лаборатории</li>
+<li style="display:flex;gap:12px;align-items:center"><span class="i i-check" style="color:var(--accent)"></span>Без красителей и лишних наполнителей</li>
+<li style="display:flex;gap:12px;align-items:center"><span class="i i-check" style="color:var(--accent)"></span>Отправка за [СРОК] рабочих дня</li>
+</ul>
+</div>
+</div>
+</section>
+
+<!-- Состав -->
+<section style="background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+<div class="wrap" style="padding-top:104px;padding-bottom:104px">
+<h2 style="margin:0 0 40px;font-size:clamp(34px,3.6vw,48px);font-weight:600;letter-spacing:-0.035em;line-height:1.05">Состав на порцию</h2>
+<div class="stack-md" style="display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:16px">
+<div style="grid-column:1/7;background:var(--accent);color:var(--on-accent);border-radius:var(--r);padding:36px;min-height:240px;display:flex;flex-direction:column;justify-content:space-between;gap:24px">
+<span style="font-size:17px;font-weight:500">Основное вещество</span>
+<span class="mono" style="font-size:clamp(44px,5vw,72px);font-weight:500;letter-spacing:-0.04em;line-height:1">[N] мг</span>
+</div>
+<div style="grid-column:7/10;background:var(--tint);border-radius:var(--r);padding:28px;min-height:240px;display:flex;flex-direction:column;justify-content:space-between;gap:24px">
+<span style="font-size:17px;font-weight:500">Второй компонент</span>
+<span class="mono" style="font-size:clamp(32px,3.2vw,44px);font-weight:500;letter-spacing:-0.04em;line-height:1">[N] мг</span>
+</div>
+<div style="grid-column:10/13;background:var(--bg);border:1px solid var(--line);border-radius:var(--r);padding:28px;min-height:240px;display:flex;flex-direction:column;justify-content:space-between;gap:24px">
+<span style="font-size:17px;font-weight:500">Третий компонент</span>
+<span class="mono" style="font-size:clamp(32px,3.2vw,44px);font-weight:500;letter-spacing:-0.04em;line-height:1">[N] мг</span>
+</div>
+</div>
+<div style="margin-top:32px">
+<button type="button" id="toggleFull" class="btn btn-ghost" aria-expanded="false" aria-controls="full">Полный состав</button>
+</div>
+<div id="full" hidden class="stack-md" style="margin-top:32px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px;font-size:16px;line-height:1.6;color:var(--muted)">
+<div style="display:flex;flex-direction:column;gap:8px"><span style="color:var(--ink);font-weight:600">Действующие вещества</span><span>[Список веществ с формой и дозировкой]</span></div>
+<div style="display:flex;flex-direction:column;gap:8px"><span style="color:var(--ink);font-weight:600">Вспомогательные</span><span>[Состав капсулы и наполнители]</span></div>
+<div style="display:flex;flex-direction:column;gap:8px"><span style="color:var(--ink);font-weight:600">Аллергены</span><span>[Информация об аллергенах]</span></div>
+</div>
+</div>
+</section>
+
+<!-- Как принимать -->
+<section class="wrap" style="padding-top:104px;padding-bottom:104px">
+<div style="display:flex;flex-direction:column;gap:20px;max-width:65ch">
+<h2 style="margin:0;font-size:clamp(34px,3.6vw,48px);font-weight:600;letter-spacing:-0.035em;line-height:1.05">Как принимать</h2>
+<p style="margin:0;font-size:18px;line-height:1.6;color:var(--muted)">[Схема приёма: дозировка, время суток, длительность курса.]</p>
+<p style="margin:0;font-size:14px;line-height:1.55;color:var(--muted)">Перед применением проконсультируйтесь со специалистом. [ПРОТИВОПОКАЗАНИЯ ПО ТРЕБОВАНИЯМ ЗАКОНА]</p>
+</div>
+</section>
+
+<!-- С этим покупают -->
+<section style="border-top:1px solid var(--line)">
+<div class="wrap" style="padding-top:96px;padding-bottom:112px">
+<h2 style="margin:0 0 40px;font-size:clamp(34px,3.6vw,48px);font-weight:600;letter-spacing:-0.035em;line-height:1.05">С этим покупают</h2>
+<div class="snap" role="list">
+<article class="tile" role="listitem" style="display:flex;flex-direction:column;gap:16px">
+<a href="product.html" class="slot" style="aspect-ratio:1/1" role="img" aria-label="Место для фото">Фото 1:1</a>
+<div style="display:flex;justify-content:space-between;gap:12px"><h3 style="margin:0;font-size:18px;font-weight:600;letter-spacing:-0.02em"><a class="name" href="product.html">Название продукта 2</a></h3><span style="font-weight:600;white-space:nowrap">[ЦЕНА] ₽</span></div>
+</article>
+<article class="tile" role="listitem" style="display:flex;flex-direction:column;gap:16px">
+<a href="product.html" class="slot" style="aspect-ratio:1/1" role="img" aria-label="Место для фото">Фото 1:1</a>
+<div style="display:flex;justify-content:space-between;gap:12px"><h3 style="margin:0;font-size:18px;font-weight:600;letter-spacing:-0.02em"><a class="name" href="product.html">Название продукта 3</a></h3><span style="font-weight:600;white-space:nowrap">[ЦЕНА] ₽</span></div>
+</article>
+<article class="tile" role="listitem" style="display:flex;flex-direction:column;gap:16px">
+<a href="product.html" class="slot" style="aspect-ratio:1/1" role="img" aria-label="Место для фото">Фото 1:1</a>
+<div style="display:flex;justify-content:space-between;gap:12px"><h3 style="margin:0;font-size:18px;font-weight:600;letter-spacing:-0.02em"><a class="name" href="product.html">Название продукта 4</a></h3><span style="font-weight:600;white-space:nowrap">[ЦЕНА] ₽</span></div>
+</article>
+<article class="tile" role="listitem" style="display:flex;flex-direction:column;gap:16px">
+<a href="product.html" class="slot" style="aspect-ratio:1/1" role="img" aria-label="Место для фото">Фото 1:1</a>
+<div style="display:flex;justify-content:space-between;gap:12px"><h3 style="margin:0;font-size:18px;font-weight:600;letter-spacing:-0.02em"><a class="name" href="product.html">Название продукта 5</a></h3><span style="font-weight:600;white-space:nowrap">[ЦЕНА] ₽</span></div>
+</article>
+<article class="tile" role="listitem" style="display:flex;flex-direction:column;gap:16px">
+<a href="product.html" class="slot" style="aspect-ratio:1/1" role="img" aria-label="Место для фото">Фото 1:1</a>
+<div style="display:flex;justify-content:space-between;gap:12px"><h3 style="margin:0;font-size:18px;font-weight:600;letter-spacing:-0.02em"><a class="name" href="product.html">Название продукта 6</a></h3><span style="font-weight:600;white-space:nowrap">[ЦЕНА] ₽</span></div>
+</article>
+</div>
+</div>
+</section>
+
+
+</main>
+<footer style="border-top:1px solid var(--line)">
+<div class="wrap" style="padding-top:72px;padding-bottom:40px">
+<div class="stack-md" style="display:grid;grid-template-columns:6fr 3fr 3fr;gap:48px">
+<div style="display:flex;flex-direction:column;gap:20px;max-width:440px">
+<span style="font-size:24px;font-weight:700;letter-spacing:-0.03em">Ваш бренд</span>
+<form onsubmit="return false" style="display:flex;flex-direction:column;gap:10px">
+<label for="email" style="font-size:15px;font-weight:600">Новинки и скидки на почту</label>
+<div style="display:flex;flex-wrap:wrap;gap:8px">
+<input id="email" type="email" placeholder="Ваш e-mail" style="flex:1 1 200px;min-height:52px;box-sizing:border-box;border-radius:999px;border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:0 22px;font-size:16px">
+<button type="button" class="btn btn-ink">Подписаться</button>
+</div>
+</form>
+</div>
+<div style="display:flex;flex-direction:column;gap:4px;font-size:16px">
+<span style="font-weight:600;margin-bottom:8px">Магазин</span>
+<a class="navlink" href="catalog.html">Каталог</a>
+<a class="navlink" href="index.html#quiz">Подбор</a>
+</div>
+<div style="display:flex;flex-direction:column;gap:4px;font-size:16px">
+<span style="font-weight:600;margin-bottom:8px">Помощь</span>
+<a class="navlink" href="index.html">Доставка и оплата</a>
+<a class="navlink" href="index.html">Возврат</a>
+<a class="navlink" href="index.html">Контакты</a>
+</div>
+</div>
+<div style="margin-top:64px;padding-top:24px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 32px;font-size:14px;line-height:1.5;color:var(--muted)">
+<div style="display:flex;flex-wrap:wrap;gap:8px 24px"><span>© [ГОД] [ЮРЛИЦО]</span><a href="index.html" style="text-decoration:underline">Политика конфиденциальности</a><a href="index.html" style="text-decoration:underline">Оферта</a></div>
+<span style="max-width:560px">БАД не является лекарственным средством. [ЮРИДИЧЕСКИЙ ДИСКЛЕЙМЕР]</span>
+</div>
+</div>
+</footer>
+<script>
+/* Общие функции: счётчик корзины в шапке и кнопки «В корзину». */
+(function () {
+  var KEY = 'cartCount';
+  function read() {
+    try { return parseInt(localStorage.getItem(KEY) || '0', 10) || 0; } catch (e) { return window.__cart || 0; }
+  }
+  function write(n) {
+    try { localStorage.setItem(KEY, String(n)); } catch (e) { window.__cart = n; }
+    var el = document.getElementById('cartCount');
+    if (el) el.textContent = String(n);
+  }
+  window.Cart = { get: read, set: write, add: function (n) { write(read() + n); } };
+  write(read());
+
+  document.addEventListener('click', function (e) {
+    var b = e.target.closest ? e.target.closest('button') : null;
+    if (!b || b.hasAttribute('data-no-quick')) return;
+    if (b.textContent.trim() !== 'В корзину') return;
+    window.Cart.add(1);
+    var node = null;
+    for (var i = 0; i < b.childNodes.length; i++) {
+      if (b.childNodes[i].nodeType === 3 && b.childNodes[i].textContent.trim()) node = b.childNodes[i];
+    }
+    if (node) {
+      node.textContent = 'Добавлено';
+      setTimeout(function () { node.textContent = 'В корзину'; }, 1500);
+    }
+  });
+})();
+
+</script>
+<script>
+(function () {
+  var sizes = [
+    { label: '60 капсул', price: '[ЦЕНА 1] ₽' },
+    { label: '120 капсул', price: '[ЦЕНА 2] ₽' },
+    { label: '180 капсул', price: '[ЦЕНА 3] ₽' }
+  ];
+  var modes = [
+    { title: 'Разовая покупка', text: 'Оплата один раз, без обязательств' },
+    { title: 'Подписка со скидкой [N]%', text: 'Доставка каждые [ПЕРИОД], отмена в любой момент' }
+  ];
+  var state = { size: 1, mode: 0, qty: 1, added: false, full: false };
+
+  var elSizes = document.getElementById('sizes');
+  var elModes = document.getElementById('modes');
+  var elPrice = document.getElementById('price');
+  var elNote = document.getElementById('priceNote');
+  var elQty = document.getElementById('qty');
+  var elAdd = document.getElementById('add');
+  var elFull = document.getElementById('full');
+  var elToggle = document.getElementById('toggleFull');
+
+  function renderAddLabel() {
+    elAdd.innerHTML = state.added
+      ? '<span class="i i-check"></span>Добавлено в корзину'
+      : '<span class="i i-bag"></span>Добавить в корзину';
+  }
+
+  function render() {
+    elSizes.innerHTML = '';
+    sizes.forEach(function (s, i) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'chip chip-lg';
+      b.textContent = s.label;
+      b.setAttribute('aria-pressed', state.size === i ? 'true' : 'false');
+      b.addEventListener('click', function () { state.size = i; state.added = false; render(); });
+      elSizes.appendChild(b);
+    });
+
+    elModes.innerHTML = '';
+    modes.forEach(function (m, i) {
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'opt';
+      b.setAttribute('role', 'radio');
+      b.setAttribute('aria-checked', state.mode === i ? 'true' : 'false');
+      b.innerHTML = '<span class="dot"><span class="i i-check"></span></span>' +
+        '<span style="display:flex;flex-direction:column;gap:4px"><span style="font-weight:600;font-size:16px"></span><span style="font-size:14px;color:var(--muted);line-height:1.4"></span></span>';
+      var spans = b.querySelectorAll('span span');
+      b.lastChild.children[0].textContent = m.title;
+      b.lastChild.children[1].textContent = m.text;
+      b.addEventListener('click', function () { state.mode = i; state.added = false; render(); });
+      elModes.appendChild(b);
+    });
+
+    elPrice.textContent = sizes[state.size].price;
+    elNote.textContent = state.mode === 1 ? 'со скидкой по подписке' : '';
+    elQty.textContent = String(state.qty);
+    renderAddLabel();
+    elFull.hidden = !state.full;
+    elToggle.setAttribute('aria-expanded', state.full ? 'true' : 'false');
+    elToggle.textContent = state.full ? 'Скрыть полный состав' : 'Полный состав';
+  }
+
+  document.getElementById('inc').addEventListener('click', function () { state.qty += 1; state.added = false; render(); });
+  document.getElementById('dec').addEventListener('click', function () { state.qty = Math.max(1, state.qty - 1); state.added = false; render(); });
+  elAdd.addEventListener('click', function () {
+    if (state.added) return;
+    window.Cart.add(state.qty);
+    state.added = true;
+    render();
+  });
+  elToggle.addEventListener('click', function () { state.full = !state.full; render(); });
+  render();
+})();
+
+</script>
+</body>
+</html>

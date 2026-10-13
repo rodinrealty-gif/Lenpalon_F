@@ -1,0 +1,29 @@
+/* Дизайн-токены — 1:1 из :root макета (design/*.html). Только светлая тема. */
+:root {
+  color-scheme: light;
+  --bg: #ffffff;
+  --surface: #f3f7fd;
+  --ink: #0e1a2b;
+  --muted: #4f5f76;
+  --line: #d9e3f2;
+  --tint: #e3edfb;
+  --accent: #1f5fd6;
+  --on-accent: #ffffff;
+  --danger: #b42318; /* нет в макете: ошибки форм, AA на белом и surface */
+  --r: 14px;
+  --pill: 999px;
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --font-sans: 'Onest', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --wrap: 1360px;
+  --gutter: 40px;
+  --section-y: 112px;
+  --h2: clamp(34px, 3.6vw, 48px);
+}
+@media (max-width: 767px) {
+  :root {
+    --gutter: 16px;
+  }
+}

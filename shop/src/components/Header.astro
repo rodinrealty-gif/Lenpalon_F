@@ -1,0 +1,101 @@
+---
+import Icon from './Icon.astro';
+import { site, mainNav, type NavItem } from '../data/site';
+
+interface Props {
+  current?: NavItem['key'] | undefined;
+}
+const { current } = Astro.props;
+---
+
+<div class="promo">{site.promo}</div>
+<header class="header">
+  <div class="wrap nav">
+    <a href="/" class="brand">{site.brand}</a>
+    <nav aria-label="Основная навигация" class="menu">
+      {
+        mainNav.map((item) => (
+          <a class="navlink" href={item.href} aria-current={item.key === current ? 'page' : undefined}>
+            {item.label}
+          </a>
+        ))
+      }
+    </nav>
+    <div class="actions">
+      <button type="button" class="iconbtn" aria-label="Поиск" aria-haspopup="dialog" data-search-open>
+        <Icon name="search" size={22} />
+      </button>
+      <a href="/account" class="iconbtn" aria-label="Личный кабинет"><Icon name="user" size={22} /></a>
+      <a href="/cart" class="iconbtn cart" aria-label="Корзина, 0 товаров" data-cart-link>
+        <Icon name="bag" size={22} /><span data-cart-count>0</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  import { cart } from '../lib/cart';
+  import { plural, PRODUCT_FORMS } from '../lib/plural';
+
+  function render() {
+    const n = cart.count();
+    document.querySelectorAll('[data-cart-count]').forEach((el) => (el.textContent = String(n)));
+    document
+      .querySelectorAll('[data-cart-link]')
+      .forEach((a) => a.setAttribute('aria-label', `Корзина, ${n} ${plural(n, PRODUCT_FORMS)}`));
+  }
+  render();
+  cart.subscribe(render);
+</script>
+
+<style>
+  .promo {
+    background: var(--tint);
+    font-size: 14px;
+    text-align: center;
+    padding: 12px 16px;
+    line-height: 1.4;
+  }
+  .header {
+    border-bottom: 1px solid var(--line);
+  }
+  .nav {
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .brand {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    white-space: nowrap;
+  }
+  .menu {
+    display: flex;
+    gap: 32px;
+  }
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .cart {
+    padding: 0 12px;
+  }
+  @media (max-width: 767px) {
+    .nav {
+      flex-wrap: wrap;
+      height: auto;
+      padding-top: 12px;
+      padding-bottom: 12px;
+    }
+    .menu {
+      flex-wrap: wrap;
+      gap: 4px 20px;
+      order: 3;
+      width: 100%;
+    }
+  }
+</style>

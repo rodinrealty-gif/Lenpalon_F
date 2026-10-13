@@ -1,0 +1,17 @@
+export type IconName =
+  | 'bag'
+  | 'check'
+  | 'flask'
+  | 'leaf'
+  | 'male'
+  | 'minus'
+  | 'plus'
+  | 'right'
+  | 'search'
+  | 'shield'
+  | 'shieldplus'
+  | 'sparkle'
+  | 'truck'
+  | 'upright'
+  | 'user'
+  | 'x';

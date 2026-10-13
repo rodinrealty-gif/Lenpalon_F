@@ -1,0 +1,100 @@
+---
+/**
+ * Место под фото. Без src — пунктирная заглушка с подсказкой из макета; с src — <img> object-fit: cover.
+ * Если передан href, слот — ссылка (без role="img"), доступное имя — label.
+ */
+interface Props {
+  src?: string | undefined;
+  alt: string;
+  placeholder: string;
+  ratio?: string;
+  href?: string;
+  label?: string;
+  priority?: boolean;
+  width?: number;
+  height?: number;
+  flat?: boolean;
+  compact?: boolean;
+  class?: string;
+}
+const {
+  src,
+  alt,
+  placeholder,
+  ratio,
+  href,
+  label,
+  priority = false,
+  width = 1600,
+  height,
+  flat = false,
+  compact = false,
+  class: className,
+} = Astro.props;
+
+const [rw, rh] = (ratio ?? '1/1').split('/').map(Number);
+const h = height ?? Math.round((width * (rh || 1)) / (rw || 1));
+const classes = ['slot', flat && 'flat', compact && 'compact', className];
+const style = ratio ? `aspect-ratio:${ratio}` : undefined;
+const label_ = label ?? alt;
+const slotLabel = alt ? `Место для фото: ${alt}` : 'Место для фото';
+---
+
+{
+  href ? (
+    <a href={href} class:list={classes} style={style} aria-label={label_}>
+      {src ? (
+        <img src={src} alt="" width={width} height={h} loading={priority ? 'eager' : 'lazy'} fetchpriority={priority ? 'high' : 'auto'} decoding="async" />
+      ) : (
+        <span aria-hidden="true">{placeholder}</span>
+      )}
+    </a>
+  ) : (
+    <div class:list={classes} style={style} role={src ? undefined : 'img'} aria-label={src ? undefined : slotLabel}>
+      {src ? (
+        <img src={src} alt={alt} width={width} height={h} loading={priority ? 'eager' : 'lazy'} fetchpriority={priority ? 'high' : 'auto'} decoding="async" />
+      ) : (
+        <span>{placeholder}</span>
+      )}
+    </div>
+  )
+}
+
+<style>
+  .slot {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    position: relative;
+    background: var(--tint);
+    border-radius: var(--r);
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    padding: 16px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.4;
+    outline: 1px dashed var(--line);
+    outline-offset: -1px;
+  }
+  a.slot:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+  .slot img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .flat {
+    border-radius: 0;
+    outline: 0;
+  }
+  .compact {
+    padding: 10px;
+    font-size: 11px;
+  }
+</style>

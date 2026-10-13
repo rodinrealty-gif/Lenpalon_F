@@ -1,0 +1,106 @@
+---
+/** Подписка на рассылку. idPrefix делает id уникальными, если форм несколько. */
+interface Props {
+  idPrefix?: string;
+  label?: string;
+}
+const { idPrefix = 'newsletter', label = 'Новинки и скидки на почту' } = Astro.props;
+const id = `${idPrefix}-email`;
+---
+
+<form class="form" novalidate data-newsletter>
+  <label for={id} class="label">{label}</label>
+  <div class="row">
+    <input
+      id={id}
+      name="email"
+      type="email"
+      autocomplete="email"
+      placeholder="Ваш e-mail"
+      class="field input"
+      aria-describedby={`${id}-msg`}
+      required
+    />
+    <button type="submit" class="btn btn-ink" data-label="Подписаться">Подписаться</button>
+  </div>
+  <p id={`${id}-msg`} class="msg" role="status" aria-live="polite"></p>
+</form>
+
+<script>
+  import { isValidEmail, subscribeNewsletter } from '../lib/newsletter';
+
+  document.querySelectorAll<HTMLFormElement>('form[data-newsletter]').forEach((form) => {
+    const input = form.querySelector<HTMLInputElement>('input[type="email"]');
+    const button = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+    const msg = form.querySelector<HTMLElement>('.msg');
+    if (!input || !button || !msg) return;
+
+    const setMsg = (text: string, kind: 'error' | 'ok' | '') => {
+      msg.textContent = text;
+      msg.dataset.kind = kind;
+      if (kind === 'error') input.setAttribute('aria-invalid', 'true');
+      else input.removeAttribute('aria-invalid');
+    };
+
+    input.addEventListener('input', () => {
+      if (input.hasAttribute('aria-invalid') && isValidEmail(input.value)) setMsg('', '');
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (button.disabled) return;
+      if (!input.value.trim()) return (setMsg('Укажите e-mail', 'error'), input.focus());
+      if (!isValidEmail(input.value)) return (setMsg('Проверьте e-mail, например: name@mail.ru', 'error'), input.focus());
+      button.disabled = true;
+      button.textContent = 'Отправляем…';
+      setMsg('', '');
+      try {
+        const { dryRun } = await subscribeNewsletter(input.value);
+        if (dryRun) console.info('[newsletter] PUBLIC_NEWSLETTER_ENDPOINT не задан — данные никуда не отправлены');
+        setMsg('Готово, вы подписаны.', 'ok');
+        form.reset();
+      } catch {
+        setMsg('Не получилось подписаться. Попробуйте ещё раз.', 'error');
+      } finally {
+        button.disabled = false;
+        button.textContent = button.dataset.label ?? 'Подписаться';
+      }
+    });
+  });
+</script>
+
+<style>
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .label {
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .input {
+    flex: 1 1 200px;
+    min-height: 52px;
+  }
+  .input[aria-invalid='true'] {
+    border-color: var(--danger);
+  }
+  .msg {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.4;
+    color: var(--muted);
+  }
+  .msg:empty {
+    display: none;
+  }
+  .msg[data-kind='error'] {
+    color: var(--danger);
+  }
+</style>

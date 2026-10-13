@@ -1,0 +1,145 @@
+---
+/** Поиск по названиям товаров (products.ts). Открывается кнопкой [data-search-open], Esc закрывает. */
+import Icon from './Icon.astro';
+import { products } from '../data/products';
+import { categoryLabel } from '../data/categories';
+
+const index = products.map((p) => ({ name: p.name, href: `/product/${p.slug}`, cat: categoryLabel(p.category) }));
+---
+
+<dialog class="dialog" id="search-dialog" aria-labelledby="search-title">
+  <div class="head">
+    <h2 id="search-title" class="title">Поиск</h2>
+    <button type="button" class="iconbtn" aria-label="Закрыть поиск" data-search-close><Icon name="x" size={22} /></button>
+  </div>
+  <form role="search" class="form" onsubmit="return false">
+    <label for="search-input" class="visually-hidden">Название товара</label>
+    <input id="search-input" type="search" class="field" placeholder="Название товара" autocomplete="off" />
+  </form>
+  <p class="status muted" id="search-status" aria-live="polite"></p>
+  <ul class="results" id="search-results"></ul>
+  <script type="application/json" id="search-index" set:html={JSON.stringify(index)} />
+</dialog>
+
+<script>
+  import { plural } from '../lib/plural';
+
+  interface Entry {
+    name: string;
+    href: string;
+    cat: string;
+  }
+  const dialog = document.getElementById('search-dialog') as HTMLDialogElement | null;
+  const input = document.getElementById('search-input') as HTMLInputElement | null;
+  const list = document.getElementById('search-results');
+  const status = document.getElementById('search-status');
+  const raw = document.getElementById('search-index')?.textContent ?? '[]';
+  const entries = JSON.parse(raw) as Entry[];
+  let opener: HTMLElement | null = null;
+
+  const norm = (s: string) => s.toLowerCase().replace(/ё/g, 'е').trim();
+
+  function render() {
+    if (!list || !status || !input) return;
+    const q = norm(input.value);
+    list.replaceChildren();
+    if (!q) {
+      status.textContent = '';
+      return;
+    }
+    const found = entries.filter((e) => norm(e.name).includes(q));
+    status.textContent = found.length
+      ? `Нашли ${found.length} ${plural(found.length, ['товар', 'товара', 'товаров'])}`
+      : 'Ничего не нашли. Попробуйте другое название или откройте каталог.';
+    for (const e of found.slice(0, 8)) {
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = e.href;
+      a.className = 'result';
+      const name = document.createElement('span');
+      name.textContent = e.name;
+      const cat = document.createElement('span');
+      cat.className = 'cat';
+      cat.textContent = e.cat;
+      a.append(name, cat);
+      li.append(a);
+      list.append(li);
+    }
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-search-open]').forEach((btn) =>
+    btn.addEventListener('click', () => {
+      if (!dialog) return;
+      opener = btn;
+      dialog.showModal();
+      input?.focus();
+    }),
+  );
+  document.querySelector('[data-search-close]')?.addEventListener('click', () => dialog?.close());
+  dialog?.addEventListener('click', (e) => {
+    if (e.target === dialog) dialog.close();
+  });
+  dialog?.addEventListener('close', () => opener?.focus());
+  input?.addEventListener('input', render);
+</script>
+
+<style>
+  .dialog {
+    width: min(640px, calc(100% - 32px));
+    margin: 96px auto auto;
+    padding: 28px;
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    background: var(--bg);
+    color: var(--ink);
+  }
+  .dialog::backdrop {
+    background: rgb(14 26 43 / 0.4);
+  }
+  .head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .title {
+    margin: 0;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  .form .field {
+    width: 100%;
+  }
+  .status {
+    margin: 12px 0 0;
+    font-size: 14px;
+  }
+  .status:empty {
+    display: none;
+  }
+  .results {
+    list-style: none;
+    margin: 8px 0 0;
+    padding: 0;
+  }
+  .results :global(.result) {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: center;
+    min-height: 52px;
+    padding: 0 16px;
+    border-radius: var(--r);
+    font-weight: 500;
+  }
+  .results :global(.result:hover) {
+    background: var(--tint);
+  }
+  .results :global(.cat) {
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 400;
+  }
+</style>
