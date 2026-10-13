@@ -1,0 +1,338 @@
+---
+import Layout from '../../components/Layout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import PhotoSlot from '../../components/PhotoSlot.astro';
+import Icon from '../../components/Icon.astro';
+import SizePicker from '../../components/SizePicker.astro';
+import PurchaseModeRadio from '../../components/PurchaseModeRadio.astro';
+import QtyStepper from '../../components/QtyStepper.astro';
+import CompositionBento from '../../components/CompositionBento.astro';
+import ProductRail from '../../components/ProductRail.astro';
+import { products, getProduct, defaultSizeIndex, type Product } from '../../data/products';
+import { categoryLabel } from '../../data/categories';
+import { site } from '../../data/site';
+import { formatPrice } from '../../lib/format';
+
+export function getStaticPaths() {
+  return products.map((p) => ({ params: { slug: p.slug }, props: { product: p } }));
+}
+interface Props {
+  product: Product;
+}
+const { product: p } = Astro.props;
+const sizeIndex = defaultSizeIndex(p);
+const size = p.sizes[sizeIndex];
+const related = p.related.map(getProduct).filter((x): x is Product => Boolean(x));
+const discount = p.subscription.discountPercent;
+const modes = [
+  { value: 'once', title: 'Разовая покупка', text: 'Оплата один раз, без обязательств' },
+  {
+    value: 'subscription',
+    title: `Подписка со скидкой ${discount ?? '[N]'}%`,
+    text: `Доставка каждые ${p.subscription.period ?? '[ПЕРИОД]'}, отмена в любой момент`,
+  },
+];
+const url = new URL(`/product/${p.slug}`, Astro.site).href;
+const prices = p.sizes.map((s) => s.price).filter((x): x is number => x !== null);
+const jsonLd: Record<string, unknown>[] = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: p.name,
+    description: p.description,
+    category: categoryLabel(p.category),
+    brand: { '@type': 'Brand', name: site.brand },
+    url,
+    ...(prices.length
+      ? {
+          offers: {
+            '@type': 'AggregateOffer',
+            priceCurrency: 'RUB',
+            lowPrice: Math.min(...prices),
+            highPrice: Math.max(...prices),
+            offerCount: prices.length,
+          },
+        }
+      : {}),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Главная', item: new URL('/', Astro.site).href },
+      { '@type': 'ListItem', position: 2, name: 'Каталог', item: new URL('/catalog', Astro.site).href },
+      { '@type': 'ListItem', position: 3, name: p.name, item: url },
+    ],
+  },
+];
+const state = {
+  slug: p.slug,
+  sizes: p.sizes,
+  discount,
+  size: sizeIndex,
+};
+---
+
+<Layout title={p.name} description={p.description.slice(0, 160)} current="catalog" ogType="product" jsonLd={jsonLd}>
+  <div class="wrap crumbs-wrap">
+    <Breadcrumbs items={[{ label: 'Главная', href: '/' }, { label: 'Каталог', href: '/catalog' }, { label: p.name }]} />
+  </div>
+
+  <!-- Товар -->
+  <section class="wrap product">
+    <div class="grid stack-md">
+      <div class="gallery">
+        <PhotoSlot
+          src={p.photos.main.src}
+          alt={p.photos.main.alt}
+          placeholder={p.photos.main.placeholder}
+          ratio="4/5"
+          priority
+          class="rise main-photo"
+        />
+        <div class="thumbs stack-md">
+          {p.photos.extra.map((ph) => <PhotoSlot src={ph.src} alt={ph.alt} placeholder={ph.placeholder} ratio="1/1" width={800} />)}
+        </div>
+      </div>
+
+      <div class="buy sticky-md" data-product={JSON.stringify(state)}>
+        <div class="intro">
+          <span class="cat">{categoryLabel(p.category)}</span>
+          <h1 class="title rise">{p.name}</h1>
+          <p class="desc">{p.description}</p>
+        </div>
+
+        <div class="price-row">
+          <span class="price" data-price>{formatPrice(size?.price ?? null, size?.placeholder)}</span>
+          <span class="note" data-price-note></span>
+        </div>
+
+        <SizePicker sizes={p.sizes} selected={sizeIndex} />
+        <PurchaseModeRadio options={modes} />
+
+        <div class="actions">
+          <QtyStepper />
+          <button type="button" class="btn btn-primary add" data-add>
+            <Icon name="bag" class="ic-bag" />
+            <Icon name="check" class="ic-check" />
+            <span data-add-label>Добавить в корзину</span>
+          </button>
+        </div>
+
+        <ul class="highlights">
+          {
+            p.highlights.map((h) => (
+              <li>
+                <Icon name="check" class="accent" />
+                {h}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <CompositionBento composition={p.composition} />
+
+  <!-- Как принимать -->
+  <section class="wrap usage">
+    <div class="usage-inner">
+      <h2 class="h2">Как принимать</h2>
+      <p class="usage-text">{p.usage}</p>
+      <p class="usage-note">Перед применением проконсультируйтесь со специалистом. {p.contraindications}</p>
+    </div>
+  </section>
+
+  {related.length > 0 && <ProductRail title="С этим покупают" products={related} />}
+</Layout>
+
+<script>
+  import { cart, type PurchaseMode } from '../../lib/cart';
+  import { formatPrice, subscriptionPrice } from '../../lib/format';
+  import type { Size } from '../../data/products';
+
+  const root = document.querySelector<HTMLElement>('[data-product]');
+  if (root) {
+    const data = JSON.parse(root.dataset.product ?? '{}') as {
+      slug: string;
+      sizes: Size[];
+      discount: number | null;
+      size: number;
+    };
+    const state = { size: data.size, mode: 'once' as PurchaseMode, qty: 1, added: false };
+    const el = {
+      price: root.querySelector<HTMLElement>('[data-price]'),
+      note: root.querySelector<HTMLElement>('[data-price-note]'),
+      qty: root.querySelector<HTMLElement>('[data-qty]'),
+      dec: root.querySelector<HTMLButtonElement>('[data-dec]'),
+      inc: root.querySelector<HTMLButtonElement>('[data-inc]'),
+      add: root.querySelector<HTMLButtonElement>('[data-add]'),
+      addLabel: root.querySelector<HTMLElement>('[data-add-label]'),
+      sizes: Array.from(root.querySelectorAll<HTMLButtonElement>('[data-size-index]')),
+    };
+
+    const render = () => {
+      const s = data.sizes[state.size];
+      const base = s?.price ?? null;
+      const value = state.mode === 'subscription' ? subscriptionPrice(base, data.discount) : base;
+      if (el.price) el.price.textContent = formatPrice(value, s?.placeholder);
+      if (el.note) el.note.textContent = state.mode === 'subscription' ? 'со скидкой по подписке' : '';
+      if (el.qty) el.qty.textContent = String(state.qty);
+      if (el.dec) el.dec.disabled = state.qty <= 1;
+      el.sizes.forEach((b, i) => b.setAttribute('aria-pressed', i === state.size ? 'true' : 'false'));
+      if (el.add) el.add.dataset.added = String(state.added);
+      if (el.addLabel) el.addLabel.textContent = state.added ? 'Добавлено в корзину' : 'Добавить в корзину';
+    };
+    const change = (fn: () => void) => {
+      fn();
+      state.added = false;
+      render();
+    };
+
+    el.sizes.forEach((b, i) => b.addEventListener('click', () => change(() => (state.size = i))));
+    root.addEventListener('radiochange', (e) =>
+      change(() => (state.mode = (e as CustomEvent<string>).detail === 'subscription' ? 'subscription' : 'once')),
+    );
+    el.inc?.addEventListener('click', () => change(() => (state.qty += 1)));
+    el.dec?.addEventListener('click', () => change(() => (state.qty = Math.max(1, state.qty - 1))));
+    el.add?.addEventListener('click', () => {
+      if (state.added) return;
+      const s = data.sizes[state.size];
+      cart.add({ slug: data.slug, size: s?.label ?? '', mode: state.mode, qty: state.qty });
+      state.added = true;
+      render();
+    });
+    render();
+  }
+</script>
+
+<style>
+  .crumbs-wrap {
+    padding-top: 32px;
+  }
+  .product {
+    padding-top: 32px;
+    padding-bottom: 112px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 7fr 5fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .main-photo {
+    min-height: 480px;
+  }
+  .thumbs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .buy {
+    position: sticky;
+    top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  .intro {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .cat {
+    font-size: 15px;
+    color: var(--muted);
+  }
+  .title {
+    margin: 0;
+    font-size: clamp(36px, 3.8vw, 54px);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1.02;
+  }
+  .desc {
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--muted);
+    max-width: 44ch;
+  }
+  .price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .price {
+    font-size: 34px;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+  }
+  .note {
+    font-size: 15px;
+    color: var(--muted);
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+  }
+  .add {
+    flex: 1 1 220px;
+    min-height: 56px;
+  }
+  .add .ic-check,
+  .add[data-added='true'] .ic-bag {
+    display: none;
+  }
+  .add[data-added='true'] .ic-check {
+    display: inline-block;
+  }
+  .highlights {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 16px;
+  }
+  .highlights li {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+  .accent {
+    color: var(--accent);
+  }
+  .usage {
+    padding-top: 104px;
+    padding-bottom: 104px;
+  }
+  .usage-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 65ch;
+  }
+  .usage-text {
+    margin: 0;
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+  .usage-note {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+</style>

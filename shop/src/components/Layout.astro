@@ -20,7 +20,7 @@ interface Props {
   /** true — title используется как есть */
   rawTitle?: boolean;
   description?: string;
-  current?: NavItem['key'];
+  current?: NavItem['key'] | undefined;
   ogType?: 'website' | 'product';
   ogImage?: string;
   noindex?: boolean;

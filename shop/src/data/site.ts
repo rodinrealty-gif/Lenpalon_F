@@ -62,4 +62,5 @@ export const footerNav = [
 export const legalLinks = [
   { label: 'Политика конфиденциальности', href: '/privacy' },
   { label: 'Оферта', href: '/offer' },
+  { label: 'Согласие на обработку данных', href: '/consent' },
 ];

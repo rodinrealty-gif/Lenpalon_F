@@ -1,0 +1,8 @@
+---
+import StubPage from '../components/StubPage.astro';
+import content from '../legal/consent.html?raw';
+---
+
+<StubPage title="Согласие на обработку персональных данных" todo="черновик — проверка юристом перед публикацией">
+  <Fragment set:html={content} />
+</StubPage>

@@ -1,0 +1,8 @@
+---
+import StubPage from '../components/StubPage.astro';
+import content from '../legal/offer.html?raw';
+---
+
+<StubPage title="Публичная оферта" todo="черновик — проверка юристом перед публикацией">
+  <Fragment set:html={content} />
+</StubPage>

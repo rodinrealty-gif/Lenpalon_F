@@ -1,0 +1,8 @@
+---
+import StubPage from '../components/StubPage.astro';
+import content from '../legal/privacy.html?raw';
+---
+
+<StubPage title="Политика конфиденциальности" todo="черновик — проверка юристом перед публикацией">
+  <Fragment set:html={content} />
+</StubPage>

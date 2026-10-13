@@ -1,0 +1,93 @@
+---
+/** Заглушка раздела: заголовок + пометка, что контент нужно добавить, + необязательное содержимое. */
+import Layout from './Layout.astro';
+import Breadcrumbs from './Breadcrumbs.astro';
+import type { NavItem } from '../data/site';
+
+interface Props {
+  title: string;
+  description?: string;
+  current?: NavItem['key'] | undefined;
+  /** Что нужно добавить на страницу — попадает в отчёт check:placeholders */
+  todo?: string;
+  noindex?: boolean;
+}
+const { title, description, current, todo, noindex = false } = Astro.props;
+---
+
+<Layout title={title} description={description ?? title} current={current} noindex={noindex}>
+  <section class="wrap page">
+    <Breadcrumbs items={[{ label: 'Главная', href: '/' }, { label: title }]} />
+    <h1 class="title rise">{title}</h1>
+    {todo && <p class="todo">[КОНТЕНТ: {todo}]</p>}
+    <div class="prose">
+      <slot />
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page {
+    padding-top: 32px;
+    padding-bottom: 120px;
+  }
+  .title {
+    margin: 32px 0 40px;
+    font-size: clamp(44px, 5.4vw, 76px);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+  .todo {
+    margin: 0 0 32px;
+    background: var(--surface);
+    border: 1px dashed var(--line);
+    border-radius: var(--r);
+    padding: 20px 24px;
+    color: var(--muted);
+    max-width: 72ch;
+  }
+  .prose {
+    max-width: 72ch;
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+  .prose :global(h2) {
+    margin: 40px 0 12px;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+  .prose :global(p),
+  .prose :global(ul) {
+    margin: 0 0 12px;
+  }
+  .prose :global(ul) {
+    padding-left: 22px;
+  }
+  .prose :global(a) {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+  .prose :global(.meta) {
+    color: var(--muted);
+  }
+  .prose :global(.card) {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    padding: 20px 24px;
+    margin: 16px 0;
+  }
+  .prose :global(.card p) {
+    margin: 0 0 4px;
+  }
+  .prose :global(.todo) {
+    background: var(--tint);
+    border-radius: 6px;
+    padding: 0 6px;
+    font-weight: 600;
+  }
+</style>

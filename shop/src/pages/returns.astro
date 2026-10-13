@@ -1,0 +1,13 @@
+---
+import StubPage from '../components/StubPage.astro';
+import { site } from '../data/site';
+---
+
+<StubPage title="Возврат" todo="условия возврата — согласовать с юристом">
+  <p>
+    Продукт надлежащего качества возврату и обмену не подлежит. Если посылка пришла повреждённой или с браком,
+    напишите на <a href={`mailto:${site.contacts.email}`}>{site.contacts.email}</a> или позвоните
+    <a href={site.contacts.phoneHref}>{site.contacts.phone}</a> — решим вопрос по закону. Подробнее — в
+    <a href="/offer">оферте</a>.
+  </p>
+</StubPage>
