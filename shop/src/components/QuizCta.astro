@@ -1,0 +1,73 @@
+---
+/** Блок подбора #quiz. Логика — src/lib/quiz.ts (resolveQuiz); без JS форма ведёт в каталог. */
+---
+
+<section id="quiz" class="wrap quiz-section">
+  <div class="box stack-md">
+    <h2 class="h2 title">Не знаете, что выбрать?</h2>
+    <form class="form" action="/catalog" method="get" data-quiz>
+      <label for="quiz-goal" class="label">Ваша цель</label>
+      <input id="quiz-goal" name="goal" type="text" placeholder="Например, лучше спать" class="input" autocomplete="off" />
+      <button type="submit" class="btn btn-ink submit">Пройти подбор</button>
+    </form>
+  </div>
+</section>
+
+<script>
+  import { resolveQuiz } from '../lib/quiz';
+
+  document.querySelectorAll<HTMLFormElement>('form[data-quiz]').forEach((form) => {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const goal = new FormData(form).get('goal');
+      window.location.href = resolveQuiz({ goal: typeof goal === 'string' ? goal : '' });
+    });
+  });
+</script>
+
+<style>
+  .quiz-section {
+    padding-bottom: 112px;
+  }
+  .box {
+    background: var(--accent);
+    color: var(--on-accent);
+    border-radius: var(--r);
+    padding: 64px;
+    display: grid;
+    grid-template-columns: 6fr 5fr;
+    gap: 48px;
+    align-items: center;
+  }
+  .title {
+    text-wrap: balance;
+  }
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .label {
+    font-size: 15px;
+    font-weight: 600;
+  }
+  .input {
+    min-height: 56px;
+    border-radius: var(--pill);
+    border: 1px solid transparent;
+    background: var(--surface);
+    color: var(--ink);
+    padding: 0 24px;
+    font-size: 16px;
+  }
+  .input::placeholder {
+    color: var(--muted);
+    opacity: 1;
+  }
+  .box :focus-visible {
+    outline-color: var(--on-accent);
+  }
+  .submit {
+    margin-top: 6px;
+  }
+</style>

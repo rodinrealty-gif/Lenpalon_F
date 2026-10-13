@@ -1,0 +1,38 @@
+---
+import Icon from './Icon.astro';
+---
+
+<div class="stepper" data-qty-stepper>
+  <button type="button" class="iconbtn btn52" aria-label="Уменьшить количество" data-dec disabled>
+    <Icon name="minus" />
+  </button>
+  <span class="qty" aria-live="polite" aria-label="Количество" data-qty>1</span>
+  <button type="button" class="iconbtn btn52" aria-label="Увеличить количество" data-inc>
+    <Icon name="plus" />
+  </button>
+</div>
+
+<style>
+  .stepper {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--line);
+    border-radius: var(--pill);
+    height: 56px;
+    background: var(--surface);
+  }
+  .btn52 {
+    width: 52px;
+    height: 52px;
+  }
+  .btn52:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+  .qty {
+    min-width: 28px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 17px;
+  }
+</style>

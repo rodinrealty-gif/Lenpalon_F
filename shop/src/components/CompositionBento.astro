@@ -1,0 +1,132 @@
+---
+import type { Product } from '../data/products';
+interface Props {
+  composition: Product['composition'];
+}
+const { composition: c } = Astro.props;
+---
+
+<section class="band">
+  <div class="wrap inner">
+    <h2 class="h2 mb">Состав на порцию</h2>
+    <div class="grid stack-md">
+      <div class="cell main">
+        <span class="lbl">{c.main.label}</span>
+        <span class="mono big">{c.main.value}</span>
+      </div>
+      <div class="cell second">
+        <span class="lbl">{c.second.label}</span>
+        <span class="mono mid">{c.second.value}</span>
+      </div>
+      <div class="cell third">
+        <span class="lbl">{c.third.label}</span>
+        <span class="mono mid">{c.third.value}</span>
+      </div>
+    </div>
+    <div class="toggle-row">
+      <button type="button" class="btn btn-ghost" aria-expanded="false" aria-controls="full-composition" data-toggle-full>
+        Полный состав
+      </button>
+    </div>
+    <div id="full-composition" class="full stack-md" hidden>
+      <div class="col"><span class="h">Действующие вещества</span><span>{c.full.active}</span></div>
+      <div class="col"><span class="h">Вспомогательные</span><span>{c.full.excipients}</span></div>
+      <div class="col"><span class="h">Аллергены</span><span>{c.full.allergens}</span></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll<HTMLButtonElement>('[data-toggle-full]').forEach((btn) => {
+    const target = document.getElementById(btn.getAttribute('aria-controls') ?? '');
+    if (!target) return;
+    btn.addEventListener('click', () => {
+      const open = btn.getAttribute('aria-expanded') !== 'true';
+      btn.setAttribute('aria-expanded', String(open));
+      btn.textContent = open ? 'Скрыть полный состав' : 'Полный состав';
+      target.hidden = !open;
+    });
+  });
+</script>
+
+<style>
+  .band {
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .inner {
+    padding-top: 104px;
+    padding-bottom: 104px;
+  }
+  .mb {
+    margin-bottom: 40px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .cell {
+    border-radius: var(--r);
+    min-height: 240px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .main {
+    grid-column: 1/7;
+    background: var(--accent);
+    color: var(--on-accent);
+    padding: 36px;
+  }
+  .second {
+    grid-column: 7/10;
+    background: var(--tint);
+    padding: 28px;
+  }
+  .third {
+    grid-column: 10/13;
+    background: var(--bg);
+    border: 1px solid var(--line);
+    padding: 28px;
+  }
+  .lbl {
+    font-size: 17px;
+    font-weight: 500;
+  }
+  .big {
+    font-size: clamp(44px, 5vw, 72px);
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+  .mid {
+    font-size: clamp(32px, 3.2vw, 44px);
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+  .toggle-row {
+    margin-top: 32px;
+  }
+  .full {
+    margin-top: 32px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 40px;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+  .col {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .h {
+    color: var(--ink);
+    font-weight: 600;
+  }
+</style>

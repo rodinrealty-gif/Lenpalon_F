@@ -1,0 +1,251 @@
+---
+/**
+ * Плитка товара. Варианты из макета:
+ *  catalog — сетка каталога (имя h2, категория, цена, «В корзину» ghost)
+ *  rail    — «С этим покупают» (h3 + цена)
+ *  feature — крупный товар в «Популярном» (h3 26px, описание, цена, «В корзину» primary)
+ *  compact — компактный товар в «Популярном» (фото 150×150)
+ */
+import Icon from './Icon.astro';
+import PhotoSlot from './PhotoSlot.astro';
+import { type Product, defaultSizeIndex, tilePrice } from '../data/products';
+import { categoryLabel } from '../data/categories';
+import { formatPrice } from '../lib/format';
+
+interface Props {
+  product: Product;
+  variant?: 'catalog' | 'rail' | 'feature' | 'compact';
+  headingLevel?: 2 | 3;
+  index?: number;
+  class?: string;
+}
+const { product: p, variant = 'catalog', headingLevel = 3, index = 0, class: className } = Astro.props;
+const H = headingLevel === 2 ? 'h2' : 'h3';
+const href = `/product/${p.slug}`;
+const price = tilePrice(p);
+const size = p.sizes[defaultSizeIndex(p)]?.label ?? '';
+const photo = variant === 'feature' ? { ...p.photos.tile, placeholder: p.photos.main.placeholder } : p.photos.tile;
+const cartAttrs = { 'data-add-to-cart': '', 'data-slug': p.slug, 'data-size': size };
+---
+
+{
+  variant === 'catalog' && (
+    <article
+      class:list={['tile', 'catalog', className]}
+      data-tile
+      data-cat={p.category}
+      data-price={price ?? ''}
+      data-index={index}
+    >
+      <PhotoSlot src={photo.src} alt={photo.alt} placeholder={photo.placeholder} ratio="1/1" href={href} label={p.name} width={800} />
+      <div class="row">
+        <div class="meta">
+          <H class="name-h">
+            <a class="name" href={href}>
+              {p.name}
+            </a>
+          </H>
+          <span class="cat">{categoryLabel(p.category)}</span>
+        </div>
+        <span class="price">{formatPrice(price)}</span>
+      </div>
+      <button type="button" class="btn btn-ghost btn-sm add" {...cartAttrs}>
+        <Icon name="bag" />
+        <span data-label>В корзину</span>
+      </button>
+    </article>
+  )
+}
+{
+  variant === 'rail' && (
+    <article class:list={['tile', 'rail', className]} role="listitem">
+      <PhotoSlot src={photo.src} alt={photo.alt} placeholder="Фото 1:1" ratio="1/1" href={href} label={p.name} width={560} />
+      <div class="row">
+        <H class="name-h">
+          <a class="name" href={href}>
+            {p.name}
+          </a>
+        </H>
+        <span class="price-sm">{formatPrice(price)}</span>
+      </div>
+    </article>
+  )
+}
+{
+  variant === 'feature' && (
+    <article class:list={['t-feature', className]}>
+      <PhotoSlot src={photo.src} alt={photo.alt} placeholder="Фото 1:1. Главный продукт на светлой поверхности, без текста на этикетке" ratio="1/1" href={href} label={p.name} width={1200} class="feature-slot" />
+      <div class="feature-info">
+        <div class="feature-txt">
+          <H class="feature-name">
+            <a href={href}>{p.name}</a>
+          </H>
+          <span class="feature-desc">{p.shortDescription}</span>
+        </div>
+        <div class="feature-buy">
+          <span class="feature-price">{formatPrice(price)}</span>
+          <button type="button" class="btn btn-primary btn-sm" {...cartAttrs}>
+            <Icon name="bag" />
+            <span data-label>В корзину</span>
+          </button>
+        </div>
+      </div>
+    </article>
+  )
+}
+{
+  variant === 'compact' && (
+    <article class:list={['t-compact', className]}>
+      <PhotoSlot src={photo.src} alt={photo.alt} placeholder="Фото 1:1" href={href} label={p.name} width={300} compact class="compact-slot" />
+      <div class="compact-txt">
+        <H class="compact-name">
+          <a href={href}>{p.name}</a>
+        </H>
+        <span class="compact-desc">{p.shortDescription}</span>
+        <span class="compact-price">{formatPrice(price)}</span>
+      </div>
+    </article>
+  )
+}
+
+<script>
+  import { cart } from '../lib/cart';
+
+  const timers = new WeakMap<HTMLElement, number>();
+  document.addEventListener('click', (e) => {
+    const btn = (e.target as Element | null)?.closest<HTMLButtonElement>('[data-add-to-cart]');
+    if (!btn) return;
+    const { slug, size } = btn.dataset;
+    if (!slug) return;
+    cart.add({ slug, size: size ?? '', mode: 'once' });
+    const label = btn.querySelector<HTMLElement>('[data-label]');
+    if (!label) return;
+    label.textContent = 'Добавлено';
+    window.clearTimeout(timers.get(btn));
+    timers.set(
+      btn,
+      window.setTimeout(() => (label.textContent = 'В корзину'), 1500),
+    );
+  });
+</script>
+
+<style>
+  .catalog {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .rail {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .rail .row {
+    align-items: stretch;
+  }
+  .meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
+  .name-h {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  .cat {
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .price {
+    font-size: 17px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .price-sm {
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .add {
+    align-self: flex-start;
+  }
+
+  .t-feature {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .feature-slot {
+    min-height: 360px;
+  }
+  .feature-info {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .feature-txt {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .feature-name {
+    margin: 0;
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+  }
+  .feature-desc {
+    color: var(--muted);
+    font-size: 16px;
+  }
+  .feature-buy {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .feature-price {
+    font-size: 22px;
+    font-weight: 600;
+  }
+
+  .t-compact {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+  .compact-slot {
+    width: 150px;
+    height: 150px;
+    flex: none;
+  }
+  .compact-txt {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+  }
+  .compact-name {
+    margin: 0;
+    font-size: 19px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  .compact-desc {
+    color: var(--muted);
+    font-size: 15px;
+  }
+  .compact-price {
+    font-size: 17px;
+    font-weight: 600;
+  }
+</style>

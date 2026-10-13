@@ -1,0 +1,39 @@
+---
+import Icon from './Icon.astro';
+---
+
+<div class="promo" data-promo>
+  <Icon name="sparkle" size={40} />
+  <div class="body">
+    <h2 class="title">Не знаете, с чего начать?</h2>
+    <a href="/#quiz" class="btn btn-ink">Пройти подбор</a>
+  </div>
+</div>
+
+<style>
+  .promo {
+    grid-column: span 2;
+    align-self: stretch;
+    background: var(--tint);
+    border-radius: var(--r);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 32px;
+  }
+  .body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+  }
+  .title {
+    margin: 0;
+    font-size: 34px;
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    line-height: 1.08;
+    text-wrap: balance;
+  }
+</style>

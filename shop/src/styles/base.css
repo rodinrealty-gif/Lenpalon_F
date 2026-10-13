@@ -79,10 +79,9 @@ h2 {
 
 /* Иконки: инлайн SVG, цвет = currentColor */
 .i {
+  /* размер задаётся атрибутами width/height компонента <Icon> (по умолчанию 20px, как в макете) */
   display: inline-block;
   flex: none;
-  width: 20px;
-  height: 20px;
   fill: currentColor;
 }
 

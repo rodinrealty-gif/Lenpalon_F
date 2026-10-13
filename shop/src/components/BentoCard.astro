@@ -1,0 +1,148 @@
+---
+/**
+ * Ячейка бенто «Выберите цель». Варианты из макета:
+ *  photo  — высокая карточка: фото сверху, подпись снизу
+ *  split  — широкая: текст слева, фото справа
+ *  accent — синяя с иконкой
+ *  tint   — голубая с иконкой
+ */
+import Icon from './Icon.astro';
+import PhotoSlot from './PhotoSlot.astro';
+import type { IconName } from '../lib/icons';
+
+interface Props {
+  variant: 'photo' | 'split' | 'accent' | 'tint';
+  title: string;
+  href: string;
+  text?: string;
+  icon?: IconName;
+  photo?: { src?: string; alt: string; placeholder: string };
+  class?: string;
+}
+const { variant, title, href, text, icon, photo, class: className } = Astro.props;
+---
+
+<a href={href} class:list={['card', 'lift', variant, variant === 'split' && 'stack-md', className]}>
+  {
+    variant === 'photo' && photo && (
+      <>
+        <PhotoSlot src={photo.src} alt={photo.alt} placeholder={photo.placeholder} flat class="grow" width={1000} />
+        <div class="caption">
+          <span class="title">{title}</span>
+          <Icon name="upright" size={24} class="arrow" />
+        </div>
+      </>
+    )
+  }
+  {
+    variant === 'split' && photo && (
+      <>
+        <div class="split-text">
+          <span class="title">{title}</span>
+          <span class="split-sub">
+            {text}
+            <Icon name="upright" size={24} class="arrow ink" />
+          </span>
+        </div>
+        <PhotoSlot src={photo.src} alt={photo.alt} placeholder={photo.placeholder} flat width={800} class="split-photo" />
+      </>
+    )
+  }
+  {
+    (variant === 'accent' || variant === 'tint') && (
+      <>
+        {icon && <Icon name={icon} size={40} />}
+        <span class="title row">
+          {title}
+          <Icon name="upright" size={24} class="arrow" />
+        </span>
+      </>
+    )
+  }
+</a>
+
+<style>
+  .card {
+    border-radius: var(--r);
+    overflow: hidden;
+  }
+  .title {
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  .photo {
+    grid-column: 1/6;
+    grid-row: 1/3;
+    background: var(--surface);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--line);
+  }
+  .grow {
+    flex: 1;
+  }
+  .caption {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+  }
+  .split {
+    grid-column: 6/13;
+    grid-row: 1;
+    background: var(--surface);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 1px solid var(--line);
+  }
+  .split-text {
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .split-sub {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.5;
+    gap: 16px;
+  }
+  .ink {
+    color: var(--ink);
+  }
+  .accent,
+  .tint {
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .accent {
+    grid-column: 6/10;
+    grid-row: 2;
+    background: var(--accent);
+    color: var(--on-accent);
+  }
+  .accent:hover {
+    color: var(--on-accent);
+  }
+  .accent:focus-visible {
+    outline-color: var(--ink);
+  }
+  .tint {
+    grid-column: 10/13;
+    grid-row: 2;
+    background: var(--tint);
+  }
+  .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+</style>

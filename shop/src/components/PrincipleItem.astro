@@ -1,0 +1,60 @@
+---
+import Icon from './Icon.astro';
+import type { IconName } from '../lib/icons';
+
+interface Props {
+  icon: IconName;
+  title: string;
+  text: string;
+}
+const { icon, title, text } = Astro.props;
+---
+
+<li class="item">
+  <span class="badge"><Icon name={icon} size={26} /></span>
+  <div class="body">
+    <h3 class="title">{title}</h3>
+    <p class="text">{text}</p>
+  </div>
+</li>
+
+<style>
+  .item {
+    display: flex;
+    gap: 24px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .item:last-child {
+    padding: 28px 0 0;
+    border-bottom: 0;
+  }
+  .badge {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--tint);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: none;
+  }
+  .body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .title {
+    margin: 0;
+    font-size: 21px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  .text {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--muted);
+    max-width: 52ch;
+  }
+</style>

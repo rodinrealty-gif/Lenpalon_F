@@ -1,5 +1,352 @@
 ---
 import Layout from '../components/Layout.astro';
+import Icon from '../components/Icon.astro';
+import PhotoSlot from '../components/PhotoSlot.astro';
+import BentoCard from '../components/BentoCard.astro';
+import PrincipleItem from '../components/PrincipleItem.astro';
+import ProductTile from '../components/ProductTile.astro';
+import QuizCta from '../components/QuizCta.astro';
+import FaqTabs from '../components/FaqTabs.astro';
+import { site } from '../data/site';
+import { clients } from '../data/clients';
+import { goals } from '../data/goals';
+import { principles } from '../data/principles';
+import { faq } from '../data/faq';
+import { products } from '../data/products';
+
+const [first, second, third] = products;
 ---
 
-<Layout title="Ленпалон Фемили: добавки с проверяемым составом" rawTitle><h1>Скоро</h1></Layout>
+<Layout title={`${site.brand}: ${site.tagline}`} rawTitle>
+  <!-- Hero: асимметричный сплит -->
+  <section class="wrap hero">
+    <div class="hero-grid stack-md">
+      <div class="hero-text">
+        <h1 class="hero-h rise">Состав, который можно проверить</h1>
+        <p class="hero-p rise d1">Чистые формулы и независимые тесты каждой партии. Понятно, что внутри и зачем.</p>
+        <div class="hero-cta rise d2">
+          <a href="/catalog" class="btn btn-primary">Смотреть каталог<Icon name="right" /></a>
+          <a href="#quiz" class="btn btn-ghost">Пройти подбор</a>
+        </div>
+      </div>
+      <PhotoSlot
+        class="rise d3 hero-slot"
+        alt="главное фото"
+        placeholder="Фото 4:5, 1600 на 2000. Баночка добавок на каменной полке, утренний свет у окна"
+        ratio="4/5"
+        priority
+      />
+    </div>
+  </section>
+
+  <!-- Клиенты: только логотипы -->
+  <section class="clients" aria-label="Среди клиентов">
+    <div class="wrap clients-inner">
+      <span class="clients-label" aria-hidden="true">Среди клиентов</span>
+      <ul class="clients-list">
+        {
+          clients.map((c) => (
+            <li class="client">
+              <span class:list={['mark', c.shape]} aria-hidden="true">
+                {c.letter}
+              </span>
+              {c.name}
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- Цели: бенто, 4 ячейки -->
+  <section class="wrap section" id="goals" aria-labelledby="goals-title">
+    <h2 class="h2 mb40" id="goals-title">Выберите цель</h2>
+    <div class="bento goals">
+      <BentoCard variant="photo" title={goals.sleep.title} href={goals.sleep.href} photo={goals.sleep.photo} />
+      <BentoCard
+        variant="split"
+        title={goals.sport.title}
+        text={goals.sport.text}
+        href={goals.sport.href}
+        photo={goals.sport.photo}
+      />
+      <BentoCard variant="accent" title={goals.immunity.title} href={goals.immunity.href} icon={goals.immunity.icon} />
+      <BentoCard variant="tint" title={goals.men.title} href={goals.men.href} icon={goals.men.icon} />
+    </div>
+  </section>
+
+  <!-- Принципы: заголовок слева, список справа -->
+  <section class="principles">
+    <div class="wrap section principles-grid stack-md">
+      <div class="principles-head">
+        <h2 class="h2">Прозрачность на каждом шаге</h2>
+        <a href="/lab" class="lift textlink">Протоколы лаборатории<Icon name="upright" class="arrow" /></a>
+      </div>
+      <ul class="principles-list">
+        {principles.map((p) => <PrincipleItem icon={p.icon} title={p.title} text={p.text} />)}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Линейка для спорта: фото на всю ширину с наложенной панелью -->
+  <section class="wrap section">
+    <div class="line">
+      <PhotoSlot
+        class="line-slot"
+        alt="широкое фото"
+        placeholder="Фото 21:9, 2400 на 1030. Беговая дорожка на рассвете, бутылка и кроссовки на переднем плане"
+        ratio="21/9"
+        width={2400}
+      />
+      <div class="line-panel">
+        <h2 class="line-title">Линейка для спорта</h2>
+        <p class="line-text">Без запрещённых веществ, с сертификатом [НАЗВАНИЕ СЕРТИФИКАТА].</p>
+        <a href="/catalog?cat=sport" class="btn btn-ink btn-sm line-btn">Выбрать для спорта</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Популярное: один крупный товар и два компактных -->
+  <section class="wrap popular">
+    <div class="popular-head">
+      <h2 class="h2">Популярное</h2>
+      <a href="/catalog" class="lift textlink">Весь каталог<Icon name="upright" class="arrow" /></a>
+    </div>
+    <div class="bento popular-grid">
+      {first && <ProductTile product={first} variant="feature" class="popular-main" />}
+      <div class="popular-side">
+        {second && <ProductTile product={second} variant="compact" />}
+        {third && <ProductTile product={third} variant="compact" />}
+      </div>
+    </div>
+  </section>
+
+  <QuizCta />
+
+  <!-- Вопросы: список слева, ответ справа -->
+  <section class="faq-section" aria-labelledby="faq-title">
+    <div class="wrap section">
+      <h2 class="h2 mb48" id="faq-title">Частые вопросы</h2>
+      <FaqTabs items={faq} />
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero {
+    padding-top: 56px;
+    padding-bottom: 72px;
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 7fr 5fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  .hero-h {
+    margin: 0;
+    font-size: clamp(44px, 4.9vw, 70px);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1.02;
+    text-wrap: balance;
+  }
+  .hero-p {
+    margin: 0;
+    font-size: 19px;
+    line-height: 1.55;
+    color: var(--muted);
+    max-width: 440px;
+    text-wrap: pretty;
+  }
+  .hero-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .hero-slot {
+    min-height: 480px;
+  }
+
+  .clients {
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .clients-inner {
+    padding-top: 32px;
+    padding-bottom: 32px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 24px 56px;
+  }
+  .clients-label {
+    font-size: 15px;
+    color: var(--muted);
+  }
+  .clients-list {
+    flex: 1 1 640px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px 32px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .client {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 17px;
+    color: var(--muted);
+  }
+  .mark {
+    width: 28px;
+    height: 28px;
+    background: var(--muted);
+    color: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+  }
+  .circle {
+    border-radius: 50%;
+  }
+  .rounded {
+    border-radius: 8px;
+  }
+  .drop {
+    border-radius: 50% 50% 50% 4px;
+  }
+  .leaf {
+    border-radius: 4px 50% 4px 50%;
+  }
+  .outline {
+    border-radius: 50%;
+    border: 2px solid var(--muted);
+    background: transparent;
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  .mb40 {
+    margin-bottom: 40px;
+  }
+  .mb48 {
+    margin-bottom: 48px;
+  }
+  .goals {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-rows: 300px 300px;
+    gap: 16px;
+  }
+
+  .principles {
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+  }
+  .principles-grid {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .principles-head {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  .principles-head .h2 {
+    text-wrap: balance;
+  }
+  .principles-list {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .line {
+    position: relative;
+  }
+  .line-slot {
+    min-height: 460px;
+  }
+  .line-panel {
+    position: absolute;
+    left: 32px;
+    bottom: 32px;
+    max-width: 440px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    padding: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .line-title {
+    margin: 0;
+    font-size: 34px;
+    font-weight: 600;
+    letter-spacing: -0.035em;
+    line-height: 1.08;
+  }
+  .line-text {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+  .line-btn {
+    align-self: flex-start;
+  }
+
+  .popular {
+    padding-bottom: 112px;
+  }
+  .popular-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .popular-grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 48px 24px;
+    align-items: start;
+  }
+  .popular-main {
+    grid-column: 1/8;
+  }
+  .popular-side {
+    grid-column: 8/13;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+  .faq-section {
+    border-top: 1px solid var(--line);
+  }
+
+  @media (max-width: 767px) {
+    .hero-h {
+      font-size: 42px;
+    }
+  }
+</style>

@@ -1,0 +1,138 @@
+---
+/** FAQ: вкладки слева, ответ справа. ARIA tabs, roving tabindex, ↑↓ ←→ Home End. */
+import Icon from './Icon.astro';
+
+interface Props {
+  items: { title: string; text: string }[];
+  id?: string;
+}
+const { items, id = 'faq' } = Astro.props;
+---
+
+<div class="faq stack-md" data-tabs>
+  <div role="tablist" aria-label="Вопросы" aria-orientation="vertical" class="list">
+    {
+      items.map((it, i) => (
+        <button
+          type="button"
+          role="tab"
+          class="qbtn"
+          id={`${id}-tab-${i}`}
+          aria-controls={`${id}-panel-${i}`}
+          aria-selected={i === 0 ? 'true' : 'false'}
+          tabindex={i === 0 ? 0 : -1}
+        >
+          <span>{it.title}</span>
+          <Icon name="right" />
+        </button>
+      ))
+    }
+  </div>
+  <div class="panels">
+    {
+      items.map((it, i) => (
+        <div role="tabpanel" class="panel" id={`${id}-panel-${i}`} aria-labelledby={`${id}-tab-${i}`} tabindex="0" hidden={i !== 0}>
+          <h3 class="ptitle">{it.title}</h3>
+          <p class="ptext">{it.text}</p>
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-tabs]').forEach((root) => {
+    const tabs = Array.from(root.querySelectorAll<HTMLButtonElement>('[role="tab"]'));
+    const select = (index: number, focus = true) => {
+      tabs.forEach((tab, i) => {
+        const on = i === index;
+        tab.setAttribute('aria-selected', on ? 'true' : 'false');
+        tab.tabIndex = on ? 0 : -1;
+        const panel = document.getElementById(tab.getAttribute('aria-controls') ?? '');
+        if (panel) panel.hidden = !on;
+      });
+      if (focus) tabs[index]?.focus();
+    };
+    tabs.forEach((tab, i) => {
+      tab.addEventListener('click', () => select(i));
+      tab.addEventListener('keydown', (e) => {
+        const last = tabs.length - 1;
+        const map: Record<string, number> = {
+          ArrowDown: i === last ? 0 : i + 1,
+          ArrowRight: i === last ? 0 : i + 1,
+          ArrowUp: i === 0 ? last : i - 1,
+          ArrowLeft: i === 0 ? last : i - 1,
+          Home: 0,
+          End: last,
+        };
+        const next = map[e.key];
+        if (next === undefined) return;
+        e.preventDefault();
+        select(next);
+      });
+    });
+  });
+</script>
+
+<style>
+  .faq {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .qbtn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    min-height: 56px;
+    padding: 0 20px;
+    border: 0;
+    border-radius: var(--r);
+    background: transparent;
+    color: var(--ink);
+    font-size: 17px;
+    font-weight: 500;
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  .qbtn:hover {
+    background: var(--tint);
+  }
+  .qbtn[aria-selected='true'] {
+    background: var(--tint);
+    font-weight: 600;
+  }
+  .panel {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: var(--r);
+    padding: 40px;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .ptitle {
+    margin: 0;
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+  }
+  .ptext {
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--muted);
+    max-width: 60ch;
+  }
+</style>
