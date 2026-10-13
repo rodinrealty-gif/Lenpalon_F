@@ -37,6 +37,8 @@ const { title, description, current, todo, noindex = false } = Astro.props;
     font-weight: 600;
     letter-spacing: -0.04em;
     line-height: 1;
+    hyphens: auto;
+    overflow-wrap: break-word;
   }
   .todo {
     margin: 0 0 32px;
@@ -49,6 +51,7 @@ const { title, description, current, todo, noindex = false } = Astro.props;
   }
   .prose {
     max-width: 72ch;
+    overflow-wrap: anywhere;
     font-size: 17px;
     line-height: 1.6;
     color: var(--ink);

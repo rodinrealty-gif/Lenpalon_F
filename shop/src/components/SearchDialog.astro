@@ -79,6 +79,13 @@ const index = products.map((p) => ({ name: p.name, href: `/product/${p.slug}`, c
   dialog?.addEventListener('click', (e) => {
     if (e.target === dialog) dialog.close();
   });
+  // Esc в непустом type=search в Chrome только очищает поле — закрываем диалог явно
+  dialog?.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      dialog.close();
+    }
+  });
   dialog?.addEventListener('close', () => opener?.focus());
   input?.addEventListener('input', render);
 </script>
