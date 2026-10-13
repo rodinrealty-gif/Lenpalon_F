@@ -17,18 +17,16 @@ const { variant = 'primary', size = 'md', href, icon, iconEnd, class: className,
 const classes = ['btn', `btn-${variant}`, size === 'sm' && 'btn-sm', className];
 ---
 
-{
-  href ? (
-    <a href={href} class:list={classes} {...rest}>
-      {icon && <Icon name={icon} />}
-      <slot />
-      {iconEnd && <Icon name={iconEnd} />}
-    </a>
-  ) : (
-    <button type="button" class:list={classes} {...rest}>
-      {icon && <Icon name={icon} />}
-      <slot />
-      {iconEnd && <Icon name={iconEnd} />}
-    </button>
-  )
-}
+{href ? (
+  <a href={href} class:list={classes} {...rest}>
+    {icon && <Icon name={icon} />}
+    <slot />
+    {iconEnd && <Icon name={iconEnd} />}
+  </a>
+) : (
+  <button type="button" class:list={classes} {...rest}>
+    {icon && <Icon name={icon} />}
+    <slot />
+    {iconEnd && <Icon name={iconEnd} />}
+  </button>
+)}

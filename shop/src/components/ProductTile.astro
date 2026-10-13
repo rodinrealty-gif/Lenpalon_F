@@ -24,42 +24,57 @@ const H = headingLevel === 2 ? 'h2' : 'h3';
 const href = `/product/${p.slug}`;
 const price = tilePrice(p);
 const size = p.sizes[defaultSizeIndex(p)]?.label ?? '';
-const photo = variant === 'feature' ? { ...p.photos.tile, placeholder: p.photos.main.placeholder } : p.photos.tile;
+const photo =
+  variant === 'feature' ? { ...p.photos.tile, placeholder: p.photos.main.placeholder } : p.photos.tile;
 const cartAttrs = { 'data-add-to-cart': '', 'data-slug': p.slug, 'data-size': size };
 ---
 
-{
-  variant === 'catalog' && (
-    <article
-      class:list={['tile', 'catalog', className]}
-      data-tile
-      data-cat={p.category}
-      data-price={price ?? ''}
-      data-index={index}
-    >
-      <PhotoSlot src={photo.src} alt={photo.alt} placeholder={photo.placeholder} ratio="1/1" href={href} label={p.name} width={800} />
-      <div class="row">
-        <div class="meta">
-          <H class="name-h">
-            <a class="name" href={href}>
-              {p.name}
-            </a>
-          </H>
-          <span class="cat">{categoryLabel(p.category)}</span>
-        </div>
-        <span class="price">{formatPrice(price)}</span>
+{variant === 'catalog' && (
+  <article
+    class:list={['tile', 'catalog', className]}
+    data-tile
+    data-cat={p.category}
+    data-price={price ?? ''}
+    data-index={index}
+  >
+    <PhotoSlot
+      src={photo.src}
+      alt={photo.alt}
+      placeholder={photo.placeholder}
+      ratio="1/1"
+      href={href}
+      label={p.name}
+      width={800}
+    />
+    <div class="row">
+      <div class="meta">
+        <H class="name-h">
+          <a class="name" href={href}>
+            {p.name}
+          </a>
+        </H>
+        <span class="cat">{categoryLabel(p.category)}</span>
       </div>
-      <button type="button" class="btn btn-ghost btn-sm add" {...cartAttrs}>
-        <Icon name="bag" />
-        <span data-label>В корзину</span>
-      </button>
-    </article>
-  )
-}
-{
-  variant === 'rail' && (
-    <article class:list={['tile', 'rail', className]} role="listitem">
-      <PhotoSlot src={photo.src} alt={photo.alt} placeholder="Фото 1:1" ratio="1/1" href={href} label={p.name} width={560} />
+      <span class="price">{formatPrice(price)}</span>
+    </div>
+    <button type="button" class="btn btn-ghost btn-sm add" {...cartAttrs}>
+      <Icon name="bag" />
+      <span data-label>В корзину</span>
+    </button>
+  </article>
+)}
+{variant === 'rail' && (
+  <div role="listitem" class="rail-item">
+    <article class:list={['tile', 'rail', className]}>
+      <PhotoSlot
+        src={photo.src}
+        alt={photo.alt}
+        placeholder="Фото 1:1"
+        ratio="1/1"
+        href={href}
+        label={p.name}
+        width={560}
+      />
       <div class="row">
         <H class="name-h">
           <a class="name" href={href}>
@@ -69,44 +84,58 @@ const cartAttrs = { 'data-add-to-cart': '', 'data-slug': p.slug, 'data-size': si
         <span class="price-sm">{formatPrice(price)}</span>
       </div>
     </article>
-  )
-}
-{
-  variant === 'feature' && (
-    <article class:list={['t-feature', className]}>
-      <PhotoSlot src={photo.src} alt={photo.alt} placeholder="Фото 1:1. Главный продукт на светлой поверхности, без текста на этикетке" ratio="1/1" href={href} label={p.name} width={1200} class="feature-slot" />
-      <div class="feature-info">
-        <div class="feature-txt">
-          <H class="feature-name">
-            <a href={href}>{p.name}</a>
-          </H>
-          <span class="feature-desc">{p.shortDescription}</span>
-        </div>
-        <div class="feature-buy">
-          <span class="feature-price">{formatPrice(price)}</span>
-          <button type="button" class="btn btn-primary btn-sm" {...cartAttrs}>
-            <Icon name="bag" />
-            <span data-label>В корзину</span>
-          </button>
-        </div>
-      </div>
-    </article>
-  )
-}
-{
-  variant === 'compact' && (
-    <article class:list={['t-compact', className]}>
-      <PhotoSlot src={photo.src} alt={photo.alt} placeholder="Фото 1:1" href={href} label={p.name} width={300} compact class="compact-slot" />
-      <div class="compact-txt">
-        <H class="compact-name">
+  </div>
+)}
+{variant === 'feature' && (
+  <article class:list={['t-feature', className]}>
+    <PhotoSlot
+      src={photo.src}
+      alt={photo.alt}
+      placeholder="Фото 1:1. Главный продукт на светлой поверхности, без текста на этикетке"
+      ratio="1/1"
+      href={href}
+      label={p.name}
+      width={1200}
+      class="feature-slot"
+    />
+    <div class="feature-info">
+      <div class="feature-txt">
+        <H class="feature-name">
           <a href={href}>{p.name}</a>
         </H>
-        <span class="compact-desc">{p.shortDescription}</span>
-        <span class="compact-price">{formatPrice(price)}</span>
+        <span class="feature-desc">{p.shortDescription}</span>
       </div>
-    </article>
-  )
-}
+      <div class="feature-buy">
+        <span class="feature-price">{formatPrice(price)}</span>
+        <button type="button" class="btn btn-primary btn-sm" {...cartAttrs}>
+          <Icon name="bag" />
+          <span data-label>В корзину</span>
+        </button>
+      </div>
+    </div>
+  </article>
+)}
+{variant === 'compact' && (
+  <article class:list={['t-compact', className]}>
+    <PhotoSlot
+      src={photo.src}
+      alt={photo.alt}
+      placeholder="Фото 1:1"
+      href={href}
+      label={p.name}
+      width={300}
+      compact
+      class="compact-slot"
+    />
+    <div class="compact-txt">
+      <H class="compact-name">
+        <a href={href}>{p.name}</a>
+      </H>
+      <span class="compact-desc">{p.shortDescription}</span>
+      <span class="compact-price">{formatPrice(price)}</span>
+    </div>
+  </article>
+)}
 
 <script>
   import { cart } from '../lib/cart';

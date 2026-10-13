@@ -10,7 +10,9 @@ function walk(dir) {
   });
 }
 const pages = walk(DIST);
-const idsOf = new Map(pages.map((p) => [p, new Set([...readFileSync(p, 'utf8').matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]))]));
+const idsOf = new Map(
+  pages.map((p) => [p, new Set([...readFileSync(p, 'utf8').matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]))]),
+);
 
 function resolve(path) {
   const clean = decodeURI(path).replace(/\/$/, '');

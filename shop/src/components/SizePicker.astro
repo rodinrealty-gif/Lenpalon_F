@@ -8,15 +8,20 @@ const { sizes, selected } = Astro.props;
 ---
 
 <div role="group" aria-labelledby="size-label" class="group">
-  <span id="size-label" class="label">Упаковка</span>
+  <span id="size-label" class="label">
+    Упаковка
+  </span>
   <div class="chips">
-    {
-      sizes.map((s, i) => (
-        <button type="button" class="chip chip-lg" aria-pressed={i === selected ? 'true' : 'false'} data-size-index={i}>
-          {s.label}
-        </button>
-      ))
-    }
+    {sizes.map((s, i) => (
+      <button
+        type="button"
+        class="chip chip-lg"
+        aria-pressed={i === selected ? 'true' : 'false'}
+        data-size-index={i}
+      >
+        {s.label}
+      </button>
+    ))}
   </div>
 </div>
 

@@ -12,7 +12,9 @@ const { title, products } = Astro.props;
   <div class="wrap inner">
     <h2 class="h2 mb">{title}</h2>
     <div class="snap" role="list">
-      {products.map((p) => <ProductTile product={p} variant="rail" />)}
+      {products.map((p) => (
+        <ProductTile product={p} variant="rail" />
+      ))}
     </div>
   </div>
 </section>

@@ -4,16 +4,26 @@ import Icon from './Icon.astro';
 import { products } from '../data/products';
 import { categoryLabel } from '../data/categories';
 
-const index = products.map((p) => ({ name: p.name, href: `/product/${p.slug}`, cat: categoryLabel(p.category) }));
+const index = products.map((p) => ({
+  name: p.name,
+  href: `/product/${p.slug}`,
+  cat: categoryLabel(p.category),
+}));
 ---
 
 <dialog class="dialog" id="search-dialog" aria-labelledby="search-title">
   <div class="head">
-    <h2 id="search-title" class="title">Поиск</h2>
-    <button type="button" class="iconbtn" aria-label="Закрыть поиск" data-search-close><Icon name="x" size={22} /></button>
+    <h2 id="search-title" class="title">
+      Поиск
+    </h2>
+    <button type="button" class="iconbtn" aria-label="Закрыть поиск" data-search-close>
+      <Icon name="x" size={22} />
+    </button>
   </div>
   <form role="search" class="form" onsubmit="return false">
-    <label for="search-input" class="visually-hidden">Название товара</label>
+    <label for="search-input" class="visually-hidden">
+      Название товара
+    </label>
     <input id="search-input" type="search" class="field" placeholder="Название товара" autocomplete="off" />
   </form>
   <p class="status muted" id="search-status" aria-live="polite"></p>

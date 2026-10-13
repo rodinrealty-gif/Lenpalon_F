@@ -23,42 +23,50 @@ const { variant, title, href, text, icon, photo, class: className } = Astro.prop
 ---
 
 <a href={href} class:list={['card', 'lift', variant, variant === 'split' && 'stack-md', className]}>
-  {
-    variant === 'photo' && photo && (
-      <>
-        <PhotoSlot src={photo.src} alt={photo.alt} placeholder={photo.placeholder} flat class="grow" width={1000} />
-        <div class="caption">
-          <span class="title">{title}</span>
-          <Icon name="upright" size={24} class="arrow" />
-        </div>
-      </>
-    )
-  }
-  {
-    variant === 'split' && photo && (
-      <>
-        <div class="split-text">
-          <span class="title">{title}</span>
-          <span class="split-sub">
-            {text}
-            <Icon name="upright" size={24} class="arrow ink" />
-          </span>
-        </div>
-        <PhotoSlot src={photo.src} alt={photo.alt} placeholder={photo.placeholder} flat width={800} class="split-photo" />
-      </>
-    )
-  }
-  {
-    (variant === 'accent' || variant === 'tint') && (
-      <>
-        {icon && <Icon name={icon} size={40} />}
-        <span class="title row">
-          {title}
-          <Icon name="upright" size={24} class="arrow" />
+  {variant === 'photo' && photo && (
+    <>
+      <PhotoSlot
+        src={photo.src}
+        alt={photo.alt}
+        placeholder={photo.placeholder}
+        flat
+        class="grow"
+        width={1000}
+      />
+      <div class="caption">
+        <span class="title">{title}</span>
+        <Icon name="upright" size={24} class="arrow" />
+      </div>
+    </>
+  )}
+  {variant === 'split' && photo && (
+    <>
+      <div class="split-text">
+        <span class="title">{title}</span>
+        <span class="split-sub">
+          {text}
+          <Icon name="upright" size={24} class="arrow ink" />
         </span>
-      </>
-    )
-  }
+      </div>
+      <PhotoSlot
+        src={photo.src}
+        alt={photo.alt}
+        placeholder={photo.placeholder}
+        flat
+        width={800}
+        class="split-photo"
+      />
+    </>
+  )}
+  {(variant === 'accent' || variant === 'tint') && (
+    <>
+      {icon && <Icon name={icon} size={40} />}
+      <span class="title row">
+        {title}
+        <Icon name="upright" size={24} class="arrow" />
+      </span>
+    </>
+  )}
 </a>
 
 <style>

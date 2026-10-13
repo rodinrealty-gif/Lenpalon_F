@@ -33,4 +33,6 @@ for (const file of walk(DIST)) {
 }
 const site = readFileSync(join(DIST, 'sitemap.xml'), 'utf8');
 if (site.includes('example.com')) console.log('\n! PUBLIC_SITE_URL не задан: в sitemap example.com');
-console.log(`\nИтого уникальных плейсхолдеров: ${totals.size}, вхождений: ${[...totals.values()].reduce((a, b) => a + b, 0)}`);
+console.log(
+  `\nИтого уникальных плейсхолдеров: ${totals.size}, вхождений: ${[...totals.values()].reduce((a, b) => a + b, 0)}`,
+);

@@ -24,14 +24,29 @@ const { composition: c } = Astro.props;
       </div>
     </div>
     <div class="toggle-row">
-      <button type="button" class="btn btn-ghost" aria-expanded="false" aria-controls="full-composition" data-toggle-full>
+      <button
+        type="button"
+        class="btn btn-ghost"
+        aria-expanded="false"
+        aria-controls="full-composition"
+        data-toggle-full
+      >
         Полный состав
       </button>
     </div>
     <div id="full-composition" class="full stack-md" hidden>
-      <div class="col"><span class="h">Действующие вещества</span><span>{c.full.active}</span></div>
-      <div class="col"><span class="h">Вспомогательные</span><span>{c.full.excipients}</span></div>
-      <div class="col"><span class="h">Аллергены</span><span>{c.full.allergens}</span></div>
+      <div class="col">
+        <span class="h">Действующие вещества</span>
+        <span>{c.full.active}</span>
+      </div>
+      <div class="col">
+        <span class="h">Вспомогательные</span>
+        <span>{c.full.excipients}</span>
+      </div>
+      <div class="col">
+        <span class="h">Аллергены</span>
+        <span>{c.full.allergens}</span>
+      </div>
     </div>
   </div>
 </section>

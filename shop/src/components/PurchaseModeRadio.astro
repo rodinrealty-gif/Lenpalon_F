@@ -10,26 +10,24 @@ const { options, selected = 0 } = Astro.props;
 ---
 
 <div role="radiogroup" aria-label="Способ покупки" class="modes" data-radiogroup>
-  {
-    options.map((o, i) => (
-      <button
-        type="button"
-        role="radio"
-        class="opt"
-        aria-checked={i === selected ? 'true' : 'false'}
-        tabindex={i === selected ? 0 : -1}
-        data-value={o.value}
-      >
-        <span class="dot">
-          <Icon name="check" size={14} />
-        </span>
-        <span class="txt">
-          <span class="t">{o.title}</span>
-          <span class="s">{o.text}</span>
-        </span>
-      </button>
-    ))
-  }
+  {options.map((o, i) => (
+    <button
+      type="button"
+      role="radio"
+      class="opt"
+      aria-checked={i === selected ? 'true' : 'false'}
+      tabindex={i === selected ? 0 : -1}
+      data-value={o.value}
+    >
+      <span class="dot">
+        <Icon name="check" size={14} />
+      </span>
+      <span class="txt">
+        <span class="t">{o.title}</span>
+        <span class="s">{o.text}</span>
+      </span>
+    </button>
+  ))}
 </div>
 
 <script>
@@ -41,7 +39,9 @@ const { options, selected = 0 } = Astro.props;
         r.tabIndex = i === index ? 0 : -1;
       });
       if (focus) radios[index]?.focus();
-      group.dispatchEvent(new CustomEvent('radiochange', { detail: radios[index]?.dataset.value, bubbles: true }));
+      group.dispatchEvent(
+        new CustomEvent('radiochange', { detail: radios[index]?.dataset.value, bubbles: true }),
+      );
     };
     radios.forEach((r, i) => {
       r.addEventListener('click', () => check(i, false));

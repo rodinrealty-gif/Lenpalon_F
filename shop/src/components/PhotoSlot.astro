@@ -40,25 +40,44 @@ const label_ = label ?? alt;
 const slotLabel = alt ? `Место для фото: ${alt}` : 'Место для фото';
 ---
 
-{
-  href ? (
-    <a href={href} class:list={classes} style={style} aria-label={label_}>
-      {src ? (
-        <img src={src} alt="" width={width} height={h} loading={priority ? 'eager' : 'lazy'} fetchpriority={priority ? 'high' : 'auto'} decoding="async" />
-      ) : (
-        <span aria-hidden="true">{placeholder}</span>
-      )}
-    </a>
-  ) : (
-    <div class:list={classes} style={style} role={src ? undefined : 'img'} aria-label={src ? undefined : slotLabel}>
-      {src ? (
-        <img src={src} alt={alt} width={width} height={h} loading={priority ? 'eager' : 'lazy'} fetchpriority={priority ? 'high' : 'auto'} decoding="async" />
-      ) : (
-        <span>{placeholder}</span>
-      )}
-    </div>
-  )
-}
+{href ? (
+  <a href={href} class:list={classes} style={style} aria-label={label_}>
+    {src ? (
+      <img
+        src={src}
+        alt=""
+        width={width}
+        height={h}
+        loading={priority ? 'eager' : 'lazy'}
+        fetchpriority={priority ? 'high' : 'auto'}
+        decoding="async"
+      />
+    ) : (
+      <span aria-hidden="true">{placeholder}</span>
+    )}
+  </a>
+) : (
+  <div
+    class:list={classes}
+    style={style}
+    role={src ? undefined : 'img'}
+    aria-label={src ? undefined : slotLabel}
+  >
+    {src ? (
+      <img
+        src={src}
+        alt={alt}
+        width={width}
+        height={h}
+        loading={priority ? 'eager' : 'lazy'}
+        fetchpriority={priority ? 'high' : 'auto'}
+        decoding="async"
+      />
+    ) : (
+      <span>{placeholder}</span>
+    )}
+  </div>
+)}
 
 <style>
   .slot {

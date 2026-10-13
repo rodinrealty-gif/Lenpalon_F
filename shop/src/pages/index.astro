@@ -23,10 +23,17 @@ const [first, second, third] = products;
     <div class="hero-grid stack-md">
       <div class="hero-text">
         <h1 class="hero-h rise">Состав, который можно проверить</h1>
-        <p class="hero-p rise d1">Чистые формулы и независимые тесты каждой партии. Понятно, что внутри и зачем.</p>
+        <p class="hero-p rise d1">
+          Чистые формулы и независимые тесты каждой партии. Понятно, что внутри и зачем.
+        </p>
         <div class="hero-cta rise d2">
-          <a href="/catalog" class="btn btn-primary">Смотреть каталог<Icon name="right" /></a>
-          <a href="#quiz" class="btn btn-ghost">Пройти подбор</a>
+          <a href="/catalog" class="btn btn-primary">
+            Смотреть каталог
+            <Icon name="right" />
+          </a>
+          <a href="#quiz" class="btn btn-ghost">
+            Пройти подбор
+          </a>
         </div>
       </div>
       <PhotoSlot
@@ -42,27 +49,34 @@ const [first, second, third] = products;
   <!-- Клиенты: только логотипы -->
   <section class="clients" aria-label="Среди клиентов">
     <div class="wrap clients-inner">
-      <span class="clients-label" aria-hidden="true">Среди клиентов</span>
+      <span class="clients-label" aria-hidden="true">
+        Среди клиентов
+      </span>
       <ul class="clients-list">
-        {
-          clients.map((c) => (
-            <li class="client">
-              <span class:list={['mark', c.shape]} aria-hidden="true">
-                {c.letter}
-              </span>
-              {c.name}
-            </li>
-          ))
-        }
+        {clients.map((c) => (
+          <li class="client">
+            <span class:list={['mark', c.shape]} aria-hidden="true">
+              {c.letter}
+            </span>
+            {c.name}
+          </li>
+        ))}
       </ul>
     </div>
   </section>
 
   <!-- Цели: бенто, 4 ячейки -->
   <section class="wrap section" id="goals" aria-labelledby="goals-title">
-    <h2 class="h2 mb40" id="goals-title">Выберите цель</h2>
+    <h2 class="h2 mb40" id="goals-title">
+      Выберите цель
+    </h2>
     <div class="bento goals">
-      <BentoCard variant="photo" title={goals.sleep.title} href={goals.sleep.href} photo={goals.sleep.photo} />
+      <BentoCard
+        variant="photo"
+        title={goals.sleep.title}
+        href={goals.sleep.href}
+        photo={goals.sleep.photo}
+      />
       <BentoCard
         variant="split"
         title={goals.sport.title}
@@ -70,7 +84,12 @@ const [first, second, third] = products;
         href={goals.sport.href}
         photo={goals.sport.photo}
       />
-      <BentoCard variant="accent" title={goals.immunity.title} href={goals.immunity.href} icon={goals.immunity.icon} />
+      <BentoCard
+        variant="accent"
+        title={goals.immunity.title}
+        href={goals.immunity.href}
+        icon={goals.immunity.icon}
+      />
       <BentoCard variant="tint" title={goals.men.title} href={goals.men.href} icon={goals.men.icon} />
     </div>
   </section>
@@ -80,10 +99,15 @@ const [first, second, third] = products;
     <div class="wrap section principles-grid stack-md">
       <div class="principles-head">
         <h2 class="h2">Прозрачность на каждом шаге</h2>
-        <a href="/lab" class="lift textlink">Протоколы лаборатории<Icon name="upright" class="arrow" /></a>
+        <a href="/lab" class="lift textlink">
+          Протоколы лаборатории
+          <Icon name="upright" class="arrow" />
+        </a>
       </div>
       <ul class="principles-list">
-        {principles.map((p) => <PrincipleItem icon={p.icon} title={p.title} text={p.text} />)}
+        {principles.map((p) => (
+          <PrincipleItem icon={p.icon} title={p.title} text={p.text} />
+        ))}
       </ul>
     </div>
   </section>
@@ -101,7 +125,9 @@ const [first, second, third] = products;
       <div class="line-panel">
         <h2 class="line-title">Линейка для спорта</h2>
         <p class="line-text">Без запрещённых веществ, с сертификатом [НАЗВАНИЕ СЕРТИФИКАТА].</p>
-        <a href="/catalog?cat=sport" class="btn btn-ink btn-sm line-btn">Выбрать для спорта</a>
+        <a href="/catalog?cat=sport" class="btn btn-ink btn-sm line-btn">
+          Выбрать для спорта
+        </a>
       </div>
     </div>
   </section>
@@ -110,7 +136,10 @@ const [first, second, third] = products;
   <section class="wrap popular">
     <div class="popular-head">
       <h2 class="h2">Популярное</h2>
-      <a href="/catalog" class="lift textlink">Весь каталог<Icon name="upright" class="arrow" /></a>
+      <a href="/catalog" class="lift textlink">
+        Весь каталог
+        <Icon name="upright" class="arrow" />
+      </a>
     </div>
     <div class="bento popular-grid">
       {first && <ProductTile product={first} variant="feature" class="popular-main" />}
@@ -126,7 +155,9 @@ const [first, second, third] = products;
   <!-- Вопросы: список слева, ответ справа -->
   <section class="faq-section" aria-labelledby="faq-title">
     <div class="wrap section">
-      <h2 class="h2 mb48" id="faq-title">Частые вопросы</h2>
+      <h2 class="h2 mb48" id="faq-title">
+        Частые вопросы
+      </h2>
       <FaqTabs items={faq} />
     </div>
   </section>

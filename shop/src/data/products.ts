@@ -79,7 +79,10 @@ function stub(n: number, category: CategorySlug, tilePhoto: string): Product {
     highlights: defaultHighlights,
     photos: {
       tile: { alt: name, placeholder: `Фото 1:1. ${tilePhoto}` },
-      main: { alt: name, placeholder: 'Фото 4:5, 1600 на 2000. Банка на светлой поверхности, без текста на этикетке' },
+      main: {
+        alt: name,
+        placeholder: 'Фото 4:5, 1600 на 2000. Банка на светлой поверхности, без текста на этикетке',
+      },
       extra: extraPhotos(name),
     },
     related: [],
@@ -101,10 +104,14 @@ const lenpalon: Product = {
   contraindications: '[ПРОТИВОПОКАЗАНИЯ ПО ТРЕБОВАНИЯМ ЗАКОНА]',
   highlights: defaultHighlights,
   photos: {
-    tile: { alt: 'Ленпалон Фемили', placeholder: 'Фото 1:1. Коробка «Ленпалон Фемили» на светлой поверхности' },
+    tile: {
+      alt: 'Ленпалон Фемили',
+      placeholder: 'Фото 1:1. Коробка «Ленпалон Фемили» на светлой поверхности',
+    },
     main: {
       alt: 'Ленпалон Фемили',
-      placeholder: 'Фото 4:5, 1600 на 2000. Коробка «Ленпалон Фемили» и блистер с капсулами на светлой поверхности',
+      placeholder:
+        'Фото 4:5, 1600 на 2000. Коробка «Ленпалон Фемили» и блистер с капсулами на светлой поверхности',
     },
     extra: [
       { alt: 'Капсулы четырёх цветов', placeholder: 'Фото 1:1. Четыре цветные капсулы на ладони' },
@@ -123,7 +130,8 @@ const list: Product[] = [
   stub(6, 'immunity', 'Банка с мерной ложкой'),
 ];
 // «С этим покупают»: по умолчанию — все остальные товары
-for (const p of list) if (!p.related.length) p.related = list.filter((o) => o.slug !== p.slug).map((o) => o.slug);
+for (const p of list)
+  if (!p.related.length) p.related = list.filter((o) => o.slug !== p.slug).map((o) => o.slug);
 
 export const products = list;
 

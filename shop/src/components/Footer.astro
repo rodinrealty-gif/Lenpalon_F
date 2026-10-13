@@ -11,23 +11,25 @@ const year = site.legal.year ?? new Date().getFullYear();
         <span class="brand">{site.brand}</span>
         <NewsletterForm idPrefix="footer" />
       </div>
-      {
-        footerNav.map((col) => (
-          <nav class="col" aria-label={col.title}>
-            <span class="title">{col.title}</span>
-            {col.links.map((l) => (
-              <a class="navlink" href={l.href}>
-                {l.label}
-              </a>
-            ))}
-          </nav>
-        ))
-      }
+      {footerNav.map((col) => (
+        <nav class="col" aria-label={col.title}>
+          <span class="title">{col.title}</span>
+          {col.links.map((l) => (
+            <a class="navlink" href={l.href}>
+              {l.label}
+            </a>
+          ))}
+        </nav>
+      ))}
     </div>
     <div class="bottom">
       <div class="legal">
-        <span>© {year} {site.legal.name}</span>
-        {legalLinks.map((l) => <a href={l.href}>{l.label}</a>)}
+        <span>
+          © {year} {site.legal.name}
+        </span>
+        {legalLinks.map((l) => (
+          <a href={l.href}>{l.label}</a>
+        ))}
       </div>
       <span class="disclaimer">{site.legal.disclaimer}</span>
     </div>

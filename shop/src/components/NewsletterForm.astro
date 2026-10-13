@@ -9,7 +9,9 @@ const id = `${idPrefix}-email`;
 ---
 
 <form class="form" novalidate data-newsletter>
-  <label for={id} class="label">{label}</label>
+  <label for={id} class="label">
+    {label}
+  </label>
   <div class="row">
     <input
       id={id}
@@ -21,7 +23,9 @@ const id = `${idPrefix}-email`;
       aria-describedby={`${id}-msg`}
       required
     />
-    <button type="submit" class="btn btn-ink" data-label="Подписаться">Подписаться</button>
+    <button type="submit" class="btn btn-ink" data-label="Подписаться">
+      Подписаться
+    </button>
   </div>
   <p id={`${id}-msg`} class="msg" role="status" aria-live="polite"></p>
 </form>
@@ -50,13 +54,15 @@ const id = `${idPrefix}-email`;
       e.preventDefault();
       if (button.disabled) return;
       if (!input.value.trim()) return (setMsg('Укажите e-mail', 'error'), input.focus());
-      if (!isValidEmail(input.value)) return (setMsg('Проверьте e-mail, например: name@mail.ru', 'error'), input.focus());
+      if (!isValidEmail(input.value))
+        return (setMsg('Проверьте e-mail, например: name@mail.ru', 'error'), input.focus());
       button.disabled = true;
       button.textContent = 'Отправляем…';
       setMsg('', '');
       try {
         const { dryRun } = await subscribeNewsletter(input.value);
-        if (dryRun) console.info('[newsletter] PUBLIC_NEWSLETTER_ENDPOINT не задан — данные никуда не отправлены');
+        if (dryRun)
+          console.info('[newsletter] PUBLIC_NEWSLETTER_ENDPOINT не задан — данные никуда не отправлены');
         setMsg('Готово, вы подписаны.', 'ok');
         form.reset();
       } catch {

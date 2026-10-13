@@ -17,18 +17,22 @@ const [a, b, ...rest] = products;
     <h1 class="title rise">Все добавки</h1>
     <div class="bar">
       <div role="group" aria-label="Фильтр по цели" class="chips">
-        <button type="button" class="chip" aria-pressed="true" data-filter="all">{ALL_LABEL}</button>
-        {
-          categories.map((c) => (
-            <button type="button" class="chip" aria-pressed="false" data-filter={c.slug}>
-              {c.label}
-            </button>
-          ))
-        }
+        <button type="button" class="chip" aria-pressed="true" data-filter="all">
+          {ALL_LABEL}
+        </button>
+        {categories.map((c) => (
+          <button type="button" class="chip" aria-pressed="false" data-filter={c.slug}>
+            {c.label}
+          </button>
+        ))}
       </div>
       <div class="tools">
-        <span class="count" aria-live="polite" data-count>{productsCount(products.length)}</span>
-        <label for="sort" class="muted">Сортировка</label>
+        <span class="count" aria-live="polite" data-count>
+          {productsCount(products.length)}
+        </span>
+        <label for="sort" class="muted">
+          Сортировка
+        </label>
         <select id="sort" class="field sort" data-sort>
           <option value="popular">Популярные</option>
           <option value="asc">Сначала дешевле</option>
@@ -43,14 +47,20 @@ const [a, b, ...rest] = products;
       {a && <ProductTile product={a} variant="catalog" headingLevel={2} index={0} />}
       {b && <ProductTile product={b} variant="catalog" headingLevel={2} index={1} />}
       <PromoTile />
-      {rest.map((p, i) => <ProductTile product={p} variant="catalog" headingLevel={2} index={i + 2} />)}
+      {rest.map((p, i) => (
+        <ProductTile product={p} variant="catalog" headingLevel={2} index={i + 2} />
+      ))}
     </div>
 
     <div class="empty" data-empty hidden>
       <Icon name="sparkle" size={40} class="empty-icon" />
       <h2 class="empty-title">В этой категории пока пусто</h2>
-      <p class="empty-text">Загляните в другие цели или посмотрите весь каталог. Новинки появятся здесь первыми.</p>
-      <button type="button" class="btn btn-primary" data-reset>Показать все товары</button>
+      <p class="empty-text">
+        Загляните в другие цели или посмотрите весь каталог. Новинки появятся здесь первыми.
+      </p>
+      <button type="button" class="btn btn-primary" data-reset>
+        Показать все товары
+      </button>
     </div>
   </section>
 </Layout>

@@ -73,9 +73,17 @@ const state = {
 };
 ---
 
-<Layout title={p.name} description={p.description.slice(0, 160)} current="catalog" ogType="product" jsonLd={jsonLd}>
+<Layout
+  title={p.name}
+  description={p.description.slice(0, 160)}
+  current="catalog"
+  ogType="product"
+  jsonLd={jsonLd}
+>
   <div class="wrap crumbs-wrap">
-    <Breadcrumbs items={[{ label: 'Главная', href: '/' }, { label: 'Каталог', href: '/catalog' }, { label: p.name }]} />
+    <Breadcrumbs
+      items={[{ label: 'Главная', href: '/' }, { label: 'Каталог', href: '/catalog' }, { label: p.name }]}
+    />
   </div>
 
   <!-- Товар -->
@@ -91,7 +99,9 @@ const state = {
           class="rise main-photo"
         />
         <div class="thumbs stack-md">
-          {p.photos.extra.map((ph) => <PhotoSlot src={ph.src} alt={ph.alt} placeholder={ph.placeholder} ratio="1/1" width={800} />)}
+          {p.photos.extra.map((ph) => (
+            <PhotoSlot src={ph.src} alt={ph.alt} placeholder={ph.placeholder} ratio="1/1" width={800} />
+          ))}
         </div>
       </div>
 
@@ -103,7 +113,9 @@ const state = {
         </div>
 
         <div class="price-row">
-          <span class="price" data-price>{formatPrice(size?.price ?? null, size?.placeholder)}</span>
+          <span class="price" data-price>
+            {formatPrice(size?.price ?? null, size?.placeholder)}
+          </span>
           <span class="note" data-price-note></span>
         </div>
 
@@ -120,14 +132,12 @@ const state = {
         </div>
 
         <ul class="highlights">
-          {
-            p.highlights.map((h) => (
-              <li>
-                <Icon name="check" class="accent" />
-                {h}
-              </li>
-            ))
-          }
+          {p.highlights.map((h) => (
+            <li>
+              <Icon name="check" class="accent" />
+              {h}
+            </li>
+          ))}
         </ul>
       </div>
     </div>
@@ -192,7 +202,9 @@ const state = {
 
     el.sizes.forEach((b, i) => b.addEventListener('click', () => change(() => (state.size = i))));
     root.addEventListener('radiochange', (e) =>
-      change(() => (state.mode = (e as CustomEvent<string>).detail === 'subscription' ? 'subscription' : 'once')),
+      change(
+        () => (state.mode = (e as CustomEvent<string>).detail === 'subscription' ? 'subscription' : 'once'),
+      ),
     );
     el.inc?.addEventListener('click', () => change(() => (state.qty += 1)));
     el.dec?.addEventListener('click', () => change(() => (state.qty = Math.max(1, state.qty - 1))));

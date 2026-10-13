@@ -4,9 +4,17 @@ import { site } from '../data/site';
 ---
 
 <StubPage title="Контакты" description={`Контакты ${site.brand}: телефон, e-mail, адрес.`}>
-  <p>Телефон: <a href={site.contacts.phoneHref}>{site.contacts.phone}</a></p>
-  <p>E-mail: <a href={`mailto:${site.contacts.email}`}>{site.contacts.email}</a></p>
-  <p>Telegram: <a href={site.contacts.telegram}>{site.contacts.telegram.replace('https://', '')}</a></p>
-  <p>{site.legal.fullName}, ИНН {site.legal.inn}, ОГРН {site.legal.ogrn}</p>
+  <p>
+    Телефон: <a href={site.contacts.phoneHref}>{site.contacts.phone}</a>
+  </p>
+  <p>
+    E-mail: <a href={`mailto:${site.contacts.email}`}>{site.contacts.email}</a>
+  </p>
+  <p>
+    Telegram: <a href={site.contacts.telegram}>{site.contacts.telegram.replace('https://', '')}</a>
+  </p>
+  <p>
+    {site.legal.fullName}, ИНН {site.legal.inn}, ОГРН {site.legal.ogrn}
+  </p>
   <p>{site.legal.address}</p>
 </StubPage>

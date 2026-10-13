@@ -277,11 +277,11 @@ h2 {
 }
 
 /* Сеточные утилиты макета */
-.stack-md > *,
-.bento > * {
-  min-width: 0;
-}
 @media (max-width: 767px) {
+  .stack-md > *,
+  .bento > * {
+    min-width: 0;
+  }
   .bento {
     grid-template-columns: 1fr !important;
     grid-template-rows: none !important;

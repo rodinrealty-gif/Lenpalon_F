@@ -11,7 +11,9 @@ const { icon, title, text } = Astro.props;
 ---
 
 <li class="item">
-  <span class="badge"><Icon name={icon} size={26} /></span>
+  <span class="badge">
+    <Icon name={icon} size={26} />
+  </span>
   <div class="body">
     <h3 class="title">{title}</h3>
     <p class="text">{text}</p>

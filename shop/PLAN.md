@@ -3,9 +3,11 @@
 Проект живёт в `shop/` (корень репозитория занят лендингом Lenpalon). Макет: `shop/design/*.html` — источник правды по визуалу.
 
 ## Стек
+
 Astro 5 + TS (strict), SSG, ванильный TS в `<script>` компонентов. Чистый CSS: `src/styles/tokens.css`, `src/styles/base.css`, scoped-стили компонентов. Шрифты `@fontsource/onest` (400/500/600/700), `@fontsource/jetbrains-mono` (400/500). ESLint (flat, typescript-eslint + eslint-plugin-astro) + Prettier (prettier-plugin-astro). Проверки: `npm run build`, `astro check`, `eslint`, `check:placeholders`, `check:links`.
 
 ## Факты из макета (читать макет повторно не нужно)
+
 - `:root` токены: bg #FFFFFF, surface #F3F7FD, ink #0E1A2B, muted #4F5F76, line #D9E3F2, tint #E3EDFB, accent #1F5FD6, on-accent #FFFFFF, r 14px, ease cubic-bezier(0.16,1,0.3,1). `color-scheme: light`.
 - Общие классы (одинаковый `<style>` во всех 3 файлах): `.skip .wrap(1360/40px→16px) .mono .i(20px mask) .btn(52px, 0 28px, 16px/600, pill) .btn-primary .btn-ghost .btn-ink .btn-sm(44px, 0 20px, 15px) .navlink(44px, 15/500, border-bottom 2px; hover/aria-current=ink) .iconbtn(44px, hover tint, active scale .94) .chip(44px, 0 20px, 15/500, line border; pressed=ink) .chip-lg(48px, 0 22px) .opt(radio card, 18px 20px, r; checked=surface+ink ring) .slot(tint, dashed line outline, 13px muted, padding 16) .lift .arrow(translate 3,-3) .qbtn(56px, 17/500, r; selected tint/600) .tile .name(underline grow) .snap(gap 24, 280px, scroll-snap) .field(52px pill, surface)`. `.rise .d1/.d2/.d3` (rise .9s, 18px) только в `prefers-reduced-motion: no-preference`. `≤1023`: `.grid4`→2 кол. `≤767`: wrap 16px, `.nav` wrap+auto height+12px pad, nav order 3/100% gap 4px 20px, `.bento`/`.stack-md` 1 кол, `.sticky-md` static, `.hero-h` 42px. `h1,h2{text-wrap:balance}`.
 - Промо-полоса: tint, 14px, 12px 16px, «Бесплатная доставка от [СУММА] ₽».
@@ -17,31 +19,44 @@ Astro 5 + TS (strict), SSG, ванильный TS в `<script>` компонен
 - Товар: крошки; 7/5 gap 64; слева slot 4:5 min-h 480 + 2× slot 1:1 («Капсулы на ладони», «Банка рядом со стаканом воды»); справа sticky top 24, gap 28: категория 15 muted, h1 clamp(36px,3.8vw,54px), описание 17 muted 44ch; цена 34/600 + note 15 muted; «Упаковка» chips-lg 60/120/180 капсул ([ЦЕНА 1..3] ₽), по умолчанию 120; radiogroup opt: «Разовая покупка / Оплата один раз, без обязательств», «Подписка со скидкой [N]% / Доставка каждые [ПЕРИОД], отмена в любой момент»; степпер 56px pill surface, кнопки 52; btn primary 56px «Добавить в корзину» / «Добавлено в корзину»; 3 пункта с i-check accent. Состав (surface, 104): 12 кол: 1/7 accent p36 min-h 240 «Основное вещество» mono clamp(44,5vw,72) «[N] мг»; 7/10 tint p28 clamp(32,3.2vw,44); 10/13 bg+line. Кнопка ghost «Полный состав» → 3 колонки (Действующие вещества / Вспомогательные / Аллергены). Как принимать: max 65ch, p 18 muted, p 14 «Перед применением проконсультируйтесь со специалистом. [ПРОТИВОПОКАЗАНИЯ ПО ТРЕБОВАНИЯМ ЗАКОНА]». С этим покупают: border-top, pt 96 pb 112, .snap, плитки h3 18 + цена.
 
 ## Структура
+
 ```
 src/
   styles/ tokens.css base.css
   icons/ *.svg (Phosphor из data-URI макета)
   data/ site.ts products.ts categories.ts faq.ts principles.ts clients.ts goals.ts
-  lib/ cart.ts plural.ts format.ts newsletter.ts quiz.ts search-index.ts
+  lib/ cart.ts plural.ts format.ts newsletter.ts quiz.ts icons.ts
   components/ Layout Header Footer Breadcrumbs Button Chip Icon PhotoSlot ProductTile PromoTile BentoCard PrincipleItem FaqTabs QuizCta SizePicker PurchaseModeRadio QtyStepper CompositionBento ProductRail SearchDialog NewsletterForm StubPage
-  pages/ index catalog product/[slug] lab about delivery returns contacts privacy offer account cart 404 sitemap.xml robots.txt
+  pages/ index catalog product/[slug] lab about delivery returns contacts privacy offer consent account cart 404 sitemap.xml robots.txt
+  legal/ privacy.html offer.html consent.html (черновики из лендинга)
 scripts/ check-placeholders.mjs check-links.mjs
 ```
 
 ## Решения
+
 - Цена в данных: `price: number | null`; `null` выводится как плейсхолдер `[ЦЕНА …] ₽`. Сортировка по числу, товары без цены — в конце в исходном порядке.
 - «Цели» → `/#goals` (бенто на главной), «Лаборатория» → `/lab`, «О бренде» → `/about`. Кабинет → `/account`, корзина → `/cart` (заглушки).
 - `aria-current="page"`: каталог и товары — «Каталог»; `/lab`, `/about` — свои пункты; на главной нет (там нет своего пункта).
 - Каталог рендерится на сервере целиком; JS только фильтрует/сортирует/переставляет промо.
-- `site` URL — из `PUBLIC_SITE_URL` (по умолчанию `https://example.com`, check:placeholders предупреждает).
+- `site` URL — из `PUBLIC_SITE_URL` (по умолчанию `https://lenpalonfamily.ru`).
 
 ## Этапы
+
 1. [x] План (этот файл)
 2. [x] Каркас, токены, base.css, Layout/Header/Footer, иконки, шрифты
-3. [ ] Данные и компоненты
-4. [ ] Страницы: главная → каталог → товар → заглушки, 404
-5. [ ] Логика: корзина, каталог, FAQ, поиск, подписка, подбор, опции товара
-6. [ ] A11y, SEO (JSON-LD, sitemap, robots), перф, проверки, скриншоты макет vs реализация, README, NOTES
+3. [x] Данные и компоненты
+4. [x] Страницы: главная → каталог → товар → заглушки, 404
+5. [x] Логика: корзина, каталог, FAQ, поиск, подписка, подбор, опции товара
+6. [x] A11y, SEO (JSON-LD, sitemap, robots), перф, проверки, скриншоты макет vs реализация, README, NOTES
 
 ## Журнал
+
 - Этап 2: Astro 5.18, strictest TS, `scopedStyleStrategy: 'class'` (scoped-классы родителя доходят до корня дочернего компонента через `class`). Иконки — инлайн SVG через `<Icon>`. Добавлен токен `--danger` (ошибки форм; в макете нет). Данные: Ленпалон там, где есть (бренд, юрлицо, контакты, промо, товар 1), остальное — плейсхолдеры макета; добавлена категория «Пищеварение» (digestion).
+- Этап 3–4: компоненты и страницы; совпадение с макетом проверено скриншотами (docs/visual-report.md). Найдено и исправлено: размер иконок (атрибуты vs CSS), коллизия scoped-классов `.compact` (класс родителя прокидывается в дочерний компонент), `min-width:0` у `.stack-md`/`.bento` только ≤767px, как в макете.
+- Этап 5: логика; smoke-тест 51 проверка — всё зелёное. Исправлено: Esc в непустом `type=search` в Chrome не закрывал диалог.
+- Этап 6: Lighthouse mobile — главная 99/100/100/100, товар 98/100/100/100, каталог 96+/100/100/100 (perf/a11y/bp/seo). Подмножества шрифтов урезаны до cyrillic+latin. `role=listitem` вынесен с `<article>` на обёртку. Шапка переносится до ≤899px из-за длины бренда (NOTES.md).
+
+## Осталось
+
+- Данные заказчика: см. `npm run check:placeholders` и README.
+- Вопросы 10 (состав капсул) и 11 (документ на капсульную форму) — ждут ответа.

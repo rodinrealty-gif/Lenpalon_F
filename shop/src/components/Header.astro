@@ -11,23 +11,26 @@ const { current } = Astro.props;
 <div class="promo">{site.promo}</div>
 <header class="header">
   <div class="wrap nav">
-    <a href="/" class="brand">{site.brand}</a>
+    <a href="/" class="brand">
+      {site.brand}
+    </a>
     <nav aria-label="Основная навигация" class="menu">
-      {
-        mainNav.map((item) => (
-          <a class="navlink" href={item.href} aria-current={item.key === current ? 'page' : undefined}>
-            {item.label}
-          </a>
-        ))
-      }
+      {mainNav.map((item) => (
+        <a class="navlink" href={item.href} aria-current={item.key === current ? 'page' : undefined}>
+          {item.label}
+        </a>
+      ))}
     </nav>
     <div class="actions">
       <button type="button" class="iconbtn" aria-label="Поиск" aria-haspopup="dialog" data-search-open>
         <Icon name="search" size={22} />
       </button>
-      <a href="/account" class="iconbtn" aria-label="Личный кабинет"><Icon name="user" size={22} /></a>
+      <a href="/account" class="iconbtn" aria-label="Личный кабинет">
+        <Icon name="user" size={22} />
+      </a>
       <a href="/cart" class="iconbtn cart" aria-label="Корзина, 0 товаров" data-cart-link>
-        <Icon name="bag" size={22} /><span data-cart-count>0</span>
+        <Icon name="bag" size={22} />
+        <span data-cart-count>0</span>
       </a>
     </div>
   </div>
@@ -76,6 +79,9 @@ const { current } = Astro.props;
     display: flex;
     gap: 32px;
   }
+  .menu .navlink {
+    white-space: nowrap;
+  }
   .actions {
     display: flex;
     align-items: center;
@@ -84,7 +90,8 @@ const { current } = Astro.props;
   .cart {
     padding: 0 12px;
   }
-  @media (max-width: 767px) {
+  /* Макет переносит меню на ≤767px; с длинным названием бренда шапка не помещается до ~900px — см. NOTES.md */
+  @media (max-width: 899px) {
     .nav {
       flex-wrap: wrap;
       height: auto;
