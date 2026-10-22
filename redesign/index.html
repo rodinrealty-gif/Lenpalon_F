@@ -28,7 +28,7 @@
   --accent:#FF5F04;       /* оранжевый: знак, маркеры, наведение (только графика) */
   --on-ink:#FFFFFF;
   --on-ink-2:#B9B7B2;     /* вторичный текст на чёрном, 9:1 */
-  --cap1:#80C77D;--cap2:#4CB9D6;--cap3:#D9BD82;--cap4:#A987C9;  /* цвета капсул из макета блистера */
+  --cap1:#8DB670;--cap2:#78B4DE;--cap3:#C9AE7C;--cap4:#9C88C9;  /* цвета капсул с фото блистера */
   --font:'Inter Tight','Helvetica Neue',Arial,system-ui,sans-serif;
   --r:12px;--r-btn:6px;--pill:999px;
   --gutter:clamp(16px,4vw,80px);
@@ -94,7 +94,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .facts li{padding:18px 16px 0 0}
 .facts b{display:block;font-size:clamp(36px,3.6vw,56px);font-weight:600;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
 .facts span{display:block;margin-top:6px;font-size:17px;color:var(--ink-2)}
-.hero-photo{background:var(--paper);border-radius:var(--r);overflow:hidden;aspect-ratio:46/57;max-width:100%}
+.hero-photo{background:var(--paper);border-radius:var(--r);overflow:hidden;aspect-ratio:920/1140;max-width:100%}
 .hero-photo img{width:100%;height:100%;object-fit:cover}
 
 /* ---------- три колонки ---------- */
@@ -310,7 +310,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
       </ul>
     </div>
     <figure class="hero-photo">
-      <img src="img/box.jpg" width="460" height="570" alt="Коробка «Ленпалон Фэмили» и четыре цветные капсулы" fetchpriority="high">
+      <img src="img/box.jpg" width="920" height="1140" alt="Коробка «Ленпалон Фэмили» и четыре цветные капсулы" fetchpriority="high">
     </figure>
   </div>
 </section>
@@ -319,7 +319,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 <section class="pillars" id="course" aria-label="Как устроен курс">
   <div class="wrap pillars-grid">
     <article class="pillar">
-      <figure class="pillar-media pad"><img src="img/cycle1.png" width="900" height="1261" alt="Блистер «Цикл 1»: утро и вечер, дни 1–3, капсулы №1–№4, перерыв 2 дня" loading="lazy"></figure>
+      <figure class="pillar-media pad"><img src="img/cycle1.jpg" width="754" height="1024" alt="Блистер «Цикл 1»: утро и вечер, дни 1–3, капсулы №1–№4, перерыв 2 дня" loading="lazy"></figure>
       <div class="pillar-body">
         <h2>Схема:</h2>
         <p>Каждый блистер — один цикл на 5 дней: три дня приёма, утром и вечером, затем два дня перерыва. Номер и цвет капсулы подскажут, что принимать.</p>
@@ -354,22 +354,22 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
     </div>
     <ul class="caps-grid">
       <li class="cap-card" style="--c:var(--cap1)">
-        <div class="cap-media"><span class="num">№1</span><img src="img/cap1.png" width="373" height="137" alt="Капсула №1, зелёная" loading="lazy"></div>
+        <div class="cap-media"><span class="num">№1</span><img src="img/cap1.png" width="276" height="117" alt="Капсула №1, зелёная" loading="lazy"></div>
         <h3>Состав 1</h3>
         <p class="when">День 1 · утром и вечером</p>
       </li>
       <li class="cap-card" style="--c:var(--cap2)">
-        <div class="cap-media"><span class="num">№2</span><img src="img/cap2.png" width="373" height="137" alt="Капсула №2, голубая" loading="lazy"></div>
+        <div class="cap-media"><span class="num">№2</span><img src="img/cap2.png" width="288" height="123" alt="Капсула №2, голубая" loading="lazy"></div>
         <h3>Состав 2</h3>
         <p class="when">Дни 2 и 3 · утром</p>
       </li>
       <li class="cap-card" style="--c:var(--cap3)">
-        <div class="cap-media"><span class="num">№3</span><img src="img/cap3.png" width="374" height="137" alt="Капсула №3, песочная" loading="lazy"></div>
+        <div class="cap-media"><span class="num">№3</span><img src="img/cap3.png" width="282" height="120" alt="Капсула №3, песочная" loading="lazy"></div>
         <h3>Состав 3</h3>
         <p class="when">День 2 · вечером</p>
       </li>
       <li class="cap-card" style="--c:var(--cap4)">
-        <div class="cap-media"><span class="num">№4</span><img src="img/cap4.png" width="374" height="138" alt="Капсула №4, фиолетовая" loading="lazy"></div>
+        <div class="cap-media"><span class="num">№4</span><img src="img/cap4.png" width="270" height="102" alt="Капсула №4, фиолетовая" loading="lazy"></div>
         <h3>Состав 4</h3>
         <p class="when">День 3 · вечером</p>
       </li>
@@ -393,9 +393,9 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
       <button type="button" class="btn btn-white" data-open-lead data-product="Ленпалон Фэмили, курс 15 дней">Оформить заказ</button>
     </div>
     <div class="blisters">
-      <figure><img src="img/cycle1.png" width="900" height="1261" alt="Блистер «Цикл 1», в конце — перерыв 2 дня" loading="lazy"><figcaption><b>Цикл 1</b> · перерыв 2 дня</figcaption></figure>
-      <figure><img src="img/cycle2.png" width="900" height="1261" alt="Блистер «Цикл 2», в конце — перерыв 2 дня" loading="lazy"><figcaption><b>Цикл 2</b> · перерыв 2 дня</figcaption></figure>
-      <figure><img src="img/cycle3.png" width="900" height="1261" alt="Блистер «Цикл 3», в конце — курс закончен" loading="lazy"><figcaption><b>Цикл 3</b> · курс закончен</figcaption></figure>
+      <figure><img src="img/cycle1.jpg" width="754" height="1024" alt="Блистер «Цикл 1», в конце — перерыв 2 дня" loading="lazy"><figcaption><b>Цикл 1</b> · перерыв 2 дня</figcaption></figure>
+      <figure><img src="img/cycle2.jpg" width="754" height="1024" alt="Блистер «Цикл 2», в конце — перерыв 2 дня" loading="lazy"><figcaption><b>Цикл 2</b> · перерыв 2 дня</figcaption></figure>
+      <figure><img src="img/cycle3.jpg" width="754" height="1024" alt="Блистер «Цикл 3», в конце — цикл закончен" loading="lazy"><figcaption><b>Цикл 3</b> · цикл закончен</figcaption></figure>
     </div>
   </div>
 </section>
@@ -409,16 +409,16 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
     </div>
     <ol class="days-grid">
       <li class="day"><h3>День 1</h3>
-        <div class="dose"><img src="img/cap1.png" width="373" height="137" alt=""><p><b>Утро · №1</b><span>за 30 мин до еды</span></p></div>
-        <div class="dose"><img src="img/cap1.png" width="373" height="137" alt=""><p><b>Вечер · №1</b><span>через 30 мин после еды</span></p></div>
+        <div class="dose"><img src="img/cap1.png" width="276" height="117" alt=""><p><b>Утро · №1</b><span>за 30 мин до еды</span></p></div>
+        <div class="dose"><img src="img/cap1.png" width="276" height="117" alt=""><p><b>Вечер · №1</b><span>через 30 мин после еды</span></p></div>
       </li>
       <li class="day"><h3>День 2</h3>
-        <div class="dose"><img src="img/cap2.png" width="373" height="137" alt=""><p><b>Утро · №2</b><span>за 30 мин до еды</span></p></div>
-        <div class="dose"><img src="img/cap3.png" width="374" height="137" alt=""><p><b>Вечер · №3</b><span>через 30 мин после еды</span></p></div>
+        <div class="dose"><img src="img/cap2.png" width="288" height="123" alt=""><p><b>Утро · №2</b><span>за 30 мин до еды</span></p></div>
+        <div class="dose"><img src="img/cap3.png" width="282" height="120" alt=""><p><b>Вечер · №3</b><span>через 30 мин после еды</span></p></div>
       </li>
       <li class="day"><h3>День 3</h3>
-        <div class="dose"><img src="img/cap2.png" width="373" height="137" alt=""><p><b>Утро · №2</b><span>за 30 мин до еды</span></p></div>
-        <div class="dose"><img src="img/cap4.png" width="374" height="138" alt=""><p><b>Вечер · №4</b><span>через 30 мин после еды</span></p></div>
+        <div class="dose"><img src="img/cap2.png" width="288" height="123" alt=""><p><b>Утро · №2</b><span>за 30 мин до еды</span></p></div>
+        <div class="dose"><img src="img/cap4.png" width="270" height="102" alt=""><p><b>Вечер · №4</b><span>через 30 мин после еды</span></p></div>
       </li>
       <li class="day rest"><h3>Дни 4–5</h3><p>Перерыв 2 дня после циклов 1 и 2, затем следующий блистер. <b>После цикла 3 курс закончен.</b></p></li>
     </ol>
