@@ -15,7 +15,7 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3' y='10' width='26' height='12' rx='6' fill='%23FF5F04'/%3E%3Cpath d='M16 10h7a6 6 0 0 1 0 12h-7Z' fill='%230A0A0A'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 /* Строгая витрина: белый фон, текст «морской сланец», бирюзовые кнопки, светлые серебристые подложки */
 :root{
@@ -112,9 +112,10 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .pillar-media.mist{background:var(--mist)}
 .pillar-media.mist img{padding:6% 12%;filter:drop-shadow(0 10px 22px rgba(70,95,120,.16))}
 .pillar-media.wide img{padding:0 8%}
-.pillar-media.type{background:var(--silver);color:var(--ink);border:1px solid var(--edge);place-items:end start;padding:clamp(24px,3vw,40px)}
+/* плитка «15 дней — полный курс»: как в прошлой версии — Inter Tight, графит */
+.pillar-media.type{background:var(--silver);color:#2D3640;font-family:'Inter Tight','Helvetica Neue',Arial,system-ui,sans-serif;border:1px solid var(--edge);place-items:end start;padding:clamp(24px,3vw,40px)}
 .pillar-media.type b{font-size:clamp(72px,9vw,150px);font-weight:600;letter-spacing:-.05em;line-height:.85}
-.pillar-media.type b small{display:block;font-size:.26em;letter-spacing:-.01em;font-weight:500;margin-top:14px;color:var(--ink-2)}
+.pillar-media.type b small{display:block;font-size:.26em;letter-spacing:-.01em;font-weight:500;margin-top:14px;color:#59626B}
 .pillar h2{font-size:clamp(36px,3.4vw,54px);font-weight:600;letter-spacing:-.035em;line-height:1.02}
 .pillar p{font-size:clamp(18px,1.4vw,22px);line-height:1.5;max-width:40ch}
 .pillar-body{display:flex;flex-direction:column;gap:14px;padding-inline:clamp(0px,1.5vw,28px);flex:1}
