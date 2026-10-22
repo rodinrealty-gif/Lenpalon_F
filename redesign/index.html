@@ -15,13 +15,16 @@
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3' y='10' width='26' height='12' rx='6' fill='%23FF5F04'/%3E%3Cpath d='M16 10h7a6 6 0 0 1 0 12h-7Z' fill='%230A0A0A'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* Строгая витрина: белый фон, чёрный текст и кнопки, один оранжевый акцент, светлые серые подложки под фото */
 :root{
   --bg:#FFFFFF;
-  --ink:#0A0A0A;          /* текст, кнопки, полоса и подвал */
-  --ink-2:#4A4A48;        /* вторичный текст, 9:1 на белом */
+  --ink:#2D3640;          /* основной текст — графит (вариант A), 12:1 на белом */
+  --ink-2:#59626B;        /* вторичный текст, 6:1 на белом */
+  --sky:#7FD4E2;          /* кнопки: бирюзово-небесно-голубой */
+  --sky-hover:#62C7D8;
+  --sky-ink:#0D3B46;      /* текст на кнопке, 7:1 */
   --paper:#F3F3F1;        /* подложка под фото продукта */
   --stone:#E9E7E3;        /* тёплый серый: плашки */
   --line:#DEDCD7;
@@ -32,12 +35,18 @@
   --edge:#D5D9DE;         /* граница серебристых блоков */
   --cap1:#8DB670;--cap2:#78B4DE;--cap3:#C9AE7C;--cap4:#9C88C9;  /* цвета капсул с фото блистера */
   --font:'Inter Tight','Helvetica Neue',Arial,system-ui,sans-serif;
+  --banner-cool:linear-gradient(100deg,#55626E 0%,#616E7A 52%,#8F9BA6 100%);
+  --banner-warm:linear-gradient(100deg,#A2978F 0%,#776D68 46%,#6B635F 100%);
   --r:12px;--r-btn:6px;--pill:999px;
   --gutter:clamp(16px,4vw,80px);
   --ease:cubic-bezier(.22,1,.36,1);
 }
+/* Варианты сдержанной типографики: A — графит (по умолчанию), B — морской сланец, C — тёплый графит. Ссылки #type-a / #type-b / #type-c */
+:root[data-type="b"]{--font:'Manrope','Helvetica Neue',Arial,system-ui,sans-serif;--ink:#22404C;--ink-2:#4E6670}
+:root[data-type="c"]{--font:'Golos Text','Helvetica Neue',Arial,system-ui,sans-serif;--ink:#34373B;--ink-2:#5E6166}
 *,*::before,*::after{box-sizing:border-box}
 [hidden]{display:none!important}
+.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 html{-webkit-text-size-adjust:100%;scroll-padding-top:110px}
 @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:19px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:clip}
@@ -47,17 +56,17 @@ h1,h2,h3,p,ul,ol,figure{margin:0}
 ul,ol{padding:0;list-style:none}
 img{max-width:100%;display:block}
 :focus-visible{outline:2px solid var(--ink);outline-offset:3px}
-.skip{position:absolute;left:16px;top:-100px;z-index:100;background:var(--ink);color:var(--on-ink);padding:12px 20px;border-radius:var(--r-btn);font-weight:600}
+.skip{position:absolute;left:16px;top:-100px;z-index:100;background:var(--sky);color:var(--sky-ink);padding:12px 20px;border-radius:var(--r-btn);font-weight:600}
 .skip:focus{top:12px}
 .wrap{max-width:1600px;margin:0 auto;padding-left:max(var(--gutter),env(safe-area-inset-left,0px));padding-right:max(var(--gutter),env(safe-area-inset-right,0px))}
 
 /* ---------- кнопки ---------- */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:60px;padding:0 34px;border-radius:var(--r-btn);border:2px solid var(--ink);background:var(--ink);color:var(--on-ink);font-size:19px;font-weight:700;cursor:pointer;white-space:nowrap;transition:background-color .2s,color .2s,border-color .2s,transform .2s var(--ease)}
-.btn:hover{background:#2A2A28;border-color:#2A2A28}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:60px;padding:0 34px;border-radius:var(--r-btn);border:2px solid var(--sky);background:var(--sky);color:var(--sky-ink);font-size:19px;font-weight:700;cursor:pointer;white-space:nowrap;transition:background-color .2s,color .2s,border-color .2s,transform .2s var(--ease)}
+.btn:hover{background:var(--sky-hover);border-color:var(--sky-hover)}
 .btn:active{transform:translateY(1px)}
 .btn:disabled{opacity:.55;cursor:not-allowed}
-.btn-line{background:transparent;color:var(--ink)}
-.btn-line:hover{background:var(--ink);color:var(--on-ink);border-color:var(--ink)}
+.btn-line{background:transparent;color:var(--sky-ink);border-color:var(--sky)}
+.btn-line:hover{background:var(--sky);color:var(--sky-ink);border-color:var(--sky)}
 .btn-sm{min-height:48px;padding:0 22px;font-size:16px}
 .i{width:22px;height:22px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 
@@ -78,7 +87,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .header-r{display:flex;align-items:center;justify-content:flex-end;gap:12px}
 .tel{display:inline-flex;align-items:center;gap:8px;font-size:19px;font-weight:600;min-height:48px;padding:0 8px;white-space:nowrap}
 .tel:hover{color:var(--ink-2)}
-.burger{display:none;width:48px;height:48px;border-radius:var(--r-btn);border:2px solid var(--ink);background:var(--bg);cursor:pointer;align-items:center;justify-content:center}
+.burger{display:none;width:48px;height:48px;border-radius:var(--r-btn);border:2px solid var(--sky);background:var(--bg);color:var(--sky-ink);cursor:pointer;align-items:center;justify-content:center}
 .menu-panel{display:none}
 
 /* ---------- hero ---------- */
@@ -211,6 +220,78 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .fine{font-size:15px;color:var(--ink-2);line-height:1.45}
 .ok{display:flex;flex-direction:column;gap:12px}
 
+/* ---------- баннеры (по образцу широких фото-баннеров) ---------- */
+.banners{padding-block:24px 96px;display:grid;gap:40px}
+.banner{position:relative;overflow:hidden;border-radius:var(--r);min-height:clamp(380px,30vw,460px);display:grid;place-items:center;text-align:center;color:#FFFFFF;isolation:isolate}
+.banner-cool{background:var(--banner-cool)}
+.banner-warm{background:var(--banner-warm)}
+.banner::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(50% 72% at 50% 50%,rgba(26,33,40,.5),transparent 78%)}
+.banner-text{position:relative;z-index:2;max-width:640px;padding:56px max(24px,4vw);display:flex;flex-direction:column;align-items:center;gap:22px}
+.banner h2{font-size:clamp(34px,4.4vw,68px);font-weight:500;letter-spacing:-.03em;line-height:1.05;text-wrap:balance;text-shadow:0 1px 18px rgba(20,28,36,.25)}
+.banner p{font-size:clamp(18px,1.5vw,22px);line-height:1.5;max-width:46ch;text-shadow:0 1px 10px rgba(20,28,36,.35)}
+.dots{display:flex;gap:10px;margin-top:4px}
+.dots i{width:30px;height:13px;border-radius:var(--pill);background:var(--c);box-shadow:0 2px 6px rgba(0,0,0,.18)}
+.btn-ghost-white{background:transparent;color:#FFFFFF;border:2px solid #FFFFFF;border-radius:0;letter-spacing:.06em;text-transform:uppercase;font-weight:600}
+.btn-ghost-white:hover{background:#FFFFFF;color:var(--ink);border-color:#FFFFFF}
+.btn-ghost-white:focus-visible{outline-color:#FFFFFF}
+/* капсулы справа, как рассыпанные из упаковки, с отражением */
+.spill{position:absolute;right:0;bottom:0;width:min(34%,520px);height:100%;z-index:1;pointer-events:none}
+.spill .blister{position:absolute;height:auto;right:-6%;top:-38%;width:46%;transform:rotate(-28deg);filter:drop-shadow(0 18px 30px rgba(20,30,40,.28));opacity:.96}
+.spill .cap{position:absolute;width:21%;height:auto;-webkit-box-reflect:below 1px linear-gradient(transparent 45%,rgba(255,255,255,.28));filter:drop-shadow(0 6px 10px rgba(20,30,40,.22))}
+.spill .c1{left:4%;bottom:12%;transform:rotate(4deg)}
+.spill .c2{left:28%;bottom:19%;transform:rotate(-12deg)}
+.spill .c3{left:52%;bottom:10%;transform:rotate(8deg)}
+.spill .c4{left:72%;bottom:21%;transform:rotate(-6deg)}
+/* коробка слева, как продукт на подносе */
+.tray{position:absolute;left:-2%;bottom:-14%;width:min(30%,420px);z-index:1;pointer-events:none}
+.tray img{width:100%;height:auto;mix-blend-mode:multiply;-webkit-mask-image:radial-gradient(68% 66% at 46% 52%,#000 40%,transparent 76%);mask-image:radial-gradient(68% 66% at 46% 52%,#000 40%,transparent 76%)}
+@media (max-width:900px){
+  .banner{min-height:0;align-items:start}
+  .banner::before{background:linear-gradient(rgba(26,33,40,.42),rgba(26,33,40,.42))}
+  .banner-text{padding:44px 20px 200px}
+  .spill{width:100%;height:220px;top:auto;right:0}
+  .spill .blister{display:none}
+  .spill .cap{width:20%}
+  .spill .c1{left:4%}.spill .c2{left:26%}.spill .c3{left:46%}.spill .c4{left:64%}
+  .banner-warm .banner-text{padding:250px 20px 48px}
+  .tray{left:50%;top:-4%;bottom:auto;width:min(68%,280px);transform:translateX(-50%)}
+}
+
+/* ---------- чат поддержки ---------- */
+.chat-fab{position:fixed;left:calc(20px + env(safe-area-inset-left,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:70;width:64px;height:64px;border-radius:50%;border:0;background:var(--sky);color:var(--sky-ink);display:grid;place-items:center;cursor:pointer;box-shadow:0 10px 26px rgba(13,59,70,.28);transition:transform .25s var(--ease),background-color .2s}
+.chat-fab:hover{background:var(--sky-hover);transform:translateY(-2px)}
+.chat-fab .i{width:28px;height:28px}
+.chat-fab[aria-expanded="true"]{background:var(--ink);color:#FFFFFF}
+.chat{position:fixed;left:calc(20px + env(safe-area-inset-left,0px));bottom:calc(96px + env(safe-area-inset-bottom,0px));z-index:70;width:min(380px,calc(100vw - 40px));height:min(560px,calc(100dvh - 140px));background:var(--bg);border:1px solid var(--edge);border-radius:16px;box-shadow:0 24px 60px rgba(30,45,60,.22);display:flex;flex-direction:column;overflow:hidden}
+.chat-head{background:var(--silver);border-bottom:1px solid var(--edge);padding:16px 16px 14px 20px;display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.chat-head b{display:block;font-size:17px}
+.chat-head span{display:flex;align-items:center;gap:6px;font-size:14px;color:var(--ink-2)}
+.chat-head span::before{content:"";width:8px;height:8px;border-radius:50%;background:#3FB27F}
+.chat-x{width:40px;height:40px;border-radius:var(--r-btn);border:0;background:transparent;cursor:pointer;display:grid;place-items:center;color:var(--ink)}
+.chat-x:hover{background:var(--stone)}
+.chat-log{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;margin:0;list-style:none}
+.msg{max-width:85%;padding:10px 14px;border-radius:14px;font-size:15.5px;line-height:1.45;white-space:pre-line;overflow-wrap:anywhere}
+.msg.bot{align-self:flex-start;background:var(--paper);border-bottom-left-radius:4px}
+.msg.me{align-self:flex-end;background:var(--sky);color:var(--sky-ink);border-bottom-right-radius:4px}
+.msg.typing{color:var(--ink-2);font-style:italic}
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:0 16px 10px}
+.chips button{min-height:36px;padding:0 14px;border-radius:var(--pill);border:1.5px solid var(--sky);background:var(--bg);color:var(--sky-ink);font-size:14px;font-weight:600;cursor:pointer}
+.chips button:hover{background:var(--sky)}
+.chat-form{display:flex;gap:8px;padding:12px;border-top:1px solid var(--edge)}
+.chat-form input{flex:1;min-width:0;min-height:46px;border-radius:var(--pill);border:1.5px solid var(--edge);padding:0 16px;font-size:16px;background:var(--bg);color:var(--ink)}
+.chat-form input:focus-visible{border-color:var(--sky-ink);outline:none}
+.chat-form button{width:46px;height:46px;border-radius:50%;border:0;background:var(--sky);color:var(--sky-ink);cursor:pointer;display:grid;place-items:center;flex:none}
+.chat-form button:hover{background:var(--sky-hover)}
+.chat-note{font-size:12.5px;color:var(--ink-2);padding:0 16px 12px;line-height:1.4}
+@media (max-width:640px){
+  .chat{left:0;right:0;bottom:0;width:100%;height:min(82dvh,640px);border-radius:16px 16px 0 0;padding-bottom:env(safe-area-inset-bottom,0px)}
+  .chat-fab{width:58px;height:58px}
+}
+/* переключатель вариантов типографики (виден только при ссылке #type-a/b/c) */
+.type-switch{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:65;background:var(--bg);border:1px solid var(--edge);border-radius:var(--pill);padding:6px;display:flex;gap:4px;box-shadow:0 8px 24px rgba(30,45,60,.14);font-size:14px}
+.type-switch button{min-height:36px;padding:0 14px;border-radius:var(--pill);border:0;background:transparent;color:var(--ink);cursor:pointer;font-weight:600}
+.type-switch button[aria-pressed="true"]{background:var(--sky);color:var(--sky-ink)}
+
 /* ---------- адаптив ---------- */
 @media (max-width:1180px){
   .header-in{grid-template-columns:1fr auto;min-height:80px}
@@ -254,6 +335,8 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   <symbol id="menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
   <symbol id="close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
   <symbol id="phone" viewBox="0 0 24 24"><path d="M15.4 13.6 19 15.2c.4.2.6.6.5 1A4.5 4.5 0 0 1 15 20 12 12 0 0 1 4 9a4.5 4.5 0 0 1 3.8-4.5c.4 0 .8.2 1 .5l1.6 3.6c.1.3.1.6-.1.9l-1.6 2c.8 1.6 2.4 3.3 4 4l2-1.6c.2-.2.5-.3.7-.2Z"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-8l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"/><path d="M8 10h8M8 13h5"/></symbol>
+  <symbol id="send" viewBox="0 0 24 24"><path d="M4 12h15M13 6l6 6-6 6"/></symbol>
   <symbol id="mark" viewBox="0 0 46 22"><rect width="46" height="22" rx="11" fill="#FF5F04"/><path d="M23 0h12a11 11 0 0 1 0 22H23Z" fill="currentColor"/></symbol>
 </svg>
 
@@ -376,6 +459,24 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   </div>
 </section>
 
+<!-- SECTION: баннер с капсулами -->
+<section class="wrap banners banners-top" aria-label="Курс в цифрах">
+  <div class="banner banner-cool">
+    <div class="spill" aria-hidden="true">
+      <img class="blister" src="img/card1.png" width="646" height="878" alt="">
+      <img class="cap c1" src="img/cap1.png" width="276" height="117" alt="">
+      <img class="cap c2" src="img/cap2.png" width="288" height="123" alt="">
+      <img class="cap c3" src="img/cap3.png" width="282" height="120" alt="">
+      <img class="cap c4" src="img/cap4.png" width="270" height="102" alt="">
+    </div>
+    <div class="banner-text">
+      <h2>4&nbsp;состава. 3&nbsp;цикла. 15&nbsp;дней.</h2>
+      <p>Каждая капсула разложена по дням — просто следуйте схеме. Бесплатная доставка по всей России.</p>
+      <div class="dots" aria-hidden="true"><i style="--c:var(--cap1)"></i><i style="--c:var(--cap2)"></i><i style="--c:var(--cap3)"></i><i style="--c:var(--cap4)"></i></div>
+    </div>
+  </div>
+</section>
+
 <!-- SECTION: покупка и три блистера -->
 <section class="soft buy" id="buy" aria-labelledby="buy-title">
   <div class="wrap buy-in">
@@ -422,6 +523,18 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
       <li class="day rest"><h3>Дни 4–5</h3><p>Перерыв 2 дня после циклов 1 и 2, затем следующий блистер. <b>После цикла 3 курс закончен.</b></p></li>
     </ol>
     <p class="days-note"><span>1 блистер = 1 цикл (5 дней)</span><span>3 блистера = 15 дней</span><span>18 капсул в упаковке</span></p>
+  </div>
+</section>
+
+<!-- SECTION: баннер с коробкой и чатом -->
+<section class="wrap banners" aria-label="Вопросы о курсе">
+  <div class="banner banner-warm">
+    <div class="tray" aria-hidden="true"><img src="img/box.jpg" width="920" height="1140" alt="" loading="lazy"></div>
+    <div class="banner-text">
+      <h2>Давайте обсудим ваш курс</h2>
+      <p>Онлайн-консультант подскажет, как принимать капсулы, и ответит про доставку и оплату.</p>
+      <button type="button" class="btn btn-ghost-white" data-open-chat>Начать чат</button>
+    </div>
   </div>
 </section>
 
@@ -479,6 +592,31 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
   </form>
 </dialog>
 
+<!-- SECTION: чат поддержки -->
+<button type="button" class="chat-fab" aria-expanded="false" aria-controls="chat" aria-label="Открыть чат с поддержкой" data-open-chat><svg class="i" aria-hidden="true"><use href="#i-chat"/></svg></button>
+<section class="chat" id="chat" role="dialog" aria-modal="false" aria-labelledby="chat-title" hidden>
+  <div class="chat-head">
+    <div><b id="chat-title">Поддержка Ленпалон Фэмили</b><span>Онлайн-консультант</span></div>
+    <button type="button" class="chat-x" data-close-chat aria-label="Закрыть чат"><svg class="i" aria-hidden="true"><use href="#close"/></svg></button>
+  </div>
+  <ol class="chat-log" id="chat-log" role="log" aria-live="polite"></ol>
+  <div class="chips" id="chat-chips">
+    <button type="button" data-ask="Как принимать капсулы?">Как принимать</button>
+    <button type="button" data-ask="Как работает доставка?">Доставка</button>
+    <button type="button" data-ask="Как оплатить и сколько стоит?">Оплата и цена</button>
+    <button type="button" data-ask="Хочу поговорить со специалистом">Специалист</button>
+  </div>
+  <form class="chat-form" id="chat-form" novalidate>
+    <label for="chat-input" class="vh">Ваше сообщение</label>
+    <input id="chat-input" name="message" autocomplete="off" placeholder="Напишите вопрос…" maxlength="600">
+    <button type="submit" aria-label="Отправить"><svg class="i" aria-hidden="true"><use href="#send"/></svg></button>
+  </form>
+  <p class="chat-note">Консультант не ставит диагнозы и не заменяет консультацию врача.</p>
+</section>
+<div class="type-switch" id="type-switch" role="group" aria-label="Вариант шрифта" hidden>
+  <button type="button" data-type="a">A · Графит</button><button type="button" data-type="b">B · Сланец</button><button type="button" data-type="c">C · Тёплый</button>
+</div>
+
 <script>
 /* Отправка заявки: подключите реальный адрес (CRM, Telegram-бот, почта). Сейчас — имитация. */
 function submitLead(data) {
@@ -486,6 +624,13 @@ function submitLead(data) {
   //   .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); });
   console.info('[submitLead]', data);
   return new Promise(function (r) { setTimeout(r, 800); });
+}
+/* Чат поддержки. Подключите реальный сервис (Jivo, Telegram-бот, AI-консультант) в sendToSupport:
+   верните Promise со строкой-ответом. Пока возвращается null — отвечает встроенный консультант по данным сайта. */
+function sendToSupport(message, history) {
+  // return fetch('https://ВАШ-АДРЕС/chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ message: message, history: history }) })
+  //   .then(function (r) { return r.json(); }).then(function (d) { return d.reply; });
+  return Promise.resolve(null);
 }
 /* Подписка на рассылку. Сейчас — имитация. */
 function submitSubscribe(data) {
@@ -594,6 +739,96 @@ function submitSubscribe(data) {
     }
     input.removeAttribute('aria-invalid'); msg.textContent = 'Отправляем…'; msg.dataset.kind = '';
     submitSubscribe({ email: input.value.trim() }).then(function () { msg.textContent = 'Готово, вы подписаны.'; msg.dataset.kind = 'ok'; sub.reset(); });
+  });
+  /* ---------- варианты типографики: #type-a / #type-b / #type-c ---------- */
+  var sw = document.getElementById('type-switch');
+  function setType(t) {
+    if (t === 'b' || t === 'c') document.documentElement.setAttribute('data-type', t); else document.documentElement.removeAttribute('data-type');
+    sw.querySelectorAll('button').forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.type === (t || 'a'))); });
+  }
+  var mt = /^#type-([abc])$/.exec(location.hash);
+  if (mt) { sw.hidden = false; setType(mt[1]); }
+  sw.addEventListener('click', function (e) { var b = e.target.closest('button'); if (b) setType(b.dataset.type); });
+
+  /* ---------- чат поддержки ---------- */
+  var chat = document.getElementById('chat');
+  var fab = document.querySelector('.chat-fab');
+  var log = document.getElementById('chat-log');
+  var chatForm = document.getElementById('chat-form');
+  var chatInput = document.getElementById('chat-input');
+  var KEY = 'lenpalon-chat';
+  var history = [];
+  var lastQuestion = '';
+  try { history = JSON.parse(localStorage.getItem(KEY) || '[]') || []; } catch (e) { history = []; }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(history.slice(-40))); } catch (e) { /* хранилище недоступно */ } }
+  function bubble(who, text, extra) {
+    var li = document.createElement('li');
+    li.className = 'msg ' + who + (extra ? ' ' + extra : '');
+    li.textContent = text;
+    log.appendChild(li); log.scrollTop = log.scrollHeight;
+    return li;
+  }
+  function say(who, text) { history.push({ who: who, text: text }); save(); bubble(who, text); }
+  var GREETING = 'Здравствуйте! Я онлайн-консультант «Ленпалон Фэмили». Подскажу схему приёма, доставку и оплату. Если нужен специалист — оставьте телефон или ник в Telegram.';
+  var KB = [
+    { re: /(врач|беремен|корм|ребён|ребен|дет|болезн|лекар|диагноз|аллерг|противопок|гастрит|язв)/i,
+      a: 'Мы не даём медицинских рекомендаций. Если у вас есть заболевание, беременность или вы принимаете лекарства, перед курсом посоветуйтесь с врачом. Специалист «Ленпалон Фэмили» может ответить на вопросы о продукте — оставьте телефон или ник в Telegram.' },
+    { re: /(как.*прин|схем|утр|вечер|цикл|перерыв|блистер|день|дня|дней|до еды|после еды)/i,
+      a: 'Курс — 3 цикла по 5 дней, один блистер на цикл.\nУтром капсула за 30 минут до еды, вечером — через 30 минут после еды.\nДень 1: №1 и №1. День 2: №2 и №3. День 3: №2 и №4.\nДни 4–5 — перерыв. После цикла 3 курс закончен.' },
+    { re: /(достав|сдэк|почт|курьер|пункт|привез|отправ|срок)/i,
+      a: 'Доставляем бесплатно по всей России, даже одну упаковку: курьером, СДЭК, Почтой России или в пункт выдачи. Срок доставки рассчитаем при оформлении заказа.' },
+    { re: /(оплат|стоим|цен|сколько|карт|перевод|₽|руб)/i,
+      a: 'Курс на 15 дней стоит 9 700 ₽. Оплатить можно картой онлайн или переводом по реквизитам. Хотите оформить заказ? Нажмите «Оформить заказ» на странице или оставьте здесь телефон.' },
+    { re: /(возврат|вернуть|брак|поврежд)/i,
+      a: 'Продукт надлежащего качества возврату и обмену не подлежит. Если посылка пришла повреждённой или с браком — напишите нам или позвоните +7 (926) 955-59-35, решим вопрос.' },
+    { re: /(состав|ингредиент|что внутри|капсул[аы]? №|компонент)/i,
+      a: 'Подробный состав капсул №1–№4 пришлёт специалист. Оставьте телефон или ник в Telegram — вам ответят.' },
+    { re: /(специалист|оператор|человек|позвон|связ|менеджер|консультац)/i,
+      a: 'Оставьте телефон или ник в Telegram прямо в этом чате — специалист свяжется с вами. Или позвоните: +7 (926) 955-59-35.' },
+    { re: /(привет|здравств|добрый)/i, a: 'Здравствуйте! Чем помочь: схема приёма, доставка или оплата?' }
+  ];
+  function localAnswer(text) {
+    for (var i = 0; i < KB.length; i++) if (KB[i].re.test(text)) return KB[i].a;
+    return 'Передам ваш вопрос специалисту. Оставьте телефон или ник в Telegram — вам ответят.';
+  }
+  function contactIn(text) {
+    var t = text.trim();
+    var m = /@[A-Za-z][A-Za-z0-9_]{4,31}/.exec(t); if (m) return { contact: m[0], type: 'telegram' };
+    var d = t.replace(/\D/g, '');
+    if (/(\+7|8|7)?[\s(-]*\d{3}[\s)-]*\d{3}[\s-]*\d{2}[\s-]*\d{2}/.test(t) && (d.length === 10 || d.length === 11)) return { contact: phone(t), type: 'phone' };
+    return null;
+  }
+  function reply(text) {
+    var typing = bubble('bot', 'Печатает…', 'typing');
+    var c = contactIn(text);
+    var job = c
+      ? submitLead({ name: '', contact: c.contact, contactType: c.type, product: 'Ленпалон Фэмили', question: lastQuestion, source: 'chat', page: location.href, createdAt: new Date().toISOString() })
+          .then(function () { return 'Спасибо! Передали ваш контакт специалисту — с вами свяжутся по ' + (c.type === 'phone' ? 'номеру ' : 'нику ') + c.contact + '.'; })
+      : sendToSupport(text, history).then(function (r) { return r || localAnswer(text); });
+    if (!c) lastQuestion = text;
+    job.catch(function () { return 'Не получилось отправить. Позвоните нам: +7 (926) 955-59-35.'; })
+      .then(function (answer) { setTimeout(function () { typing.remove(); say('bot', answer); }, 500); });
+  }
+  function openChat() {
+    chat.hidden = false; fab.setAttribute('aria-expanded', 'true'); fab.setAttribute('aria-label', 'Закрыть чат с поддержкой');
+    if (!log.children.length) {
+      if (!history.length) say('bot', GREETING); else history.forEach(function (m) { bubble(m.who, m.text); });
+    }
+    chatInput.focus();
+  }
+  function closeChat() { chat.hidden = true; fab.setAttribute('aria-expanded', 'false'); fab.setAttribute('aria-label', 'Открыть чат с поддержкой'); fab.focus(); }
+  document.querySelectorAll('[data-open-chat]').forEach(function (b) {
+    b.addEventListener('click', function () { if (b === fab && !chat.hidden) closeChat(); else openChat(); });
+  });
+  chat.querySelector('[data-close-chat]').addEventListener('click', closeChat);
+  chat.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeChat(); });
+  document.getElementById('chat-chips').addEventListener('click', function (e) {
+    var b = e.target.closest('[data-ask]'); if (!b) return; say('me', b.dataset.ask); reply(b.dataset.ask);
+  });
+  chatForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var t = chatInput.value.trim(); if (!t) return;
+    chatInput.value = ''; say('me', t); reply(t);
   });
 })();
 </script>
