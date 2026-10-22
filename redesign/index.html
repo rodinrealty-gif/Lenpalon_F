@@ -326,6 +326,10 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 </style>
 </head>
 <body>
+<script>
+/* Архив версий: #v3 — версия 3 редизайна, #l2 — версия 2 первого лендинга, #versions — список (versions/, см. versions.py) */
+(function () { var m = /^#([vl]\d+|versions)$/.exec(location.hash); if (m) location.replace(m[1] === 'versions' ? 'versions/index.html' : 'versions/' + m[1] + '/index.html'); })();
+</script>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
   <symbol id="close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
