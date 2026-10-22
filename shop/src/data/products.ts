@@ -91,7 +91,7 @@ function stub(n: number, category: CategorySlug, tilePhoto: string): Product {
 
 const lenpalon: Product = {
   slug: 'lenpalon-family',
-  name: 'Ленпалон Фемили',
+  name: 'Ленпалон Фэмили',
   category: 'digestion',
   shortDescription: 'Курс на 15 дней: 4 состава, 18 капсул',
   description:
@@ -105,13 +105,13 @@ const lenpalon: Product = {
   highlights: defaultHighlights,
   photos: {
     tile: {
-      alt: 'Ленпалон Фемили',
-      placeholder: 'Фото 1:1. Коробка «Ленпалон Фемили» на светлой поверхности',
+      alt: 'Ленпалон Фэмили',
+      placeholder: 'Фото 1:1. Коробка «Ленпалон Фэмили» на светлой поверхности',
     },
     main: {
-      alt: 'Ленпалон Фемили',
+      alt: 'Ленпалон Фэмили',
       placeholder:
-        'Фото 4:5, 1600 на 2000. Коробка «Ленпалон Фемили» и блистер с капсулами на светлой поверхности',
+        'Фото 4:5, 1600 на 2000. Коробка «Ленпалон Фэмили» и блистер с капсулами на светлой поверхности',
     },
     extra: [
       { alt: 'Капсулы четырёх цветов', placeholder: 'Фото 1:1. Четыре цветные капсулы на ладони' },

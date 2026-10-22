@@ -2,311 +2,290 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ленпалон Фемили — забота о желудке каждый день</title>
-<meta name="description" content="«Ленпалон Фемили» — функциональное питание: 4 состава, 3 цикла, 18 капсул. Готовая схема на 15 дней. Курс 9 700 ₽, бесплатная доставка по России.">
-<meta name="theme-color" content="#232427">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ленпалон Фэмили</title>
+<meta name="description" content="«Ленпалон Фэмили» — функциональное питание: 4 состава, 3 цикла, 18 капсул. Готовая схема на 15 дней. Курс 9 700 ₽, бесплатная доставка по России.">
+<meta name="theme-color" content="#FFFFFF">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ru_RU">
-<meta property="og:title" content="Ленпалон Фемили — забота о желудке каждый день">
+<meta property="og:title" content="Ленпалон Фэмили — забота о вашем желудке каждый день">
 <meta property="og:description" content="4 состава, 3 цикла, 18 капсул. Готовая схема на 15 дней.">
 <meta property="og:url" content="https://lenpalonfamily.ru/">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='16' fill='%23232427'/%3E%3Ccircle cx='16' cy='16' r='6' fill='%23F8F7F2'/%3E%3C/svg%3E">
+<meta property="og:image" content="https://lenpalonfamily.ru/img/box.jpg">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3' y='10' width='26' height='12' rx='6' fill='%23FF5F04'/%3E%3Cpath d='M16 10h7a6 6 0 0 1 0 12h-7Z' fill='%230A0A0A'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
+/* Строгая витрина: белый фон, чёрный текст и кнопки, один оранжевый акцент, светлые серые подложки под фото */
 :root{
-  color-scheme:light;
-  /* палитра */
-  --forest:#232427;        /* тёмно-серый (графит): первый экран, кнопки, подвал */
-  --forest-hover:#3A3C41;  /* графит при наведении */
-  --gray:#EDEEF0;          /* серый фон секции составов */
-  --card:#FFFFFF;          /* карточки на сером */
-  --cream:#FFFFFF;         /* белые секции и светлые кнопки */
-  --stone:#F2F3F4;         /* светло-серые карточки на белом */
-  --lime:#E2E4E7;          /* серые бейджи и промо-полоса */
-  --ink:#1D1E21;           /* основной текст, 16:1 на белом */
-  --ink-soft:#4B4E55;      /* вторичный текст, 8:1 на белом */
-  --on-dark:#FFFFFF;
-  --on-dark-soft:#C3C6CC;  /* вторичный текст на графите, 9:1 */
-  --line-dark:rgba(255,255,255,.22);
-  --line-light:#DCDEE2;
-  --cap1:#6DBE5A;--cap2:#5DB7E8;--cap3:#D9B572;--cap4:#9B86D6;
-  /* форма */
-  --r-xl:32px;--r-lg:24px;--r-md:16px;--pill:999px;
-  --font:'Inter Tight',system-ui,-apple-system,'Segoe UI',sans-serif;
-  --mono:'JetBrains Mono',ui-monospace,monospace;
+  --bg:#FFFFFF;
+  --ink:#0A0A0A;          /* текст, кнопки, полоса и подвал */
+  --ink-2:#4A4A48;        /* вторичный текст, 9:1 на белом */
+  --paper:#F3F3F1;        /* подложка под фото продукта */
+  --stone:#E9E7E3;        /* тёплый серый: плашки */
+  --line:#DEDCD7;
+  --accent:#FF5F04;       /* оранжевый: знак, маркеры, наведение (только графика) */
+  --on-ink:#FFFFFF;
+  --on-ink-2:#B9B7B2;     /* вторичный текст на чёрном, 9:1 */
+  --cap1:#80C77D;--cap2:#4CB9D6;--cap3:#D9BD82;--cap4:#A987C9;  /* цвета капсул из макета блистера */
+  --font:'Inter Tight','Helvetica Neue',Arial,system-ui,sans-serif;
+  --r:12px;--r-btn:6px;--pill:999px;
+  --gutter:clamp(16px,4vw,80px);
   --ease:cubic-bezier(.22,1,.36,1);
-  --gutter:clamp(16px,3.5vw,64px);
-  --header-h:76px;
 }
 *,*::before,*::after{box-sizing:border-box}
 [hidden]{display:none!important}
-html{-webkit-text-size-adjust:100%;scroll-padding-top:calc(var(--header-h) + 24px)}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:110px}
 @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
-body{margin:0;background:var(--cream);color:var(--ink);font-family:var(--font);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:clip}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:19px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:clip}
 a{color:inherit;text-decoration:none}
-button,input{font:inherit}
-h1,h2,h3,p,ul{margin:0}
-ul{padding:0;list-style:none}
+button,input{font:inherit;color:inherit}
+h1,h2,h3,p,ul,ol,figure{margin:0}
+ul,ol{padding:0;list-style:none}
+img{max-width:100%;display:block}
 :focus-visible{outline:2px solid var(--ink);outline-offset:3px}
-.hero :focus-visible,.header :focus-visible,.footer :focus-visible,.day.rest :focus-visible{outline-color:#FFFFFF}
-.vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.skip{position:absolute;left:16px;top:-100px;z-index:100;background:var(--cream);color:var(--ink);padding:12px 20px;border-radius:var(--pill);font-weight:500}
+.bar :focus-visible,.footer :focus-visible,.dark :focus-visible,.day.rest :focus-visible{outline-color:var(--on-ink)}
+.skip{position:absolute;left:16px;top:-100px;z-index:100;background:var(--ink);color:var(--on-ink);padding:12px 20px;border-radius:var(--r-btn);font-weight:600}
 .skip:focus{top:12px}
-.wrap{max-width:1600px;margin:0 auto;padding:0 var(--gutter)}
+.wrap{max-width:1600px;margin:0 auto;padding-left:max(var(--gutter),env(safe-area-inset-left,0px));padding-right:max(var(--gutter),env(safe-area-inset-right,0px))}
 
 /* ---------- кнопки ---------- */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:0 32px;border-radius:var(--pill);border:0;font-size:18px;font-weight:500;cursor:pointer;white-space:nowrap;transition:background-color .25s,color .25s,transform .3s var(--ease)}
-.btn:active{transform:scale(.97)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:60px;padding:0 34px;border-radius:var(--r-btn);border:2px solid var(--ink);background:var(--ink);color:var(--on-ink);font-size:19px;font-weight:700;cursor:pointer;white-space:nowrap;transition:background-color .2s,color .2s,border-color .2s,transform .2s var(--ease)}
+.btn:hover{background:#2A2A28;border-color:#2A2A28}
+.btn:active{transform:translateY(1px)}
 .btn:disabled{opacity:.55;cursor:not-allowed}
-.btn-cream{background:var(--cream);color:var(--ink)}
-.btn-cream:hover{background:var(--lime);color:var(--ink)}
-.btn-forest{background:var(--forest);color:var(--cream)}
-.btn-forest:hover{background:var(--forest-hover)}
-.btn-sm{min-height:48px;padding:0 24px;font-size:16px}
-.link-arrow{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:18px;min-height:44px}
-.link-arrow span{border-bottom:2px solid currentColor;padding-bottom:2px}
-.link-arrow svg{transition:transform .3s var(--ease)}
-.link-arrow:hover svg{transform:translateX(4px)}
-.i{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.btn-line{background:transparent;color:var(--ink)}
+.btn-line:hover{background:var(--ink);color:var(--on-ink);border-color:var(--ink)}
+.btn-sm{min-height:48px;padding:0 22px;font-size:16px}
+.btn-white{background:var(--on-ink);color:var(--ink);border-color:var(--on-ink)}
+.btn-white:hover{background:var(--accent);border-color:var(--accent);color:var(--ink)}
+.i{width:22px;height:22px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 
-/* ---------- промо-полоса ---------- */
-.promo{background:var(--lime);color:var(--ink);text-align:center;font-size:16px;padding:14px 16px;line-height:1.4}
-.promo a{border-bottom:1px solid currentColor;display:inline-flex;align-items:center;gap:6px}
-
-/* ---------- шапка ---------- */
-.header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;height:0}
-.header-in{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px var(--gutter);transition:padding .3s var(--ease)}
-.header-l,.header-r{display:flex;align-items:center;gap:8px;border-radius:var(--pill);padding:6px 10px;transition:background-color .3s}
-.header.scrolled .header-l,.header.scrolled .header-r{background:rgba(35,36,39,.92);backdrop-filter:blur(10px)}
-.logo{display:inline-flex;align-items:center;gap:6px;color:var(--on-dark);font-size:26px;font-weight:500;letter-spacing:-.03em;padding:0 12px;min-height:48px;white-space:nowrap}
-.logo i{width:18px;height:18px;border-radius:50%;background:currentColor;display:inline-block}
-.nav{display:flex;gap:4px}
-.nav a{color:var(--on-dark);font-size:18px;padding:0 18px;min-height:48px;display:inline-flex;align-items:center;border-radius:var(--pill);transition:background-color .2s}
-.nav a:hover{background:rgba(255,255,255,.12)}
-.nav a[aria-current="true"]{background:rgba(255,255,255,.16)}
-.header-r .tel{color:var(--on-dark);font-size:18px;padding:0 14px;min-height:48px;display:inline-flex;align-items:center;gap:8px;border-radius:var(--pill)}
-.header-r .tel:hover{background:rgba(255,255,255,.12)}
-.burger{display:none;width:48px;height:48px;border-radius:50%;border:0;background:rgba(255,255,255,.14);color:var(--on-dark);cursor:pointer;align-items:center;justify-content:center}
+/* ---------- полоса и шапка ---------- */
+.bar{background:var(--ink);color:var(--on-ink);text-align:center;font-size:18px;font-weight:500;padding-block:16px}
+.bar a{text-decoration:underline;text-underline-offset:4px}
+.bar a:hover{color:var(--accent)}
+.header{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--bg);border-bottom:1px solid var(--line);transition:box-shadow .3s}
+.header.scrolled{box-shadow:0 6px 24px rgba(0,0,0,.06)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--bg)}
+.header-in{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px;min-height:104px}
+.nav{display:flex;gap:8px}
+.nav a{font-size:20px;font-weight:600;min-height:48px;display:inline-flex;align-items:center;padding:0 12px;border-bottom:2px solid transparent}
+.nav a:hover{border-color:var(--accent)}
+.logo{display:flex;flex-direction:column;align-items:center;gap:6px;line-height:1}
+.logo-mark{width:46px;height:22px;display:block}
+.logo-word{font-size:28px;font-weight:700;letter-spacing:-.03em;white-space:nowrap}
+.header-r{display:flex;align-items:center;justify-content:flex-end;gap:12px}
+.tel{display:inline-flex;align-items:center;gap:8px;font-size:19px;font-weight:600;min-height:48px;padding:0 8px;white-space:nowrap}
+.tel:hover{color:var(--ink-2)}
+.burger{display:none;width:48px;height:48px;border-radius:var(--r-btn);border:2px solid var(--ink);background:var(--bg);cursor:pointer;align-items:center;justify-content:center}
 .menu-panel{display:none}
 
 /* ---------- hero ---------- */
-.hero{position:relative;min-height:min(980px,calc(100vh - 52px));display:flex;align-items:center;overflow:hidden;color:var(--on-dark);
-  background:radial-gradient(120% 90% at 70% 60%,#4A4C52 0%,#2B2C30 45%,#17181A 100%)}
-.hero::after{content:"";position:absolute;inset:auto 0 0 0;height:38%;background:radial-gradient(80% 100% at 60% 100%,rgba(0,0,0,.35),transparent 70%);pointer-events:none}
-.hero-in{position:relative;z-index:2;width:100%;padding-top:140px;padding-bottom:96px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px;align-items:center}
-.hero h1{font-size:clamp(44px,5.6vw,84px);font-weight:500;letter-spacing:-.035em;line-height:1.04;max-width:12ch;text-wrap:balance}
-.hero p{margin-top:28px;font-size:clamp(18px,1.5vw,22px);line-height:1.45;max-width:36ch;color:var(--on-dark)}
-.hero-cta{margin-top:44px;display:flex;flex-wrap:wrap;align-items:center;gap:20px 28px}
-.hero-art{position:relative;aspect-ratio:1/1;max-width:640px;width:100%;justify-self:end}
-.hero-art svg{width:100%;height:100%;display:block;overflow:visible}
+.hero{padding-block:56px 96px}
+.hero-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,5vw,96px);align-items:center}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:16px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.eyebrow::before{content:"";width:28px;height:12px;border-radius:var(--pill);background:var(--accent)}
+.hero h1{margin-top:24px;font-size:clamp(46px,6vw,96px);font-weight:600;letter-spacing:-.04em;line-height:1;text-wrap:balance}
+.hero p.lead{margin-top:28px;font-size:clamp(19px,1.6vw,23px);line-height:1.45;max-width:40ch;color:var(--ink-2)}
+.hero-cta{margin-top:40px;display:flex;flex-wrap:wrap;gap:14px}
+.facts{margin-top:56px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:2px solid var(--ink)}
+.facts li{padding:18px 16px 0 0}
+.facts b{display:block;font-size:clamp(36px,3.6vw,56px);font-weight:600;letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums}
+.facts span{display:block;margin-top:6px;font-size:17px;color:var(--ink-2)}
+.hero-photo{background:var(--paper);border-radius:var(--r);overflow:hidden;aspect-ratio:46/57;max-width:100%}
+.hero-photo img{width:100%;height:100%;object-fit:cover}
 
-/* ---------- продукты на тёмном ---------- */
-.products{background:var(--gray);color:var(--ink);padding:120px 0 140px}
-.products-head{display:grid;grid-template-columns:1.1fr 1fr auto;gap:24px 48px;align-items:end;margin-bottom:64px}
-.products-head h2{font-size:clamp(40px,4.6vw,72px);font-weight:500;letter-spacing:-.035em;line-height:1.05;text-wrap:balance}
-.products-head p{font-size:20px;line-height:1.45;color:var(--ink-soft);max-width:44ch}
-.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;align-items:start}
-.card{position:relative;background:var(--card);color:var(--ink);border-radius:var(--r-xl);padding:52px 24px 36px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:20px;
-  transition:transform .45s var(--ease),background-color .3s}
-.card:hover,.card:focus-within{transform:translateY(-36px);background:var(--forest);color:var(--on-dark)}
-.card .tag{border:1.5px solid currentColor;border-radius:var(--pill);padding:4px 14px;font-size:20px;letter-spacing:-.01em}
-.card h3{font-size:clamp(24px,2vw,32px);font-weight:500;letter-spacing:-.02em;line-height:1.15}
-.card .art{width:100%;max-width:260px;aspect-ratio:1/1;display:grid;place-items:center}
-.card .art svg{width:100%;height:100%}
-.card .btn{background:var(--forest);color:var(--cream);transition:background-color .25s,color .25s}
-.card:hover .btn,.card:focus-within .btn{background:var(--cream);color:var(--ink)}
-.card .btn svg{width:0;opacity:0;transition:width .3s var(--ease),opacity .3s}
-.card:hover .btn svg,.card:focus-within .btn svg{width:20px;opacity:1}
-.card .meta{font-size:17px;color:var(--ink-soft)}
-.card:hover .meta,.card:focus-within .meta{color:var(--on-dark-soft)}
-.card:focus-within :focus-visible{outline-color:#FFFFFF}
-.badge{position:absolute;left:16px;top:16px;background:var(--lime);color:var(--ink);border-radius:var(--pill);padding:6px 14px;font-size:15px;font-weight:600}
+/* ---------- три колонки ---------- */
+.pillars{padding-block:24px 120px}
+.pillars-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(24px,3.5vw,72px)}
+.pillar{display:flex;flex-direction:column;gap:28px;min-width:0}
+.pillar-media{position:relative;background:var(--paper);border-radius:var(--r);aspect-ratio:556/460;overflow:hidden;display:grid;place-items:center;max-width:100%}
+.pillar-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain}
+.pillar-media.pad img{padding:7% 10%}
+.pillar-media.wide img{padding:0 8%}
+.pillar-media.type{background:var(--ink);color:var(--on-ink);place-items:end start;padding:clamp(24px,3vw,40px)}
+.pillar-media.type b{font-size:clamp(72px,9vw,150px);font-weight:600;letter-spacing:-.05em;line-height:.85}
+.pillar-media.type b small{display:block;font-size:.26em;letter-spacing:-.01em;font-weight:500;margin-top:14px;color:var(--on-ink-2)}
+.pillar h2{font-size:clamp(36px,3.4vw,54px);font-weight:600;letter-spacing:-.035em;line-height:1.02}
+.pillar p{font-size:clamp(18px,1.4vw,22px);line-height:1.5;max-width:40ch}
+.pillar-body{display:flex;flex-direction:column;gap:14px;padding-inline:clamp(0px,1.5vw,28px);flex:1}
+.pillar-body .btn{align-self:flex-start;margin-top:auto}
+.pillar-body p{margin-bottom:22px}
 
-/* ---------- светлые секции ---------- */
-.light{background:var(--cream);color:var(--ink)}
-.sheet{border-radius:var(--r-xl) var(--r-xl) 0 0;margin-top:-40px;position:relative;z-index:3}
-.bundle{padding:140px 0 120px}
-.bundle-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:56px;align-items:center}
-.pill-lime{display:inline-flex;background:var(--lime);border-radius:var(--pill);padding:8px 16px;font-size:17px;font-weight:600}
-.bundle h2{margin-top:28px;font-size:clamp(38px,3.8vw,60px);font-weight:500;letter-spacing:-.03em;line-height:1.08;text-wrap:balance}
-.bundle p.lead{margin-top:28px;font-size:21px;line-height:1.45;color:var(--ink-soft);max-width:42ch}
-.bundle .btn{margin-top:40px}
-.bundle-media{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
-.bundle-main{grid-column:1/-1;background:var(--stone);border-radius:var(--r-xl);aspect-ratio:16/9;position:relative;overflow:hidden}
-.bundle-main svg{width:100%;height:100%;display:block}
-.thumb{background:var(--stone);border-radius:var(--r-lg);aspect-ratio:8/7;overflow:hidden;position:relative}
-.thumb svg{width:100%;height:100%;display:block}
-.thumb figcaption{position:absolute;left:14px;bottom:12px;font-family:var(--mono);font-size:13px;color:var(--ink-soft)}
+/* ---------- четыре состава ---------- */
+.section-head{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px 40px;margin-bottom:48px}
+.section-head h2{font-size:clamp(40px,4.4vw,72px);font-weight:600;letter-spacing:-.04em;line-height:1}
+.section-head p{font-size:20px;color:var(--ink-2);max-width:46ch}
+.dark .section-head p{color:var(--on-ink-2)}
+.caps{padding-block:96px 120px;border-top:1px solid var(--line)}
+.caps-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}
+.cap-card{display:flex;flex-direction:column;gap:14px;min-width:0}
+.cap-media{position:relative;background:var(--paper);border-radius:var(--r);aspect-ratio:1/1;display:grid;place-items:center;overflow:hidden;margin-bottom:6px}
+.cap-media img{width:60%;height:auto;transition:transform .5s var(--ease)}
+.cap-card:hover .cap-media img{transform:rotate(-10deg) scale(1.06)}
+.cap-media .num{position:absolute;left:16px;top:16px;font-size:16px;font-weight:700;background:var(--bg);border-radius:var(--pill);padding:6px 14px}
+.cap-card h3{font-size:28px;font-weight:600;letter-spacing:-.025em}
+.cap-card .when{display:flex;align-items:center;gap:10px;font-weight:600;font-size:17px}
+.cap-card .when::before{content:"";width:22px;height:10px;border-radius:var(--pill);background:var(--c);flex:none}
 
-/* ---------- схема ---------- */
-.science{padding:60px 0 140px}
-.science-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:56px;align-items:stretch}
-.science-text{display:flex;flex-direction:column;justify-content:space-between;gap:48px;padding:16px 0}
-.mark{display:inline-flex;align-items:center;gap:6px;font-size:28px;letter-spacing:-.02em}
-.mark b{font-weight:400;font-size:30px}
-.science h2{font-size:clamp(44px,4.6vw,76px);font-weight:500;letter-spacing:-.035em;line-height:1.05}
-.science p.lead{margin-top:28px;font-size:21px;line-height:1.45;max-width:44ch}
-.play{display:inline-flex;align-items:center;gap:18px;background:var(--forest);color:var(--cream);border-radius:var(--pill);padding:8px 8px 8px 40px;font-size:20px;font-weight:500;margin-top:44px;min-height:64px;transition:background-color .25s}
-.play:hover{background:var(--forest-hover)}
-.play span.c{width:48px;height:48px;border-radius:50%;background:rgba(255,255,255,.16);display:grid;place-items:center}
-.crumb{font-family:var(--mono);font-size:20px;letter-spacing:.02em;text-transform:uppercase;color:var(--ink-soft)}
-.crumb b{font-family:var(--font);text-transform:none;color:var(--ink);font-weight:500;letter-spacing:0}
-.science-art{background:var(--stone);border-radius:var(--r-xl);min-height:640px;position:relative;overflow:hidden}
-.science-art svg{position:absolute;inset:0;width:100%;height:100%}
+/* ---------- покупка и блистеры ---------- */
+.dark{background:var(--ink);color:var(--on-ink)}
+.buy{padding-block:110px}
+.buy-in{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,5vw,96px);align-items:center}
+.buy h2{margin-top:20px;font-size:clamp(42px,4.6vw,76px);font-weight:600;letter-spacing:-.04em;line-height:1}
+.buy p.lead{margin-top:24px;font-size:21px;line-height:1.5;color:var(--on-ink-2);max-width:42ch}
+.price{margin-top:40px;display:flex;align-items:baseline;gap:16px;flex-wrap:wrap}
+.price b{font-size:clamp(44px,4vw,64px);font-weight:600;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.price span{font-size:18px;color:var(--on-ink-2)}
+.ticks{margin-top:28px;display:grid;gap:12px}
+.ticks li{display:flex;gap:12px;align-items:center;font-size:18px}
+.ticks li::before{content:"";width:10px;height:10px;border-radius:2px;background:var(--accent);flex:none}
+.buy .btn{margin-top:32px}
+.blisters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(10px,1.6vw,24px)}
+.blisters figure{display:flex;flex-direction:column;gap:12px;min-width:0}
+.blisters img{width:100%;height:auto;border-radius:10px}
+.blisters figcaption{font-size:16px;color:var(--on-ink-2);text-align:center}
+.blisters figcaption b{color:var(--on-ink);font-weight:600}
 
 /* ---------- схема по дням ---------- */
-.days{padding:0 0 140px}
-.days h2{font-size:clamp(36px,3.4vw,52px);font-weight:500;letter-spacing:-.03em;line-height:1.08;margin-bottom:40px}
+.days{padding-block:110px 120px}
 .days-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
-.day{background:var(--stone);border-radius:var(--r-lg);padding:28px;display:flex;flex-direction:column;gap:20px}
-.day h3{font-size:24px;font-weight:500;letter-spacing:-.02em}
+.day{border:2px solid var(--ink);border-radius:var(--r);padding:28px;display:flex;flex-direction:column;gap:22px;min-width:0}
+.day h3{font-size:26px;font-weight:600;letter-spacing:-.02em}
 .dose{display:flex;gap:14px;align-items:center}
-.cap{width:46px;height:22px;border-radius:var(--pill);background:var(--c);box-shadow:inset 0 -5px 0 rgba(0,0,0,.1);position:relative;flex:none}
-.cap::after{content:"";position:absolute;left:50%;top:3px;bottom:3px;width:1px;background:rgba(255,255,255,.7)}
-.dose b{display:block;font-weight:600}
-.dose span{color:var(--ink-soft);font-size:15px}
-.day.rest{background:var(--forest);color:var(--on-dark)}
-.day.rest p{color:var(--on-dark-soft)}
-.days-note{margin-top:20px;display:flex;flex-wrap:wrap;gap:12px 28px;font-family:var(--mono);font-size:15px;color:var(--ink-soft)}
+.dose img{width:52px;height:auto;flex:none}
+.dose b{display:block;font-weight:700;font-size:18px}
+.dose span{color:var(--ink-2);font-size:16px}
+.day.rest{background:var(--ink);color:var(--on-ink)}
+.day.rest p{color:var(--on-ink-2);font-size:18px}
+.day.rest p b{color:var(--on-ink)}
+.days-note{margin-top:24px;display:flex;flex-wrap:wrap;gap:10px 32px;font-size:17px;color:var(--ink-2);font-weight:500}
 
 /* ---------- подвал ---------- */
-.footer{background:var(--forest);color:var(--on-dark);padding:96px 0 0}
-.footer-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:64px}
-.footer .logo{font-size:44px;padding:0}
-.footer .logo i{width:30px;height:30px}
-.statement{margin-top:36px;font-size:clamp(30px,2.8vw,44px);line-height:1.2;letter-spacing:-.025em;font-weight:500;max-width:22ch}
-.statement svg{width:1em;height:1em;vertical-align:-.12em;stroke:currentColor;fill:none;stroke-width:1.6;margin:0 .1em}
-.sub{margin-top:56px;max-width:600px}
-.sub label{display:block;font-size:22px;font-weight:500}
-.sub .hint{color:var(--on-dark-soft);font-size:18px;margin-top:4px}
-.sub-row{margin-top:24px;display:flex;align-items:center;border:2px solid var(--on-dark);border-radius:var(--r-md);min-height:68px;padding:0 8px 0 28px;transition:border-color .2s}
-.sub-row:focus-within{border-color:#FFFFFF;box-shadow:0 0 0 2px rgba(255,255,255,.35)}
-.sub-row input{flex:1;min-width:0;background:transparent;border:0;color:var(--on-dark);font-size:19px;outline:none;min-height:60px}
-.sub-row input::placeholder{color:var(--on-dark);opacity:1}
-.sub-row button{width:52px;height:52px;border-radius:50%;border:0;background:transparent;color:var(--on-dark);cursor:pointer;display:grid;place-items:center}
-.sub-row button:hover{background:rgba(255,255,255,.12)}
-.sub-msg{margin-top:10px;font-size:16px;min-height:24px;color:var(--on-dark-soft)}
-.sub-msg[data-kind="error"]{color:#FFC9BF}
-.sub-msg[data-kind="ok"]{color:#FFFFFF}
-.disclaimer{margin-top:36px;border:1px solid var(--line-dark);border-radius:var(--r-md);padding:18px 22px;font-size:16px;line-height:1.5;max-width:600px}
-.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:56px 32px}
-.cols h3{font-size:16px;letter-spacing:.06em;text-transform:uppercase;color:var(--on-dark-soft);font-weight:500;margin-bottom:22px}
-.cols li+li{margin-top:6px}
-.cols a{hyphens:auto;overflow-wrap:break-word;font-size:19px;min-height:38px;display:inline-flex;align-items:center;border-bottom:1px solid transparent}
-.cols a:hover{border-color:currentColor}
-.footer-bottom{margin-top:96px;min-height:280px;display:flex;align-items:flex-end;justify-content:center;padding-bottom:40px;color:var(--on-dark-soft);font-size:16px;text-align:center;
-  background:
-   radial-gradient(circle at 12% 30%,rgba(255,255,255,.14) 0 2px,transparent 3px) 0 0/28px 28px,
-   radial-gradient(60% 120% at 20% 0%,#3A3C41 0%,transparent 70%),
-   radial-gradient(70% 120% at 85% 10%,#45474D 0%,transparent 65%),
-   #2B2C30}
-.footer-bottom > span{background:rgba(35,36,39,.6);padding:6px 14px;border-radius:var(--pill)}
+.footer{background:var(--ink);color:var(--on-ink);padding-block:96px 40px}
+.footer-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:64px}
+.footer .logo{align-items:flex-start}
+.footer .logo-word{font-size:clamp(28px,8vw,40px);white-space:normal}
+.statement{margin-top:32px;font-size:clamp(30px,2.8vw,46px);font-weight:600;letter-spacing:-.03em;line-height:1.1;max-width:18ch}
+.statement em{font-style:normal;color:var(--accent)}
+.sub{margin-top:48px;max-width:560px}
+.sub label{display:block;font-size:20px;font-weight:600}
+.sub .hint{margin-top:6px;color:var(--on-ink-2);font-size:16px}
+.sub .hint a{text-decoration:underline}
+.sub-row{margin-top:18px;display:flex;gap:8px;flex-wrap:wrap}
+.sub-row input{flex:1 1 220px;min-width:0;min-height:60px;border-radius:var(--r-btn);border:2px solid #3A3A38;background:#161616;color:var(--on-ink);padding:0 20px;font-size:18px}
+.sub-row input::placeholder{color:var(--on-ink-2);opacity:1}
+.sub-row input:hover{border-color:#5A5A57}
+.sub-row input:focus-visible{border-color:var(--on-ink);outline:none}
+.sub-row input[aria-invalid="true"]{border-color:#FF8A65}
+.sub-msg{margin-top:10px;font-size:16px;color:var(--on-ink-2);min-height:24px}
+.sub-msg[data-kind="error"]{color:#FFB199}
+.sub-msg[data-kind="ok"]{color:var(--on-ink)}
+.disclaimer{margin-top:36px;border:1px solid #3A3A38;border-radius:var(--r);padding:18px 22px;font-size:16px;line-height:1.5;color:var(--on-ink-2);max-width:560px}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));gap:48px 32px;align-content:start}
+.cols h3{font-size:15px;letter-spacing:.1em;text-transform:uppercase;color:var(--on-ink-2);font-weight:600;margin-bottom:18px}
+.cols li+li{margin-top:4px}
+.cols a{font-size:19px;font-weight:500;min-height:40px;display:inline-flex;align-items:center;border-bottom:1px solid transparent;overflow-wrap:anywhere}
+.cols a:hover{border-color:var(--accent)}
+.footer-bottom{margin-top:80px;padding-top:24px;border-top:1px solid #2A2A28;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 32px;font-size:15px;color:var(--on-ink-2)}
 
 /* ---------- диалог заявки ---------- */
-.dialog{border:0;border-radius:var(--r-xl);padding:0;width:min(520px,calc(100% - 32px));background:var(--cream);color:var(--ink)}
-.dialog::backdrop{background:rgba(15,16,18,.6)}
-.dialog-in{padding:36px 32px;display:flex;flex-direction:column;gap:18px}
-.dialog h2{font-size:32px;font-weight:500;letter-spacing:-.025em;line-height:1.1}
-.dialog .close{position:absolute;right:16px;top:16px;width:44px;height:44px;border-radius:50%;border:0;background:var(--stone);cursor:pointer;display:grid;place-items:center;color:var(--ink)}
+.dialog{border:0;border-radius:var(--r);padding:0;width:min(540px,calc(100% - 32px));background:var(--bg);color:var(--ink)}
+.dialog::backdrop{background:rgba(0,0,0,.55)}
+.dialog-in{padding:40px 32px 32px;display:flex;flex-direction:column;gap:18px}
+.dialog h2{font-size:34px;font-weight:600;letter-spacing:-.03em;line-height:1.05}
+.dialog .close{position:absolute;right:14px;top:14px;width:44px;height:44px;border-radius:var(--r-btn);border:0;background:var(--paper);cursor:pointer;display:grid;place-items:center}
+.dialog .close:hover{background:var(--stone)}
 .field{display:flex;flex-direction:column;gap:6px}
-.field label{font-size:15px;font-weight:600}
-.field input{min-height:56px;border-radius:var(--pill);border:1.5px solid var(--line-light);background:#fff;padding:0 22px;font-size:17px;color:var(--ink)}
-.field input:hover{border-color:var(--ink-soft)}
-.field input:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.field label{font-size:16px;font-weight:600}
+.field input{min-height:58px;border-radius:var(--r-btn);border:2px solid var(--line);background:var(--bg);padding:0 18px;font-size:18px}
+.field input:hover{border-color:var(--ink-2)}
+.field input:focus-visible{border-color:var(--ink);outline:none}
 .field input[aria-invalid="true"]{border-color:#B42318}
-.err{color:#B42318;font-size:14px;min-height:0}
+.err{color:#B42318;font-size:15px}
 .err:empty{display:none}
-.check{display:flex;gap:12px;align-items:flex-start;font-size:14px;line-height:1.45;color:var(--ink-soft);cursor:pointer}
-.check input{width:22px;height:22px;margin:0;flex:none;accent-color:var(--forest)}
+.check{display:flex;gap:12px;align-items:flex-start;font-size:15px;line-height:1.45;color:var(--ink-2);cursor:pointer}
+.check input{width:22px;height:22px;margin:0;flex:none;accent-color:var(--ink)}
 .check a{text-decoration:underline}
-.fine{font-size:14px;color:var(--ink-soft);line-height:1.45}
+.fine{font-size:15px;color:var(--ink-2);line-height:1.45}
 .ok{display:flex;flex-direction:column;gap:12px}
-
-/* ---------- появление ---------- */
-@media (prefers-reduced-motion:no-preference){
-  .hero-art .float{animation:float 7s ease-in-out infinite}
-  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
-}
-@media (prefers-reduced-motion:reduce){.card:hover,.card:focus-within{transform:none}}
 
 /* ---------- адаптив ---------- */
 @media (max-width:1180px){
-  .nav,.header-r .tel span{display:none}
+  .header-in{grid-template-columns:1fr auto;min-height:80px}
+  .nav,.tel span,.header-r .btn{display:none}
   .burger{display:inline-flex}
-  .menu-panel.open{display:flex;flex-direction:column;gap:4px;position:absolute;left:var(--gutter);right:var(--gutter);top:calc(100% + 6px);background:var(--forest);border:1px solid var(--line-dark);border-radius:var(--r-lg);padding:12px}
-  .menu-panel a{color:var(--on-dark);font-size:20px;min-height:52px;display:flex;align-items:center;padding:0 16px;border-radius:var(--r-md)}
-  .menu-panel a:hover{background:rgba(255,255,255,.1)}
-  .header-in{position:relative}
-  .cards{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .card:hover,.card:focus-within{transform:translateY(-12px)}
-  .products-head{grid-template-columns:1fr}
-  .days-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .logo{flex-direction:row;gap:10px;justify-self:start}
+  .logo-word{font-size:24px}
+  .menu-panel.open{display:flex;flex-direction:column;gap:6px;position:absolute;left:0;right:0;top:100%;background:var(--bg);border-bottom:1px solid var(--line);padding:12px max(var(--gutter),env(safe-area-inset-right,0px)) 20px max(var(--gutter),env(safe-area-inset-left,0px))}
+  .menu-panel a{font-size:21px;font-weight:600;min-height:52px;display:flex;align-items:center;border-bottom:1px solid var(--line)}
+  .menu-panel .btn{margin-top:12px}
+  .caps-grid,.days-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .buy-in{grid-template-columns:minmax(0,1fr)}
 }
 @media (max-width:900px){
-  .hero-in,.bundle-in,.science-in,.footer-grid{grid-template-columns:minmax(0,1fr)}
-  .hero-in{padding-top:120px;gap:8px}
-  .hero-art{justify-self:center;max-width:460px}
-  .science-art{min-height:420px}
+  .hero-in,.footer-grid{grid-template-columns:minmax(0,1fr)}
+  .pillars-grid{grid-template-columns:minmax(0,1fr);gap:64px}
+  .hero-photo{max-width:520px}
 }
 @media (max-width:640px){
-  body{font-size:16px}
-  .header-r .btn{display:none}
-  .logo{font-size:22px}
-  .hero h1{font-size:44px}
+  body{font-size:17px}
+  .bar{font-size:15px}
+  .logo-mark{width:36px;height:17px}
+  .logo-word{font-size:20px}
+  .hero{padding-block:32px 72px}
   .hero-cta .btn{width:100%}
-  .products{padding:88px 0 96px}
-  .cards{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:16px;margin:0 calc(-1 * var(--gutter));padding:40px var(--gutter) 8px}
-  .card{flex:0 0 82%;scroll-snap-align:center}
-  .card:hover,.card:focus-within{transform:none}
-  .bundle{padding:100px 0 80px}
-  .bundle-media{gap:10px}
-  .thumb figcaption{display:none}
-  .days-grid{grid-template-columns:1fr}
-  .cols{grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 20px}
-  .crumb{font-size:15px}
-  .play{padding-left:28px}
+  .facts span{font-size:15px}
+  .caps,.buy,.days{padding-block:72px}
+  .caps-grid{gap:16px}
+  .cap-card h3{font-size:22px}
+  .cap-card .when{font-size:15px}
+  .days-grid{grid-template-columns:minmax(0,1fr)}
+  .blisters figcaption{font-size:13px}
+  .footer{padding-block:72px 32px}
 }
+@media (max-width:380px){.header .logo-mark{display:none}.header-in{gap:12px}}
+@media (prefers-reduced-motion:reduce){.cap-card:hover .cap-media img{transform:none}}
 </style>
 </head>
 <body>
-<!-- SVG-иконки -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
   <symbol id="menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
   <symbol id="close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
   <symbol id="phone" viewBox="0 0 24 24"><path d="M15.4 13.6 19 15.2c.4.2.6.6.5 1A4.5 4.5 0 0 1 15 20 12 12 0 0 1 4 9a4.5 4.5 0 0 1 3.8-4.5c.4 0 .8.2 1 .5l1.6 3.6c.1.3.1.6-.1.9l-1.6 2c.8 1.6 2.4 3.3 4 4l2-1.6c.2-.2.5-.3.7-.2Z"/></symbol>
+  <symbol id="mark" viewBox="0 0 46 22"><rect width="46" height="22" rx="11" fill="#FF5F04"/><path d="M23 0h12a11 11 0 0 1 0 22H23Z" fill="currentColor"/></symbol>
 </svg>
 
 <a class="skip" href="#main">К содержимому</a>
 
-<!-- SECTION: промо-полоса -->
-<div class="promo"><a href="#bundle">Бесплатная доставка по всей России — от одной упаковки <svg class="i" aria-hidden="true"><use href="#arrow"/></svg></a></div>
+<!-- SECTION: чёрная полоса -->
+<div class="bar"><div class="wrap"><a href="#buy">Бесплатная доставка по всей России — от одной упаковки</a></div></div>
 
 <!-- SECTION: шапка -->
 <header class="header" id="top">
-  <div class="header-in">
-    <div class="header-l">
-      <a class="logo" href="#top" aria-label="Ленпалон Фемили — наверх">Ленпалон<i aria-hidden="true"></i></a>
-      <nav class="nav" aria-label="Основная навигация">
-        <a href="#course">Курс</a>
-        <a href="#scheme">Схема приёма</a>
-        <a href="#bundle">Купить</a>
-      </nav>
-    </div>
+  <div class="wrap header-in">
+    <nav class="nav" aria-label="Основная навигация">
+      <a href="#course">Курс</a>
+      <a href="#capsules">Составы</a>
+      <a href="#scheme">Схема приёма</a>
+    </nav>
+    <a class="logo" href="#top" aria-label="Ленпалон Фэмили — наверх">
+      <svg class="logo-mark" aria-hidden="true"><use href="#mark"/></svg>
+      <span class="logo-word">Ленпалон Фэмили</span>
+    </a>
     <div class="header-r">
-      <a class="tel" href="tel:+79269555935"><svg class="i" aria-hidden="true"><use href="#phone"/></svg><span>+7 (926) 955-59-35</span><b class="vh">Позвонить</b></a>
-      <button type="button" class="btn btn-cream btn-sm" data-open-lead>Оставить заявку</button>
+      <a class="tel" href="tel:+79269555935" aria-label="Позвонить: +7 (926) 955-59-35"><svg class="i" aria-hidden="true"><use href="#phone"/></svg><span>+7 (926) 955-59-35</span></a>
+      <button type="button" class="btn btn-sm" data-open-lead>Оставить заявку</button>
       <button type="button" class="burger" aria-expanded="false" aria-controls="menu-panel" aria-label="Открыть меню"><svg class="i" aria-hidden="true"><use href="#menu"/></svg></button>
     </div>
     <nav class="menu-panel" id="menu-panel" aria-label="Меню">
       <a href="#course">Курс</a>
+      <a href="#capsules">Составы</a>
       <a href="#scheme">Схема приёма</a>
-      <a href="#bundle">Купить</a>
       <a href="tel:+79269555935">+7 (926) 955-59-35</a>
-      <button type="button" class="btn btn-cream" data-open-lead>Оставить заявку</button>
+      <button type="button" class="btn" data-open-lead>Оставить заявку</button>
     </nav>
   </div>
 </header>
@@ -317,181 +296,106 @@ ul{padding:0;list-style:none}
 <section class="hero">
   <div class="wrap hero-in">
     <div>
+      <span class="eyebrow">Функциональное питание</span>
       <h1>Забота о вашем желудке каждый день.</h1>
-      <p>«Ленпалон Фемили» — функциональное питание: 4 состава, 3 цикла, 18 капсул. Готовая схема на 15 дней — без подсчётов и жёстких диет.</p>
+      <p class="lead">«Ленпалон Фэмили» — курс на 15 дней с готовой схемой приёма. Капсулы пронумерованы и разложены по дням: ничего не нужно считать.</p>
       <div class="hero-cta">
-        <button type="button" class="btn btn-cream" data-open-lead>Подобрать курс</button>
-        <a class="link-arrow" href="#bundle"><span>Купить</span><svg class="i" aria-hidden="true"><use href="#arrow"/></svg></a>
+        <a class="btn" href="#buy">Купить курс — 9 700 ₽</a>
+        <button type="button" class="btn btn-line" data-open-lead>Оставить заявку</button>
       </div>
+      <ul class="facts" aria-label="Курс в цифрах">
+        <li><b>4</b><span>состава</span></li>
+        <li><b>3</b><span>цикла по 5 дней</span></li>
+        <li><b>18</b><span>капсул в упаковке</span></li>
+      </ul>
     </div>
-    <div class="hero-art" role="img" aria-label="Упаковка «Ленпалон Фемили» и четыре цветные капсулы рядом со стаканом воды">
-      <svg viewBox="0 0 600 600" aria-hidden="true">
-        <defs>
-          <linearGradient id="glass" x1="0" x2="1"><stop offset="0" stop-color="#fff" stop-opacity=".16"/><stop offset=".5" stop-color="#fff" stop-opacity=".04"/><stop offset="1" stop-color="#fff" stop-opacity=".2"/></linearGradient>
-          <linearGradient id="water" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#E6E8EB" stop-opacity=".35"/><stop offset="1" stop-color="#B9BCC2" stop-opacity=".18"/></linearGradient>
-          <linearGradient id="box" x1="0" x2="1"><stop offset="0" stop-color="#1B1C1F"/><stop offset=".55" stop-color="#3A3C41"/><stop offset="1" stop-color="#141517"/></linearGradient>
-          <linearGradient id="boxTop" x1="0" x2="1"><stop offset="0" stop-color="#45474D"/><stop offset="1" stop-color="#2F3135"/></linearGradient>
-          <radialGradient id="glow" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#C9CCD2" stop-opacity=".35"/><stop offset="1" stop-color="#C9CCD2" stop-opacity="0"/></radialGradient>
-          <filter id="soft" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="10"/></filter>
-        </defs>
-        <ellipse cx="330" cy="520" rx="260" ry="34" fill="#000" opacity=".35" filter="url(#soft)"/>
-        <!-- стакан -->
-        <g opacity=".95">
-          <path d="M70 150h170l-14 340a20 20 0 0 1-20 18H104a20 20 0 0 1-20-18Z" fill="url(#glass)" stroke="#fff" stroke-opacity=".35" stroke-width="2"/>
-          <path d="M80 255h160l-10 235a16 16 0 0 1-16 15H106a16 16 0 0 1-16-15Z" fill="url(#water)"/>
-          <ellipse cx="160" cy="255" rx="80" ry="9" fill="#F0F1F3" opacity=".35"/>
-          <path d="M96 175l10 300" stroke="#fff" stroke-opacity=".45" stroke-width="5" stroke-linecap="round"/>
-          <ellipse cx="155" cy="150" rx="85" ry="10" fill="none" stroke="#fff" stroke-opacity=".45" stroke-width="2"/>
-        </g>
-        <!-- коробка -->
-        <g class="float">
-          <circle cx="400" cy="300" r="190" fill="url(#glow)"/>
-          <path d="M270 210l130-50 130 50-130 50Z" fill="url(#boxTop)" stroke="#ffffff" stroke-opacity=".12"/>
-          <path d="M270 210l130 50v240l-130-50Z" fill="#141517" stroke="#fff" stroke-opacity=".1"/>
-          <path d="M400 260l130-50v240l-130 50Z" fill="url(#box)" stroke="#fff" stroke-opacity=".12"/>
-          <g transform="translate(400 260) skewY(-21.04)" fill="#FFFFFF">
-            <text x="65" y="78" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="22" font-weight="500" letter-spacing="1">LENPALON</text>
-            <text x="65" y="102" text-anchor="middle" font-family="Inter Tight, sans-serif" font-size="13" letter-spacing="6" opacity=".8">FAMILY</text>
-            <circle cx="65" cy="140" r="7"/>
-            <text x="65" y="200" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="1" opacity=".85">18 КАПСУЛ</text>
-            <text x="65" y="214" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" letter-spacing="1" opacity=".6">15 ДНЕЙ</text>
-          </g>
-        </g>
-        <!-- капсулы -->
-        <g transform="translate(420 470) rotate(-18)"><rect width="84" height="34" rx="17" fill="#6DBE5A"/><rect x="42" width="42" height="34" rx="17" fill="#5AA94A"/><rect x="8" y="5" width="60" height="7" rx="3.5" fill="#fff" opacity=".35"/></g>
-        <g transform="translate(505 455) rotate(14)"><rect width="84" height="34" rx="17" fill="#5DB7E8"/><rect x="42" width="42" height="34" rx="17" fill="#4AA2D2"/><rect x="8" y="5" width="60" height="7" rx="3.5" fill="#fff" opacity=".35"/></g>
-        <g transform="translate(360 500) rotate(8)"><rect width="84" height="34" rx="17" fill="#D9B572"/><rect x="42" width="42" height="34" rx="17" fill="#C9A35E"/><rect x="8" y="5" width="60" height="7" rx="3.5" fill="#fff" opacity=".35"/></g>
-        <g transform="translate(470 505) rotate(-4)"><rect width="84" height="34" rx="17" fill="#9B86D6"/><rect x="42" width="42" height="34" rx="17" fill="#8771C4"/><rect x="8" y="5" width="60" height="7" rx="3.5" fill="#fff" opacity=".35"/></g>
-      </svg>
-    </div>
+    <figure class="hero-photo">
+      <img src="img/box.jpg" width="460" height="570" alt="Коробка «Ленпалон Фэмили» и четыре цветные капсулы" fetchpriority="high">
+    </figure>
+  </div>
+</section>
+
+<!-- SECTION: три колонки -->
+<section class="pillars" id="course" aria-label="Как устроен курс">
+  <div class="wrap pillars-grid">
+    <article class="pillar">
+      <figure class="pillar-media pad"><img src="img/cycle1.png" width="900" height="1261" alt="Блистер «Цикл 1»: утро и вечер, дни 1–3, капсулы №1–№4, перерыв 2 дня" loading="lazy"></figure>
+      <div class="pillar-body">
+        <h2>Схема:</h2>
+        <p>Каждый блистер — один цикл на 5 дней: три дня приёма, утром и вечером, затем два дня перерыва. Номер и цвет капсулы подскажут, что принимать.</p>
+        <a class="btn" href="#scheme">Смотреть схему</a>
+      </div>
+    </article>
+    <article class="pillar">
+      <figure class="pillar-media wide"><img src="img/capsules.jpg" width="280" height="110" alt="Четыре капсулы «Ленпалон Фэмили»: зелёная, голубая, песочная и фиолетовая" loading="lazy"></figure>
+      <div class="pillar-body">
+        <h2>Составы:</h2>
+        <p>Четыре состава с цветовой маркировкой. Утренние капсулы принимают за 30 минут до еды, вечерние — через 30 минут после еды.</p>
+        <a class="btn" href="#capsules">Все составы</a>
+      </div>
+    </article>
+    <article class="pillar">
+      <figure class="pillar-media type" aria-hidden="true"><b>15<small>дней — полный курс</small></b></figure>
+      <div class="pillar-body">
+        <h2>Курс:</h2>
+        <p>В упаковке 3 блистера по 6 капсул — всё, что нужно на 15 дней. Доставим бесплатно по всей России, даже одну упаковку.</p>
+        <a class="btn" href="#buy">Купить курс</a>
+      </div>
+    </article>
   </div>
 </section>
 
 <!-- SECTION: четыре состава -->
-<section class="products" id="course" aria-labelledby="course-title">
+<section class="caps" id="capsules" aria-labelledby="caps-title">
   <div class="wrap">
-    <div class="products-head reveal">
-      <h2 id="course-title">Один курс — четыре состава.</h2>
-      <p>Капсулы пронумерованы и разложены по дням: утром и вечером по одной. Не нужно ничего считать и запоминать.</p>
-      <a class="link-arrow" href="#scheme"><span>Схема приёма</span><svg class="i" aria-hidden="true"><use href="#arrow"/></svg></a>
+    <div class="section-head">
+      <h2 id="caps-title">Четыре состава</h2>
+      <p>Цвет и номер капсулы совпадают с ячейкой блистера — перепутать невозможно.</p>
     </div>
-    <ul class="cards reveal">
-      <li class="card">
-        <span class="badge">Старт цикла</span>
-        <span class="tag">№1</span>
+    <ul class="caps-grid">
+      <li class="cap-card" style="--c:var(--cap1)">
+        <div class="cap-media"><span class="num">№1</span><img src="img/cap1.png" width="373" height="137" alt="Капсула №1, зелёная" loading="lazy"></div>
         <h3>Состав 1</h3>
-        <div class="art" aria-hidden="true"><svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="80" fill="currentColor" opacity=".06"/><g transform="rotate(-24 100 100)"><rect x="40" y="78" width="120" height="44" rx="22" fill="#6DBE5A"/><rect x="100" y="78" width="60" height="44" rx="22" fill="#5AA94A"/><rect x="52" y="85" width="80" height="9" rx="4.5" fill="#fff" opacity=".35"/></g></svg></div>
-        <a class="btn btn-sm" href="#scheme">Когда принимать <svg class="i" aria-hidden="true"><use href="#arrow"/></svg></a>
-        <p class="meta">День 1 · утром и вечером</p>
+        <p class="when">День 1 · утром и вечером</p>
       </li>
-      <li class="card">
-        <span class="tag">№2</span>
+      <li class="cap-card" style="--c:var(--cap2)">
+        <div class="cap-media"><span class="num">№2</span><img src="img/cap2.png" width="373" height="137" alt="Капсула №2, голубая" loading="lazy"></div>
         <h3>Состав 2</h3>
-        <div class="art" aria-hidden="true"><svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="80" fill="currentColor" opacity=".06"/><g transform="rotate(-24 100 100)"><rect x="40" y="78" width="120" height="44" rx="22" fill="#5DB7E8"/><rect x="100" y="78" width="60" height="44" rx="22" fill="#4AA2D2"/><rect x="52" y="85" width="80" height="9" rx="4.5" fill="#fff" opacity=".35"/></g></svg></div>
-        <a class="btn btn-sm" href="#scheme">Когда принимать <svg class="i" aria-hidden="true"><use href="#arrow"/></svg></a>
-        <p class="meta">Дни 2–3 · утром</p>
+        <p class="when">Дни 2 и 3 · утром</p>
       </li>
-      <li class="card">
-        <span class="tag">№3</span>
+      <li class="cap-card" style="--c:var(--cap3)">
+        <div class="cap-media"><span class="num">№3</span><img src="img/cap3.png" width="374" height="137" alt="Капсула №3, песочная" loading="lazy"></div>
         <h3>Состав 3</h3>
-        <div class="art" aria-hidden="true"><svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="80" fill="currentColor" opacity=".06"/><g transform="rotate(-24 100 100)"><rect x="40" y="78" width="120" height="44" rx="22" fill="#D9B572"/><rect x="100" y="78" width="60" height="44" rx="22" fill="#C9A35E"/><rect x="52" y="85" width="80" height="9" rx="4.5" fill="#fff" opacity=".35"/></g></svg></div>
-        <a class="btn btn-sm" href="#scheme">Когда принимать <svg class="i" aria-hidden="true"><use href="#arrow"/></svg></a>
-        <p class="meta">День 2 · вечером</p>
+        <p class="when">День 2 · вечером</p>
       </li>
-      <li class="card">
-        <span class="tag">№4</span>
+      <li class="cap-card" style="--c:var(--cap4)">
+        <div class="cap-media"><span class="num">№4</span><img src="img/cap4.png" width="374" height="138" alt="Капсула №4, фиолетовая" loading="lazy"></div>
         <h3>Состав 4</h3>
-        <div class="art" aria-hidden="true"><svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="80" fill="currentColor" opacity=".06"/><g transform="rotate(-24 100 100)"><rect x="40" y="78" width="120" height="44" rx="22" fill="#9B86D6"/><rect x="100" y="78" width="60" height="44" rx="22" fill="#8771C4"/><rect x="52" y="85" width="80" height="9" rx="4.5" fill="#fff" opacity=".35"/></g></svg></div>
-        <a class="btn btn-sm" href="#scheme">Когда принимать <svg class="i" aria-hidden="true"><use href="#arrow"/></svg></a>
-        <p class="meta">День 3 · вечером</p>
+        <p class="when">День 3 · вечером</p>
       </li>
     </ul>
   </div>
 </section>
 
-<div class="light sheet">
-
-<!-- SECTION: курс целиком -->
-<section class="bundle" id="bundle" aria-labelledby="bundle-title">
-  <div class="wrap bundle-in">
-    <div class="reveal">
-      <span class="pill-lime">Бесплатная доставка</span>
-      <h2 id="bundle-title">Полный курс на 15 дней в одной коробке.</h2>
-      <p class="lead">3 блистера по 6 капсул — три цикла по 5 дней. Доставляем по всей России курьером, СДЭК, Почтой России или в пункт выдачи.</p>
-      <button type="button" class="btn btn-forest" data-open-lead data-product="Ленпалон Фемили, курс 15 дней">Купить курс — 9 700 ₽</button>
+<!-- SECTION: покупка и три блистера -->
+<section class="dark buy" id="buy" aria-labelledby="buy-title">
+  <div class="wrap buy-in">
+    <div>
+      <span class="eyebrow">Курс 15 дней</span>
+      <h2 id="buy-title">Всё на 15 дней — в одной коробке.</h2>
+      <p class="lead">3 блистера по 6 капсул — три цикла по 5 дней. Доставляем курьером, СДЭК, Почтой России или в пункт выдачи.</p>
+      <div class="price"><b>9 700 ₽</b><span>за курс</span></div>
+      <ul class="ticks">
+        <li>Бесплатная доставка по России</li>
+        <li>Оплата картой онлайн или переводом</li>
+        <li>Подскажем по телефону, как начать</li>
+      </ul>
+      <button type="button" class="btn btn-white" data-open-lead data-product="Ленпалон Фэмили, курс 15 дней">Оформить заказ</button>
     </div>
-    <div class="bundle-media reveal">
-      <figure class="bundle-main" role="img" aria-label="Коробка с тремя блистерами: 4 состава, 18 капсул" style="margin:0">
-        <svg viewBox="0 0 800 450" aria-hidden="true">
-          <ellipse cx="400" cy="395" rx="300" ry="22" fill="#000" opacity=".08"/>
-          <!-- блистеры -->
-          <g transform="translate(150 150)">
-            <rect width="500" height="230" rx="22" fill="#fff" stroke="#DCDEE2" stroke-width="2"/>
-            <g id="row">
-              <rect x="30" y="34" width="140" height="44" rx="22" fill="#6DBE5A"/><rect x="190" y="34" width="140" height="44" rx="22" fill="#6DBE5A"/>
-              <rect x="30" y="94" width="140" height="44" rx="22" fill="#5DB7E8"/><rect x="190" y="94" width="140" height="44" rx="22" fill="#D9B572"/>
-              <rect x="30" y="154" width="140" height="44" rx="22" fill="#5DB7E8"/><rect x="190" y="154" width="140" height="44" rx="22" fill="#9B86D6"/>
-            </g>
-            <text x="415" y="62" font-family="JetBrains Mono, monospace" font-size="15" fill="#4B4E55">ДЕНЬ 1</text>
-            <text x="415" y="122" font-family="JetBrains Mono, monospace" font-size="15" fill="#4B4E55">ДЕНЬ 2</text>
-            <text x="415" y="182" font-family="JetBrains Mono, monospace" font-size="15" fill="#4B4E55">ДЕНЬ 3</text>
-          </g>
-          <!-- подписи с пунктиром -->
-          <g font-family="Inter Tight, sans-serif" font-size="18" fill="#232427">
-            <rect x="200" y="42" width="128" height="36" rx="18" fill="#FFFFFF" stroke="#232427" stroke-width="1.5"/><text x="264" y="66" text-anchor="middle">4 состава</text>
-            <path d="M264 80v100" stroke="#232427" stroke-width="2" stroke-dasharray="2 6" stroke-linecap="round"/><circle cx="264" cy="184" r="4" fill="#232427"/>
-            <rect x="470" y="42" width="140" height="36" rx="18" fill="#FFFFFF" stroke="#232427" stroke-width="1.5"/><text x="540" y="66" text-anchor="middle">утро · вечер</text>
-            <path d="M540 80v100" stroke="#232427" stroke-width="2" stroke-dasharray="2 6" stroke-linecap="round"/><circle cx="540" cy="184" r="4" fill="#232427"/>
-          </g>
-        </svg>
-      </figure>
-      <figure class="thumb" style="margin:0" role="img" aria-label="Четыре капсулы разных цветов">
-        <svg viewBox="0 0 240 210" aria-hidden="true"><g transform="translate(40 50) rotate(-20)"><rect width="90" height="34" rx="17" fill="#6DBE5A"/></g><g transform="translate(110 70) rotate(15)"><rect width="90" height="34" rx="17" fill="#5DB7E8"/></g><g transform="translate(36 120) rotate(8)"><rect width="90" height="34" rx="17" fill="#D9B572"/></g><g transform="translate(120 128) rotate(-12)"><rect width="90" height="34" rx="17" fill="#9B86D6"/></g></svg>
-        <figcaption>4 цвета — 4 состава</figcaption>
-      </figure>
-      <figure class="thumb" style="margin:0" role="img" aria-label="Открытая коробка с тремя блистерами">
-        <svg viewBox="0 0 240 210" aria-hidden="true"><rect x="30" y="40" width="180" height="130" rx="10" fill="#232427"/><rect x="44" y="54" width="46" height="102" rx="8" fill="#3A3C41"/><rect x="97" y="54" width="46" height="102" rx="8" fill="#3A3C41"/><rect x="150" y="54" width="46" height="102" rx="8" fill="#3A3C41"/><g fill="#FFFFFF" opacity=".85"><circle cx="67" cy="105" r="4"/><circle cx="120" cy="105" r="4"/><circle cx="173" cy="105" r="4"/></g></svg>
-        <figcaption>3 блистера</figcaption>
-      </figure>
-      <figure class="thumb" style="margin:0" role="img" aria-label="Календарь: три дня приёма и два дня перерыва">
-        <svg viewBox="0 0 240 210" aria-hidden="true"><g font-family="JetBrains Mono, monospace" font-size="13" text-anchor="middle"><rect x="22" y="70" width="34" height="70" rx="17" fill="#232427"/><rect x="62" y="70" width="34" height="70" rx="17" fill="#232427"/><rect x="102" y="70" width="34" height="70" rx="17" fill="#232427"/><rect x="142" y="70" width="34" height="70" rx="17" fill="none" stroke="#232427" stroke-width="2" stroke-dasharray="4 5"/><rect x="182" y="70" width="34" height="70" rx="17" fill="none" stroke="#232427" stroke-width="2" stroke-dasharray="4 5"/><g fill="#FFFFFF"><text x="39" y="110">1</text><text x="79" y="110">2</text><text x="119" y="110">3</text></g><g fill="#232427"><text x="159" y="110">4</text><text x="199" y="110">5</text></g></g></svg>
-        <figcaption>3 дня + 2 перерыв</figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
-
-<!-- SECTION: как устроен курс -->
-<section class="science" aria-labelledby="sci-title">
-  <div class="wrap science-in">
-    <div class="science-text reveal">
-      <span class="mark">Ленпалон <b aria-hidden="true">【</b><svg class="i" viewBox="0 0 24 24" aria-hidden="true" style="width:26px;height:26px"><path d="M3 5.5C5 4.5 8 4.5 12 6.5c4-2 7-2 9-1v13c-2-1-5-1-9 1-4-2-7-2-9-1Z"/><path d="M12 6.5v13"/></svg><b aria-hidden="true">】</b></span>
-      <div>
-        <h2 id="sci-title">Пять дней — один цикл.</h2>
-        <p class="lead">Три дня приёма и два дня перерыва. Утром — капсула за 30 минут до еды, вечером — через 30 минут после еды. Так проще не сбиться и замечать, как вы себя чувствуете.</p>
-        <a class="play" href="#scheme">Смотреть схему <span class="c"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M8 5v14l11-7Z" fill="currentColor"/></svg></span></a>
-      </div>
-      <p class="crumb">Курс <span aria-hidden="true">/</span> <b>Схема приёма</b></p>
-    </div>
-    <div class="science-art reveal" role="img" aria-label="Иллюстрация: желудок и пищеварительный тракт">
-      <svg viewBox="0 0 600 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <defs>
-          <radialGradient id="aura" cx=".5" cy=".45" r=".55"><stop offset="0" stop-color="#C9CCD2" stop-opacity=".55"/><stop offset="1" stop-color="#C9CCD2" stop-opacity="0"/></radialGradient>
-          <linearGradient id="organ" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6B6E75"/><stop offset="1" stop-color="#232427"/></linearGradient>
-        </defs>
-        <circle cx="300" cy="330" r="270" fill="url(#aura)"/>
-        <g fill="none" stroke="#232427" stroke-opacity=".12" stroke-width="1.5">
-          <circle cx="300" cy="330" r="120"/><circle cx="300" cy="330" r="180"/><circle cx="300" cy="330" r="240"/>
-        </g>
-        <!-- пищевод и желудок -->
-        <path d="M268 90c0 50 4 80 10 110" stroke="url(#organ)" stroke-width="22" stroke-linecap="round" fill="none"/>
-        <path d="M278 200c40-30 140-20 150 70 10 90-70 150-150 140-60-8-90-50-80-90 6-26 34-30 50-14 18 18 50 20 70 0 20-22 10-70-40-106Z" fill="url(#organ)"/>
-        <path d="M300 260c30-6 70 6 80 40" stroke="#FFFFFF" stroke-opacity=".35" stroke-width="6" stroke-linecap="round" fill="none"/>
-        <!-- кишечник -->
-        <path d="M240 440c-60 10-70 70-20 90 40 16 90-20 130 0 46 24 10 80-40 80-60 0-110 20-100 60" stroke="#8A8D94" stroke-opacity=".55" stroke-width="26" stroke-linecap="round" fill="none"/>
-        <!-- капсулы-точки -->
-        <g><rect x="440" y="150" width="56" height="24" rx="12" fill="#6DBE5A"/><rect x="110" y="250" width="56" height="24" rx="12" fill="#5DB7E8"/><rect x="450" y="470" width="56" height="24" rx="12" fill="#D9B572"/><rect x="120" y="560" width="56" height="24" rx="12" fill="#9B86D6"/></g>
-      </svg>
+    <div class="blisters">
+      <figure><img src="img/cycle1.png" width="900" height="1261" alt="Блистер «Цикл 1», в конце — перерыв 2 дня" loading="lazy"><figcaption><b>Цикл 1</b> · перерыв 2 дня</figcaption></figure>
+      <figure><img src="img/cycle2.png" width="900" height="1261" alt="Блистер «Цикл 2», в конце — перерыв 2 дня" loading="lazy"><figcaption><b>Цикл 2</b> · перерыв 2 дня</figcaption></figure>
+      <figure><img src="img/cycle3.png" width="900" height="1261" alt="Блистер «Цикл 3», в конце — курс закончен" loading="lazy"><figcaption><b>Цикл 3</b> · курс закончен</figcaption></figure>
     </div>
   </div>
 </section>
@@ -499,53 +403,60 @@ ul{padding:0;list-style:none}
 <!-- SECTION: схема по дням -->
 <section class="days" id="scheme" aria-labelledby="days-title">
   <div class="wrap">
-    <h2 id="days-title" class="reveal">Схема приёма по дням</h2>
-    <ol class="days-grid reveal" style="list-style:none;padding:0;margin:0">
+    <div class="section-head">
+      <h2 id="days-title">Схема приёма</h2>
+      <p>Утром — за 30 минут до еды. Вечером — через 30 минут после еды.</p>
+    </div>
+    <ol class="days-grid">
       <li class="day"><h3>День 1</h3>
-        <div class="dose"><span class="cap" style="--c:var(--cap1)" aria-hidden="true"></span><p><b>Утро · №1</b><span>за 30 мин до еды</span></p></div>
-        <div class="dose"><span class="cap" style="--c:var(--cap1)" aria-hidden="true"></span><p><b>Вечер · №1</b><span>через 30 мин после еды</span></p></div>
+        <div class="dose"><img src="img/cap1.png" width="373" height="137" alt=""><p><b>Утро · №1</b><span>за 30 мин до еды</span></p></div>
+        <div class="dose"><img src="img/cap1.png" width="373" height="137" alt=""><p><b>Вечер · №1</b><span>через 30 мин после еды</span></p></div>
       </li>
       <li class="day"><h3>День 2</h3>
-        <div class="dose"><span class="cap" style="--c:var(--cap2)" aria-hidden="true"></span><p><b>Утро · №2</b><span>за 30 мин до еды</span></p></div>
-        <div class="dose"><span class="cap" style="--c:var(--cap3)" aria-hidden="true"></span><p><b>Вечер · №3</b><span>через 30 мин после еды</span></p></div>
+        <div class="dose"><img src="img/cap2.png" width="373" height="137" alt=""><p><b>Утро · №2</b><span>за 30 мин до еды</span></p></div>
+        <div class="dose"><img src="img/cap3.png" width="374" height="137" alt=""><p><b>Вечер · №3</b><span>через 30 мин после еды</span></p></div>
       </li>
       <li class="day"><h3>День 3</h3>
-        <div class="dose"><span class="cap" style="--c:var(--cap2)" aria-hidden="true"></span><p><b>Утро · №2</b><span>за 30 мин до еды</span></p></div>
-        <div class="dose"><span class="cap" style="--c:var(--cap4)" aria-hidden="true"></span><p><b>Вечер · №4</b><span>через 30 мин после еды</span></p></div>
+        <div class="dose"><img src="img/cap2.png" width="373" height="137" alt=""><p><b>Утро · №2</b><span>за 30 мин до еды</span></p></div>
+        <div class="dose"><img src="img/cap4.png" width="374" height="138" alt=""><p><b>Вечер · №4</b><span>через 30 мин после еды</span></p></div>
       </li>
-      <li class="day rest"><h3>Дни 4–5</h3><p>Перерыв 2 дня. Затем следующий блистер — цикл повторяется по той же схеме.</p></li>
+      <li class="day rest"><h3>Дни 4–5</h3><p>Перерыв 2 дня после циклов 1 и 2, затем следующий блистер. <b>После цикла 3 курс закончен.</b></p></li>
     </ol>
     <p class="days-note"><span>1 блистер = 1 цикл (5 дней)</span><span>3 блистера = 15 дней</span><span>18 капсул в упаковке</span></p>
   </div>
 </section>
 
-</div>
 </main>
 
 <!-- SECTION: подвал -->
 <footer class="footer">
-  <div class="wrap footer-grid">
-    <div>
-      <a class="logo" href="#top">Ленпалон<i aria-hidden="true"></i></a>
-      <p class="statement">Забота о вашем желудке <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="9" width="18" height="7" rx="3.5"/><path d="M12 9v7"/></svg> каждый день <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg> для всей семьи.</p>
-      <form class="sub" novalidate data-newsletter>
-        <label for="sub-email">Полезное о пищеварении — на почту</label>
-        <p class="hint">Подписываясь, вы соглашаетесь получать письма и с <a href="../privacy.html" style="text-decoration:underline">политикой конфиденциальности</a>.</p>
-        <div class="sub-row">
-          <input id="sub-email" type="email" name="email" autocomplete="email" placeholder="Подписаться на рассылку" aria-describedby="sub-msg" required>
-          <button type="submit" aria-label="Подписаться"><svg class="i" aria-hidden="true"><use href="#arrow"/></svg></button>
-        </div>
-        <p class="sub-msg" id="sub-msg" role="status" aria-live="polite"></p>
-      </form>
-      <p class="disclaimer">«Ленпалон Фемили» — функциональная пищевая добавка, не является лекарственным средством. Информация на сайте не заменяет консультацию врача.</p>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="logo" href="#top"><svg class="logo-mark" aria-hidden="true" style="color:#FFFFFF"><use href="#mark"/></svg><span class="logo-word">Ленпалон Фэмили</span></a>
+        <p class="statement">Забота о вашем желудке <em>каждый день.</em></p>
+        <form class="sub" novalidate data-newsletter>
+          <label for="sub-email">Новости и полезное о пищеварении</label>
+          <p class="hint">Подписываясь, вы соглашаетесь получать письма и с <a href="../privacy.html">политикой конфиденциальности</a>.</p>
+          <div class="sub-row">
+            <input id="sub-email" type="email" name="email" autocomplete="email" placeholder="Ваш e-mail" aria-describedby="sub-msg" required>
+            <button type="submit" class="btn btn-white">Подписаться</button>
+          </div>
+          <p class="sub-msg" id="sub-msg" role="status" aria-live="polite"></p>
+        </form>
+        <p class="disclaimer">«Ленпалон Фэмили» — функциональная пищевая добавка, не является лекарственным средством. Информация на сайте не заменяет консультацию врача.</p>
+      </div>
+      <div class="cols">
+        <nav aria-labelledby="f1"><h3 id="f1">Курс</h3><ul><li><a href="#buy">Купить</a></li><li><a href="#capsules">Составы</a></li><li><a href="#scheme">Схема приёма</a></li></ul></nav>
+        <nav aria-labelledby="f2"><h3 id="f2">Контакты</h3><ul><li><a href="tel:+79269555935" style="white-space:nowrap">+7 (926) 955-59-35</a></li><li><a href="mailto:BioFloraLenpalon@ya.ru">BioFloraLenpalon@ya.ru</a></li><li><a href="https://t.me/lenpalon-family" rel="noopener">Telegram</a></li></ul></nav>
+        <nav aria-labelledby="f3"><h3 id="f3">Документы</h3><ul><li><a href="../privacy.html">Политика конфиденциальности</a></li><li><a href="../consent.html">Согласие на обработку данных</a></li><li><a href="../offer.html">Оферта</a></li></ul></nav>
+      </div>
     </div>
-    <div class="cols">
-      <nav aria-labelledby="f1"><h3 id="f1">Курс</h3><ul><li><a href="#bundle">Купить</a></li><li><a href="#scheme">Схема приёма</a></li><li><a href="#course">Составы</a></li></ul></nav>
-      <nav aria-labelledby="f2"><h3 id="f2">Контакты</h3><ul><li><a href="tel:+79269555935" style="white-space:nowrap">+7 (926) 955-59-35</a></li><li><a href="mailto:BioFloraLenpalon@ya.ru">E-mail</a></li><li><a href="https://t.me/lenpalon-family" rel="noopener">Telegram</a></li></ul></nav>
-      <nav aria-labelledby="f3"><h3 id="f3">Документы</h3><ul><li><a href="../privacy.html">Политика конфиденциальности</a></li><li><a href="../consent.html">Согласие на обработку данных</a></li><li><a href="../offer.html">Оферта</a></li></ul></nav>
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> ООО «Биофлора» · ИНН 7736377369 · ОГРН 1267700197511</span>
+      <span>119311, Москва, ул. Строителей, д. 6, корп. 5</span>
     </div>
   </div>
-  <div class="footer-bottom"><span>© <span data-year>2026</span> ООО «Биофлора» · ИНН 7736377369 · ОГРН 1267700197511</span></div>
 </footer>
 
 <!-- SECTION: заявка -->
@@ -554,17 +465,17 @@ ul{padding:0;list-style:none}
   <form class="dialog-in" novalidate id="lead-form">
     <div class="body">
       <h2 id="lead-title">Оставьте заявку</h2>
-      <p class="fine" style="margin-top:8px">Перезвоним или напишем в Telegram, ответим на вопросы и оформим курс. Доставка по России бесплатная.</p>
+      <p class="fine" style="margin-top:10px">Перезвоним или напишем в Telegram, ответим на вопросы и оформим курс «Ленпалон Фэмили». Доставка по России бесплатная.</p>
     </div>
     <div class="body field"><label for="lead-name">Как вас зовут</label><input id="lead-name" name="name" autocomplete="given-name" aria-describedby="lead-name-err" required><p class="err" id="lead-name-err"></p></div>
     <div class="body field"><label for="lead-contact">Телефон или Telegram</label><input id="lead-contact" name="contact" autocomplete="tel" placeholder="+7 (___) ___-__-__ или @ник" aria-describedby="lead-contact-err" required><p class="err" id="lead-contact-err"></p></div>
     <div class="body"><label class="check"><input type="checkbox" id="lead-consent" aria-describedby="lead-consent-err" required><span>Даю <a href="../consent.html" target="_blank" rel="noopener">согласие на обработку персональных данных</a> и принимаю <a href="../privacy.html" target="_blank" rel="noopener">политику конфиденциальности</a></span></label><p class="err" id="lead-consent-err"></p></div>
-    <button type="submit" class="btn btn-forest body">Отправить заявку</button>
+    <button type="submit" class="btn body">Отправить заявку</button>
     <p class="fine body">Информация на сайте не заменяет консультацию врача.</p>
     <div class="ok" hidden role="status" tabindex="-1">
       <h2>Спасибо!</h2>
-      <p class="fine">Заявка у нас. Свяжемся с вами в ближайшее время. Если удобнее — позвоните: <a href="tel:+79269555935" style="text-decoration:underline">+7 (926) 955-59-35</a>.</p>
-      <button type="button" class="btn btn-forest" data-close>Закрыть</button>
+      <p class="fine">Заявка у нас. Свяжемся с вами в ближайшее время. Телефон для связи: +7 (926) 955-59-35.</p>
+      <button type="button" class="btn" data-close>Закрыть</button>
     </div>
   </form>
 </dialog>
@@ -585,12 +496,10 @@ function submitSubscribe(data) {
 
 (function () {
   'use strict';
-  document.documentElement.classList.add('js');
   document.querySelectorAll('[data-year]').forEach(function (el) { el.textContent = new Date().getFullYear(); });
 
-  /* Шапка: после прокрутки — тёмные «пилюли», как в референсе */
   var header = document.querySelector('.header');
-  function onScroll() { header.classList.toggle('scrolled', window.scrollY > 40); }
+  function onScroll() { header.classList.toggle('scrolled', window.scrollY > 10); }
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
 
@@ -607,15 +516,6 @@ function submitSubscribe(data) {
   document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && burger.getAttribute('aria-expanded') === 'true') { setMenu(false); burger.focus(); }
   });
-
-  /* Появление блоков */
-  var reveals = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    var io = new IntersectionObserver(function (es) {
-      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
-    }, { threshold: 0.12 });
-    reveals.forEach(function (el) { io.observe(el); });
-  } else reveals.forEach(function (el) { el.classList.add('in'); });
 
   /* Проверка полей */
   function isPhoneLike(v) { return /^[\d\s()+\-.]+$/.test(v) && /\d/.test(v); }
@@ -656,7 +556,7 @@ function submitSubscribe(data) {
   }
   document.querySelectorAll('[data-open-lead]').forEach(function (b) {
     b.addEventListener('click', function () {
-      opener = b; product = b.dataset.product || ''; reset();
+      opener = b; product = b.dataset.product || 'Ленпалон Фэмили'; reset();
       dialog.showModal(); document.getElementById('lead-name').focus();
     });
   });
@@ -678,7 +578,9 @@ function submitSubscribe(data) {
         form.querySelectorAll('.body').forEach(function (el) { el.hidden = true; });
         var ok = form.querySelector('.ok'); ok.hidden = false; ok.focus();
       })
-      .catch(function () { alert('Не получилось отправить. Позвоните: +7 (926) 955-59-35'); })
+      .catch(function () {
+        document.getElementById('lead-consent-err').textContent = 'Не получилось отправить. Позвоните: +7 (926) 955-59-35';
+      })
       .then(function () { btn.disabled = false; btn.textContent = 'Отправить заявку'; });
   });
 
